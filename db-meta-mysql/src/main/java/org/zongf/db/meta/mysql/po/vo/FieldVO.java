@@ -1,10 +1,10 @@
-package org.zongf.auto.generator.athm.vo;
+package org.zongf.db.meta.mysql.po.vo;
 
-/** Athm 字段类型
+/** java 属性
  * @author zongf
  * @date 2019-11-30
  */
-public class AthmColumn {
+public class FieldVO {
 
     // 名称
     private String name;
@@ -18,11 +18,11 @@ public class AthmColumn {
     // 导入依赖
     private String importType;
 
-	public AthmColumn() {
+	public FieldVO() {
         super();
     }
 
-	public AthmColumn(String name, String type, String comment, String importType) {
+	public FieldVO(String name, String type, String comment, String importType) {
         super();
 		this.name = name;
 		this.type = type;
