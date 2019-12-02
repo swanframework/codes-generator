@@ -1,7 +1,7 @@
-package org.zongf.auto.generator.athm.utils;
+package org.zongf.auto.generator.utils;
 
-import org.zongf.auto.generator.athm.vo.AthmColumn;
-import org.zongf.auto.generator.athm.vo.AthmPO;
+import org.zongf.auto.generator.vo.ClassMetaVO;
+import org.zongf.db.meta.mysql.po.vo.FieldVO;
 import org.zongf.db.meta.mysql.dao.api.IMetaDao;
 import org.zongf.db.meta.mysql.dao.impl.MetaDao;
 import org.zongf.db.meta.mysql.enums.JavaMappingType;
@@ -16,7 +16,7 @@ import java.util.*;
  * @author zongf
  * @date 2019-11-30
  */
-public class AthmMetaUtil {
+public class ClassMetaUtil {
 
     private static IMetaDao metaDao  = new MetaDao();
 
@@ -25,74 +25,71 @@ public class AthmMetaUtil {
      * @param schemaName  数据库名称
      * @param tableName  表名
      * @param packageName  包名
-     * @return AthmPO
+     * @return ClassMetaVO
      * @author zongf
      * @date 2019-11-30
      */
-    public static AthmPO getAthmPO(Connection connection, String schemaName, String tableName, String packageName) {
+    public static ClassMetaVO getClassMetaVO(Connection connection, String schemaName, String tableName, String packageName) {
 
         // 查询表详情
         TablePO tablePO = metaDao.queryTable(connection, schemaName, tableName);
         List<ColumnPO> columnPOList = metaDao.queryColumns(connection, schemaName, tableName);
 
         // 处理表基本信息
-        AthmPO athmPO = new AthmPO();
-        athmPO.setCreateDate(getToday());
-        athmPO.setComment(tablePO.getComment());
-        athmPO.setPackageName(packageName);
+        ClassMetaVO classMetaVO = new ClassMetaVO();
+        classMetaVO.setCreateDate(getToday());
+        classMetaVO.setComment(tablePO.getComment());
+        classMetaVO.setPackageName(packageName);
 
         // 处理表名
-        handlePOName(athmPO, tableName);
+        handlePOName(classMetaVO, tableName);
 
         // 处理字段信息
-        handleColumns(athmPO, columnPOList);
+        handleColumns(classMetaVO, columnPOList);
 
         // 处理依赖包
-        handleImports(athmPO, columnPOList);
+        handleImports(classMetaVO, columnPOList);
 
-        return athmPO;
+        return classMetaVO;
     }
 
     /** 处理po 名称
-     * @param athmPO
+     * @param classMetaVO
      * @param tableName  表名
      * @author zongf
      * @date 2019-11-30
      */
-    private static void handlePOName(AthmPO athmPO, String tableName) {
+    private static void handlePOName(ClassMetaVO classMetaVO, String tableName) {
         String humpName = toHumpName(tableName);
-        athmPO.setName(humpName.substring(0, 1).toUpperCase() + humpName.substring(1));
+        classMetaVO.setName(humpName.substring(0, 1).toUpperCase() + humpName.substring(1));
     }
 
     /** 处理表字段信息
-     * @param athmPO  po 模型
+     * @param classMetaVO  po 模型
      * @param columnPOList  字段列表
      * @author zongf
      * @date 2019-11-30
      */
-    private static void handleColumns(AthmPO athmPO, List<ColumnPO> columnPOList) {
+    private static void handleColumns(ClassMetaVO classMetaVO, List<ColumnPO> columnPOList) {
         // 解析字段
         for (ColumnPO columnPO : columnPOList) {
-            AthmColumn athmColumn = new AthmColumn();
+            FieldVO athmColumn = new FieldVO();
             athmColumn.setType(columnPO.getJavaType().toString());
             athmColumn.setComment(columnPO.getComment());
             athmColumn.setName(toHumpName(columnPO.getColumnName()));
-            athmPO.getColumns().add(athmColumn);
+            classMetaVO.getColumns().add(athmColumn);
         }
     }
 
     /** 处理表依赖信息
-     * @param athmPO po 模型
+     * @param classMetaVO po 模型
      * @param columnPOList 字段列表
      * @author zongf
      * @date 2019-11-30
      */
-    private static void handleImports(AthmPO athmPO, List<ColumnPO> columnPOList) {
+    private static void handleImports(ClassMetaVO classMetaVO, List<ColumnPO> columnPOList) {
 
         Set<String> importSet = new HashSet<>();
-        // 添加lombok依赖包
-        importSet.add("lombok.Getter");
-        importSet.add("lombok.Setter");
 
         // 解析字段
         for (ColumnPO columnPO : columnPOList) {
@@ -103,7 +100,7 @@ public class AthmMetaUtil {
             // 对imports 进行排序
             List<String> imports = new ArrayList<>(importSet);
             Collections.sort(imports);
-            athmPO.setImports(imports);
+            classMetaVO.setImports(imports);
         }
     }
 

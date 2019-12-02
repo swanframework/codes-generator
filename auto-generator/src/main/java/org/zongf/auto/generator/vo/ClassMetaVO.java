@@ -1,14 +1,14 @@
-package org.zongf.auto.generator.athm.vo;
+package org.zongf.auto.generator.vo;
+import org.zongf.db.meta.mysql.po.vo.FieldVO;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
  * @author zongf
  * @date 2019-11-30
  */
-public class AthmPO {
+public class ClassMetaVO {
     // 包名称
     private String packageName;
 
@@ -22,16 +22,16 @@ public class AthmPO {
     private String comment;
 
     // 字段列表
-    private List<AthmColumn> columns = new ArrayList<>();
+    private List<FieldVO> columns = new ArrayList<>();
 
     // 日期
     private String createDate;
 
-	public AthmPO() {
+	public ClassMetaVO() {
         super();
     }
 
-	public AthmPO(String packageName, List<String> imports, String name, String comment, List<AthmColumn> columns, String createDate) {
+	public ClassMetaVO(String packageName, List<String> imports, String name, String comment, List<FieldVO> columns, String createDate) {
         super();
 		this.packageName = packageName;
 		this.imports = imports;
@@ -73,11 +73,11 @@ public class AthmPO {
 		return this.comment;
 	}
 
-    public void setColumns(List<AthmColumn> columns){
+    public void setColumns(List<FieldVO> columns){
 		this.columns=columns;
 	}
 
-	public List<AthmColumn> getColumns(){
+	public List<FieldVO> getColumns(){
 		return this.columns;
 	}
 
