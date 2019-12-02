@@ -1,9 +1,10 @@
 package org.zongf.auto.generator.athm.utils;
 
 import org.zongf.auto.generator.athm.constants.FtlPathConstants;
+import org.zongf.auto.generator.utils.ClassMetaUtil;
+import org.zongf.auto.generator.vo.ClassMetaVO;
 import org.zongf.db.meta.mysql.utils.DbUtil;
 import org.zongf.db.meta.mysql.utils.TemplateUtil;
-import org.zongf.auto.generator.athm.vo.AthmPO;
 
 import java.sql.Connection;
 import java.util.Collections;
@@ -30,11 +31,15 @@ public class AthmCodeCreatorUtil {
         Connection connection = DbUtil.openConnection();
 
         // 查询表元数据信息
-        AthmPO athmPO = AthmMetaUtil.getAthmPO(connection, schemaName, packageName, poName);
+        ClassMetaVO classMetaVO = ClassMetaUtil.getClassMetaVO(connection, schemaName, packageName, poName);
+
+        // 添加lombok 依赖
+        classMetaVO.getImports().add("lombok.Getter");
+        classMetaVO.getImports().add("lombok.Setter");
 
         // 根据模板生成代码
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("po", athmPO);
+        dataMap.put("po", classMetaVO);
         return TemplateUtil.getTemplatContent(FtlPathConstants.FTL_PO, dataMap);
     }
 
@@ -52,17 +57,17 @@ public class AthmCodeCreatorUtil {
         Connection connection = DbUtil.openConnection();
 
         // 查询表元数据信息
-        AthmPO athmPO = AthmMetaUtil.getAthmPO(connection, schemaName, packageName, poName);
+        ClassMetaVO classMetaVO = ClassMetaUtil.getClassMetaVO(connection, schemaName, packageName, poName);
 
         // 添加swagger 依赖
-        athmPO.getImports().add("io.swagger.annotations.ApiModelProperty");
+        classMetaVO.getImports().add("io.swagger.annotations.ApiModelProperty");
 
         // 重新排序
-        Collections.sort(athmPO.getImports());
+        Collections.sort(classMetaVO.getImports());
 
         // 根据模板生成代码
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("po", athmPO);
+        dataMap.put("po", classMetaVO);
         return TemplateUtil.getTemplatContent(FtlPathConstants.FTL_PO_SWAGGER, dataMap);
     }
 
