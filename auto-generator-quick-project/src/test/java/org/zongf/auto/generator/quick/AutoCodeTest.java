@@ -3,7 +3,7 @@ package org.zongf.auto.generator.quick;
 import org.junit.Before;
 import org.junit.Test;
 import org.zongf.auto.generator.quick.config.GeneratorConfig;
-import org.zongf.auto.generator.quick.utils.CodeCreator;
+import org.zongf.auto.generator.quick.utils.CodeGenerator;
 import org.zongf.db.meta.mysql.config.DbConfig;
 
 /**
@@ -14,7 +14,7 @@ public class AutoCodeTest {
 
     private GeneratorConfig generatorConfig;
 
-    private CodeCreator codeCreator;
+    private CodeGenerator codeCreator;
 
 
     @Before
@@ -38,42 +38,42 @@ public class AutoCodeTest {
         generatorConfig.setControllerPackage("org.zongf.test.helper.mybatis.controller");
 
         // 创建代码生成器
-        codeCreator = new CodeCreator(generatorConfig);
+        codeCreator = new CodeGenerator(generatorConfig);
     }
 
     @Test
     public void createEntity(){
-        codeCreator.createEntity("codes-generator", "user");
+        codeCreator.generateEntityClass("codes-generator", "user");
     }
 
     @Test
     public void createFieldEnum(){
-        codeCreator.createFieldEnum("codes-generator", "user");
+        codeCreator.generateFieldEnumClass("codes-generator", "user");
     }
 
     @Test
     public void createMapper(){
-        codeCreator.createMapperJava("codes-generator", "user");
+        codeCreator.generateMapperApiClass("codes-generator", "user");
     }
 
     @Test
     public void createXml(){
-        codeCreator.createMapperXml("codes-generator", "user");
+        codeCreator.generateMapperXml("codes-generator", "user");
     }
 
     @Test
     public void createServiceApi(){
-        codeCreator.createServiceApi("codes-generator", "user");
+        codeCreator.generateServiceApiClass("codes-generator", "user");
     }
 
     @Test
     public void createServiceImpl(){
-        codeCreator.createServiceImpl("codes-generator", "user");
+        codeCreator.generateServiceImplClass("codes-generator", "user");
     }
 
     @Test
     public void createController(){
-        codeCreator.createController("codes-generator", "user");
+        codeCreator.generateControllerClass("codes-generator", "user");
     }
 
 
