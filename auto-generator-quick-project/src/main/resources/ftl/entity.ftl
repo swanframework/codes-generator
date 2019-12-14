@@ -1,4 +1,4 @@
-package ${meta.packageName};
+package ${config.entityPackage};
 
 <#list meta.imports as import>
 import ${import};

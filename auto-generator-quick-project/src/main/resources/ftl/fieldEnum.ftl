@@ -1,4 +1,4 @@
-package ${meta.packageName};
+package ${config.fieldEnumPackage};
 
 /** Java实体属性与表字段名映射, 表:${meta.tableName}
 * @author zongf
