@@ -1,6 +1,6 @@
 package org.zongf.auto.generator.utils;
 
-import org.zongf.auto.generator.vo.ClassMetaVO;
+import org.zongf.auto.generator.vo.EntityMetaInfo;
 import org.zongf.db.meta.mysql.po.vo.FieldVO;
 import org.zongf.db.meta.mysql.dao.api.IMetaDao;
 import org.zongf.db.meta.mysql.dao.impl.MetaDao;
@@ -9,14 +9,13 @@ import org.zongf.db.meta.mysql.po.po.ColumnPO;
 import org.zongf.db.meta.mysql.po.po.TablePO;
 
 import java.sql.Connection;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * @author zongf
  * @date 2019-11-30
  */
-public class ClassMetaUtil {
+public class EntityMetaUtil {
 
     private static IMetaDao metaDao  = new MetaDao();
 
@@ -24,53 +23,50 @@ public class ClassMetaUtil {
      * @param connection 数据库连接
      * @param schemaName  数据库名称
      * @param tableName  表名
-     * @param packageName  包名
-     * @return ClassMetaVO
+     * @return EntityMetaInfo
      * @author zongf
      * @date 2019-11-30
      */
-    public static ClassMetaVO getClassMetaVO(Connection connection, String schemaName, String tableName, String packageName) {
+    public static EntityMetaInfo queryEntityMetaInfo(Connection connection, String schemaName, String tableName) {
 
         // 查询表详情
         TablePO tablePO = metaDao.queryTable(connection, schemaName, tableName);
         List<ColumnPO> columnPOList = metaDao.queryColumns(connection, schemaName, tableName);
 
         // 处理表基本信息
-        ClassMetaVO classMetaVO = new ClassMetaVO();
-        classMetaVO.setCreateDate(getToday());
-        classMetaVO.setComment(tablePO.getComment());
-        classMetaVO.setPackageName(packageName);
-        classMetaVO.setTableName(tableName);
+        EntityMetaInfo metaVO = new EntityMetaInfo();
+        metaVO.setComment(tablePO.getComment());
+        metaVO.setTableName(tableName);
 
         // 处理表名
-        handlePOName(classMetaVO);
+        handlePOName(metaVO);
 
         // 处理字段信息
-        handleColumns(classMetaVO, columnPOList);
+        handleColumns(metaVO, columnPOList);
 
         // 处理依赖包
-        handleImports(classMetaVO, columnPOList);
+        handleImports(metaVO, columnPOList);
 
-        return classMetaVO;
+        return metaVO;
     }
 
     /** 处理po 名称
-     * @param classMetaVO
+     * @param metaVO
      * @author zongf
      * @date 2019-11-30
      */
-    private static void handlePOName(ClassMetaVO classMetaVO) {
-        String humpName = toHumpName(classMetaVO.getTableName());
-        classMetaVO.setName(humpName.substring(0, 1).toUpperCase() + humpName.substring(1));
+    private static void handlePOName(EntityMetaInfo metaVO) {
+        String humpName = toHumpName(metaVO.getTableName());
+        metaVO.setName(humpName.substring(0, 1).toUpperCase() + humpName.substring(1));
     }
 
     /** 处理表字段信息
-     * @param classMetaVO  po 模型
+     * @param metaVO  po 模型
      * @param columnPOList  字段列表
      * @author zongf
      * @date 2019-11-30
      */
-    private static void handleColumns(ClassMetaVO classMetaVO, List<ColumnPO> columnPOList) {
+    private static void handleColumns(EntityMetaInfo metaVO, List<ColumnPO> columnPOList) {
         // 解析字段
         for (ColumnPO columnPO : columnPOList) {
             FieldVO athmColumn = new FieldVO();
@@ -78,17 +74,17 @@ public class ClassMetaUtil {
             athmColumn.setComment(columnPO.getComment());
             athmColumn.setName(toHumpName(columnPO.getColumnName()));
             athmColumn.setColumnName(columnPO.getColumnName());
-            classMetaVO.getColumns().add(athmColumn);
+            metaVO.getFields().add(athmColumn);
         }
     }
 
     /** 处理表依赖信息
-     * @param classMetaVO po 模型
+     * @param metaVO po 模型
      * @param columnPOList 字段列表
      * @author zongf
      * @date 2019-11-30
      */
-    private static void handleImports(ClassMetaVO classMetaVO, List<ColumnPO> columnPOList) {
+    private static void handleImports(EntityMetaInfo metaVO, List<ColumnPO> columnPOList) {
 
         Set<String> importSet = new HashSet<>();
 
@@ -101,7 +97,7 @@ public class ClassMetaUtil {
             // 对imports 进行排序
             List<String> imports = new ArrayList<>(importSet);
             Collections.sort(imports);
-            classMetaVO.setImports(imports);
+            metaVO.setImports(imports);
         }
     }
 
@@ -127,7 +123,6 @@ public class ClassMetaUtil {
         return nameSb.toString();
     }
 
-
     /**
      * @param javaMappingType
      * @return String
@@ -148,13 +143,4 @@ public class ClassMetaUtil {
         return null;
     }
 
-    /** 获取当前日期
-     * @return String
-     * @author zongf
-     * @date 2019-11-30
-     */
-    private static String getToday() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(new Date());
-    }
 }
