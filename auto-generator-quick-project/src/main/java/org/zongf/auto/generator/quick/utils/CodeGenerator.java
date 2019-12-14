@@ -34,7 +34,7 @@ public class CodeGenerator {
      * @date 2019-12-13
      */
     public void generateEntityClass(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_ENTITY, generatorConfig.getEntityPackage(), "", "Entity");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_ENTITY, generatorConfig.getEntityPackage(), "", "Entity.java");
     }
 
     /** 生成字段与属性映射枚举类
@@ -44,7 +44,7 @@ public class CodeGenerator {
      * @date 2019-12-13
      */
     public void generateFieldEnumClass(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_FIELD_ENUM, generatorConfig.getFieldEnumPackage(), "", "FieldEnum");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_FIELD_ENUM, generatorConfig.getFieldEnumPackage(), "", "FieldEnum.java");
     }
 
     /** 生成mapper 接口
@@ -54,7 +54,7 @@ public class CodeGenerator {
      * @date 2019-12-13
      */
     public void generateMapperApiClass(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_MAPPER_API, generatorConfig.getMapperApiPackage(), "", "Mapper");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_MAPPER_API, generatorConfig.getMapperApiPackage(), "", "Mapper.java");
     }
 
     /** 生成mapper 映射文件
@@ -64,7 +64,7 @@ public class CodeGenerator {
      * @date 2019-12-13
      */
     public void generateMapperXml(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_MAPPER_XML, generatorConfig.getMapperXmlPath(), "", "Mapper");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_MAPPER_XML, generatorConfig.getMapperXmlPath(), "", "Mapper.xml");
     }
 
     /** 生成service 接口
@@ -74,7 +74,7 @@ public class CodeGenerator {
      * @date 2019-12-13
      */
     public void generateServiceApiClass(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_SERVICE_API, generatorConfig.getServiceApiPackage(), "I", "Service");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_SERVICE_API, generatorConfig.getServiceApiPackage(), "I", "Service.java");
     }
 
     /** 生成service 实现类
@@ -84,7 +84,7 @@ public class CodeGenerator {
      * @date 2019-12-13
      */
     public void generateServiceImplClass(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_SERVICE_IMPL, generatorConfig.getServiceImplPackage(), "", "Service");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_SERVICE_IMPL, generatorConfig.getServiceImplPackage(), "", "Service.java");
     }
 
     /** 生成controller
@@ -94,7 +94,7 @@ public class CodeGenerator {
      * @date 2019-12-13
      */
     public void generateControllerClass(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_CONTROLLER, generatorConfig.getControllerPackage(), "", "Controller");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_CONTROLLER, generatorConfig.getControllerPackage(), "", "Controller.java");
     }
 
     /** 生成代码
@@ -131,8 +131,7 @@ public class CodeGenerator {
 
         filePathSb.append("/").append(packageName.replace(".", "/"))
                 .append("/").append(fileNamePrefix)
-                .append(metaVO.getName()).append(fileNameSuffix)
-                .append(".java");
+                .append(metaVO.getName()).append(fileNameSuffix);
 
         // 写入文件
         TxtFileUtil.writeFile(Arrays.asList(codes), filePathSb.toString());
