@@ -31,7 +31,7 @@ public class AthmCodeCreatorUtil {
         Connection connection = DbUtil.openConnection();
 
         // 查询表元数据信息
-        EntityMetaInfo classMetaVO = EntityMetaUtil.queryEntityMetaInfo(connection, schemaName, packageName, poName);
+        EntityMetaInfo classMetaVO = EntityMetaUtil.queryEntityMetaInfo(connection, schemaName, poName);
 
         // 添加lombok 依赖
         classMetaVO.getImports().add("lombok.Getter");
@@ -57,7 +57,7 @@ public class AthmCodeCreatorUtil {
         Connection connection = DbUtil.openConnection();
 
         // 查询表元数据信息
-        EntityMetaInfo classMetaVO = EntityMetaUtil.queryEntityMetaInfo(connection, schemaName, packageName, poName);
+        EntityMetaInfo classMetaVO = EntityMetaUtil.queryEntityMetaInfo(connection, schemaName,  poName);
 
         // 添加swagger 依赖
         classMetaVO.getImports().add("io.swagger.annotations.ApiModelProperty");

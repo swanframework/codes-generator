@@ -12,37 +12,5 @@ import org.zongf.auto.generator.athm.utils.AthmCodeCreatorUtil;
 public class AutoCodeTest {
 
 
-    @Before
-    public void setUp(){
-        DbConfig instance = DbConfig.getInstance();
-
-        instance.setHost("10.27.14.191");
-        instance.setPort(3306);
-        instance.setUsername("centos");
-        instance.setPassword("niuhongmei_123_!@#");
-    }
-
-    @Test
-    public void getAthmPOCode(){
-        String schemaName = "tp_hotel_shop";
-        String tabelName = "autohome_employee";
-        String packageName = "com.autohome.travelplat.hotel.shop.service.base.bean";
-
-        String athmPOCode = AthmCodeCreatorUtil.createPOCode(schemaName, tabelName, packageName);
-        System.out.println(athmPOCode);
-    }
-
-    @Test
-    public void getAthmPOSwagerDocCode(){
-        String schemaName = "tp_hotel_shop";
-        String tabelName = "autohome_employee";
-        String packageName = "com.autohome.travelplat.hotel.shop.model.request.autohome.staff";
-
-        String athmPOCode = AthmCodeCreatorUtil.createPOSwaggerCode(schemaName, tabelName, packageName);
-        System.out.println(athmPOCode);
-    }
-
-
-
 
 }
