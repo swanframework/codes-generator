@@ -105,15 +105,10 @@ public class CodeCreator {
         // 查询表元数据信息
         ClassMetaVO classMetaVO = ClassMetaUtil.getClassMetaVO(connection, schemaName, tableName, generatorConfig.getMapperApiPackage());
 
-        // 设置包
-        List<String> imports = classMetaVO.getImports();
-        imports.add(generatorConfig.getEntityPackage() + "." + classMetaVO.getName() + "Entity");
-        imports.add(generatorConfig.getFieldEnumPackage() + "." + classMetaVO.getName() + "FieldEnum");
-        classMetaVO.setImports(imports);
-
         // 根据模板生成代码
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("meta", classMetaVO);
+        dataMap.put("config", generatorConfig);
 
         // 生成代码
         String codes = TemplateUtil.getTemplatContent(FtlPathConstants.FTL_MAPPER_API, dataMap);

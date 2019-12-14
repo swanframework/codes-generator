@@ -1,4 +1,4 @@
-package ${meta.packageName};
+package ${config.mapperApiPackage};
 
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
@@ -7,10 +7,8 @@ import org.zongf.helper.mybatis.condition.QueryStrategy;
 import org.zongf.helper.mybatis.condition.UpdateStrategy;
 import org.zongf.helper.mybatis.pager.PageBounds;
 import org.zongf.helper.mybatis.pager.PageResult;
-
-<#list meta.imports as import>
-import ${import};
-</#list>
+import ${config.entityPackage}.${meta.name}Entity;
+import ${config.fieldEnumPackage}.${meta.name}FieldEnum;
 
 import java.util.List;
 import java.util.Map;
