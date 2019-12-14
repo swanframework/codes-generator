@@ -13,7 +13,7 @@ public interface I${meta.name}Service {
      * @param entity 数据库实体
      * @return boolean
      * @author zongf
-     * @date ${meta.createDate}
+     * @date${createDate}
      */
     boolean save(${meta.name}Entity entity);
 
@@ -21,7 +21,7 @@ public interface I${meta.name}Service {
      * @param entityList 实体列表
      * @return int
      * @author zongf
-     * @date ${meta.createDate}
+     * @date${createDate}
      */
     int batchSave(List<${meta.name}Entity> entityList);
 
@@ -29,7 +29,7 @@ public interface I${meta.name}Service {
      * @param id  主键ID
      * @return boolean 记录不存在返回false
      * @author zongf
-     * @date ${meta.createDate}
+     * @date${createDate}
      */
     boolean deleteById(Long id);
 
@@ -38,7 +38,7 @@ public interface I${meta.name}Service {
      * @param idList 主键列表，不能为空
      * @return int 成功删除的数量
      * @author zongf
-     * @date ${meta.createDate}
+     * @date${createDate}
      */
     int batchDeleteByIds(List<Long> idList);
 
@@ -46,7 +46,7 @@ public interface I${meta.name}Service {
      * @param entity  包含ID属性的实体
      * @return boolean 如果记录不存在, 返回false
      * @author zongf
-     * @date ${meta.createDate}
+     * @date${createDate}
      */
     boolean updateNotNull(${meta.name}Entity entity);
 
@@ -54,7 +54,7 @@ public interface I${meta.name}Service {
      * @param id 主键ID
      * @return ${meta.name}Entity 实体
      * @author zongf
-     * @date ${meta.createDate}
+     * @date${createDate}
      */
     ${meta.name}Entity queryById(Long id);
 
@@ -63,7 +63,7 @@ public interface I${meta.name}Service {
      * @param query 请求对象
      * @return List<${meta.name}Entity>
      * @author zongf
-     * @date ${meta.createDate}
+     * @date${createDate}
      * @company autohome
      */
     List<${meta.name}Entity> queryList(BaseQuery query);
@@ -73,7 +73,7 @@ public interface I${meta.name}Service {
      * @param pageBounds 分页对象
      * @return PageResult<${meta.name}Entity>
      * @author zongf
-     * @date ${meta.createDate}
+     * @date${createDate}
      */
     PageResult<${meta.name}Entity> queryPager(BaseQuery query, PageBounds pageBounds);
 }

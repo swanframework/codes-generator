@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @author zongf
- * @date 2019-12-14
+ * @date ${createDate}
  */
 @RestController
 @RequestMapping("/${meta.name?uncap_first}")

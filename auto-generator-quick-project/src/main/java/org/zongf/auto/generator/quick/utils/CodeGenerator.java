@@ -2,14 +2,16 @@ package org.zongf.auto.generator.quick.utils;
 
 import org.zongf.auto.generator.quick.config.GeneratorConfig;
 import org.zongf.auto.generator.quick.constants.FtlPathConstants;
-import org.zongf.auto.generator.utils.ClassMetaUtil;
-import org.zongf.auto.generator.vo.ClassMetaVO;
+import org.zongf.auto.generator.utils.EntityMetaUtil;
+import org.zongf.auto.generator.vo.EntityMetaInfo;
 import org.zongf.db.meta.mysql.utils.DbUtil;
 import org.zongf.db.meta.mysql.utils.TemplateUtil;
 import org.zongf.tools.common.utils.TxtFileUtil;
 
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -111,12 +113,13 @@ public class CodeGenerator {
         Connection connection = DbUtil.openConnection();
 
         // 查询表元数据信息
-        ClassMetaVO classMetaVO = ClassMetaUtil.getClassMetaVO(connection, schemaName, tableName, null);
+        EntityMetaInfo metaVO = EntityMetaUtil.queryEntityMetaInfo(connection, schemaName, tableName);
 
         // 根据模板生成代码
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("meta", classMetaVO);
+        dataMap.put("meta", metaVO);
         dataMap.put("config", generatorConfig);
+        dataMap.put("createDate", getCurrentDate());
 
         // 生成代码
         String codes = TemplateUtil.getTemplatContent(ftlName, dataMap);
@@ -128,11 +131,21 @@ public class CodeGenerator {
 
         filePathSb.append("/").append(packageName.replace(".", "/"))
                 .append("/").append(fileNamePrefix)
-                .append(classMetaVO.getName()).append(fileNameSuffix)
+                .append(metaVO.getName()).append(fileNameSuffix)
                 .append(".java");
 
         // 写入文件
         TxtFileUtil.writeFile(Arrays.asList(codes), filePathSb.toString());
+    }
+
+    /** 获取当前日期
+     * @return String
+     * @author zongf
+     * @date 2019-12-14
+     */
+    private String getCurrentDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(new Date());
     }
 
 }

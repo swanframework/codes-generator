@@ -9,7 +9,7 @@
 
     <!-- 表中所有的字段 -->
     <sql id="columns_all">
-        <#list meta.columns as column>${column.columnName}<#if column_index != meta.columns?size-1>, </#if></#list>
+        <#list meta.fields as field>${field.columnName}<#if field_index != meta.fields?size-1>, </#if></#list>
     </sql>
 ${r'
     <!-- 表中特定的字段列表 -->
@@ -217,7 +217,7 @@ ${r'
     <!-- 保存单个实体 -->
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         insert <include refid="tableName"/>(<include refid="columns_all"/>)
-        values (<#list meta.columns as column>${r'#{'}${column.name}}<#if column_index != meta.columns?size-1>, </#if></#list>);
+        values (<#list meta.fields as field>${r'#{'}${field.name}}<#if field_index != meta.fields?size-1>, </#if></#list>);
     </insert>
 
     <!-- 保存多个实体 -->
@@ -225,7 +225,7 @@ ${r'
         insert <include refid="tableName"/>(<include refid="columns_all"/>)
         values
         <foreach collection="list" separator="," item="entity">
-            (<#list meta.columns as column>${r'#{entity.'}${column.name}}<#if column_index != meta.columns?size-1>, </#if></#list>)
+            (<#list meta.fields as field>${r'#{entity.'}${field.name}}<#if field_index != meta.fields?size-1>, </#if></#list>)
         </foreach>
     </insert>
 ${r'
@@ -265,8 +265,8 @@ ${r'
     <update id="update">
         update <include refid="tableName"/>
         set
-            <#list meta.columns as column>
-            ${column.columnName} = ${r'#{'}${column.name}}<#if column_index != meta.columns?size-1>, </#if>
+            <#list meta.fields as field>
+            ${field.columnName} = ${r'#{'}${field.name}}<#if field_index != meta.fields?size-1>, </#if>
             </#list>
         where
             ${r'id = #{id}'}
@@ -276,8 +276,8 @@ ${r'
     <update id="updateNotNull">
         update <include refid="tableName"/>
         <set>
-            <#list meta.columns as column>
-            <if test="${column.name} != null">${column.columnName} = ${r'#{'}${column.name}}<#if column_index != meta.columns?size-1>, </#if></if>
+            <#list meta.fields as field>
+            <if test="${field.name} != null">${field.columnName} = ${r'#{'}${field.name}}<#if field_index != meta.fields?size-1>, </#if></if>
             </#list>
         </set>
         where

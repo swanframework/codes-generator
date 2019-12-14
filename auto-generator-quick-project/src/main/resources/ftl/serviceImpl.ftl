@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * @author zongf
- * @date ${meta.createDate}
+ * @date${createDate}
  */
 @Service
 public class ${meta.name}Service implements I${meta.name}Service {

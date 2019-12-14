@@ -1,12 +1,12 @@
 package org.zongf.auto.generator.athm.vo;
 
-import org.zongf.auto.generator.vo.ClassMetaVO;
+import org.zongf.auto.generator.vo.EntityMetaInfo;
 
 /**
  * @author zongf
  * @date 2019-11-30
  */
-public class AthmValidateVO extends ClassMetaVO {
+public class AthmValidateVO extends EntityMetaInfo {
 
     // 不能为空
     private boolean isNotNull;

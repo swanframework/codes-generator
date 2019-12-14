@@ -6,35 +6,35 @@ import ${import};
 
 /** ${meta.comment}, 映射表:${meta.tableName}
 * @author zongf
-* @date ${meta.createDate}
+* @date${createDate}
 */
 public class ${meta.name}Entity {
-<#list meta.columns as column>
+<#list meta.fields as field>
 
-    // ${column.comment}
-    private ${column.type} ${column.name};
+    // ${field.comment}
+    private ${field.type} ${field.name};
 </#list>
 
     public ${meta.name}Entity() {
         super();
     }
 
-<#list meta.columns as column>
-    public void set${column.name?cap_first}(${column.type} ${column.name}){
-        this.${column.name}=${column.name};
+<#list meta.fields as field>
+    public void set${field.name?cap_first}(${field.type} ${field.name}){
+        this.${field.name}=${field.name};
     }
 
-    <#if column.type == 'Boolean' || column.type == 'boolean' >
-    public ${column.type} is${column.name?cap_first}(){
+    <#if field.type == 'Boolean' || field.type == 'boolean' >
+    public ${field.type} is${field.name?cap_first}(){
     <#else>
-    public ${column.type} get${column.name?cap_first}(){
+    public ${field.type} get${field.name?cap_first}(){
     </#if>
-        return this.${column.name};
+        return this.${field.name};
     }
 
 </#list>
     public String toString() {
-        return getClass().getSimpleName() + "@" + hashCode() <#if (meta.columns?size > 0)>+ ": {<#list meta.columns as column>${column.name}:" + ${column.name} <#if column_index != meta.columns?size-1>+ ", </#if></#list></#if> + "}";
+        return getClass().getSimpleName() + "@" + hashCode() <#if (meta.fields?size > 0)>+ ": {<#list meta.fields as field>${field.name}:" + ${field.name} <#if field_index != meta.fields?size-1>+ ", </#if></#list></#if> + "}";
     }
 
 }

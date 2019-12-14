@@ -1,8 +1,8 @@
 package org.zongf.auto.generator.athm.utils;
 
 import org.zongf.auto.generator.athm.constants.FtlPathConstants;
-import org.zongf.auto.generator.utils.ClassMetaUtil;
-import org.zongf.auto.generator.vo.ClassMetaVO;
+import org.zongf.auto.generator.utils.EntityMetaUtil;
+import org.zongf.auto.generator.vo.EntityMetaInfo;
 import org.zongf.db.meta.mysql.utils.DbUtil;
 import org.zongf.db.meta.mysql.utils.TemplateUtil;
 
@@ -31,7 +31,7 @@ public class AthmCodeCreatorUtil {
         Connection connection = DbUtil.openConnection();
 
         // 查询表元数据信息
-        ClassMetaVO classMetaVO = ClassMetaUtil.getClassMetaVO(connection, schemaName, packageName, poName);
+        EntityMetaInfo classMetaVO = EntityMetaUtil.queryEntityMetaInfo(connection, schemaName, packageName, poName);
 
         // 添加lombok 依赖
         classMetaVO.getImports().add("lombok.Getter");
@@ -57,7 +57,7 @@ public class AthmCodeCreatorUtil {
         Connection connection = DbUtil.openConnection();
 
         // 查询表元数据信息
-        ClassMetaVO classMetaVO = ClassMetaUtil.getClassMetaVO(connection, schemaName, packageName, poName);
+        EntityMetaInfo classMetaVO = EntityMetaUtil.queryEntityMetaInfo(connection, schemaName, packageName, poName);
 
         // 添加swagger 依赖
         classMetaVO.getImports().add("io.swagger.annotations.ApiModelProperty");

@@ -2,23 +2,23 @@ package ${config.fieldEnumPackage};
 
 /** Java实体属性与表字段名映射, 表:${meta.tableName}
 * @author zongf
-* @date ${meta.createDate}
+* @date${createDate}
 */
 public enum ${meta.name}FieldEnum {
-<#list meta.columns as column>
+<#list meta.fields as field>
 
-    /** ${column.comment} */
-    ${column.name}("${column.columnName}")<#if column_index != meta.columns?size-1>, <#else>;</#if>
+    /** ${field.comment} */
+    ${field.name}("${field.columnName}")<#if field_index != meta.fields?size-1>, <#else>;</#if>
 </#list>
 
-    private String columnName;
+    private String fieldName;
 
-    ${meta.name}FieldEnum(String columnName) {
-        this.columnName = columnName;
+    ${meta.name}FieldEnum(String fieldName) {
+        this.fieldName = fieldName;
     }
 
     public String getColumnName() {
-        return columnName;
+        return fieldName;
     }
 
 }
