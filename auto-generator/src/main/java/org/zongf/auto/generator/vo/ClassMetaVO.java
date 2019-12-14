@@ -15,6 +15,9 @@ public class ClassMetaVO {
     // 依赖类
     private List<String> imports = new ArrayList<>();
 
+    // 表名称
+    private String tableName;
+
     // po 名称
     private String name;
 
@@ -31,10 +34,11 @@ public class ClassMetaVO {
         super();
     }
 
-	public ClassMetaVO(String packageName, List<String> imports, String name, String comment, List<FieldVO> columns, String createDate) {
+	public ClassMetaVO(String packageName, List<String> imports, String tableName, String name, String comment, List<FieldVO> columns, String createDate) {
         super();
 		this.packageName = packageName;
 		this.imports = imports;
+		this.tableName = tableName;
 		this.name = name;
 		this.comment = comment;
 		this.columns = columns;
@@ -55,6 +59,14 @@ public class ClassMetaVO {
 
 	public List<String> getImports(){
 		return this.imports;
+	}
+
+    public void setTableName(String tableName){
+		this.tableName=tableName;
+	}
+
+	public String getTableName(){
+		return this.tableName;
 	}
 
     public void setName(String name){
@@ -90,7 +102,7 @@ public class ClassMetaVO {
 	}
 
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {packageName:" + packageName + ", imports:" + imports + ", name:" + name + ", comment:" + comment + ", columns:" + columns + ", createDate:" + createDate  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {packageName:" + packageName + ", imports:" + imports + ", tableName:" + tableName + ", name:" + name + ", comment:" + comment + ", columns:" + columns + ", createDate:" + createDate  + "}";
 	}
 
 }

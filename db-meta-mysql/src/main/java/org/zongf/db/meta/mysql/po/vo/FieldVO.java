@@ -17,17 +17,21 @@ public class FieldVO {
 
     // 导入依赖
     private String importType;
+    
+    // 列名
+    private String columnName;
 
 	public FieldVO() {
         super();
     }
 
-	public FieldVO(String name, String type, String comment, String importType) {
+	public FieldVO(String name, String type, String comment, String importType, String columnName) {
         super();
 		this.name = name;
 		this.type = type;
 		this.comment = comment;
 		this.importType = importType;
+		this.columnName = columnName;
     }
 
     public void setName(String name){
@@ -62,8 +66,16 @@ public class FieldVO {
 		return this.importType;
 	}
 
+    public void setColumnName(String columnName){
+		this.columnName=columnName;
+	}
+
+	public String getColumnName(){
+		return this.columnName;
+	}
+
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {name:" + name + ", type:" + type + ", comment:" + comment + ", importType:" + importType  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {name:" + name + ", type:" + type + ", comment:" + comment + ", importType:" + importType + ", columnName:" + columnName  + "}";
 	}
 
 }

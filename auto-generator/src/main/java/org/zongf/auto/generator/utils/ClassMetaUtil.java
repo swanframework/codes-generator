@@ -40,9 +40,10 @@ public class ClassMetaUtil {
         classMetaVO.setCreateDate(getToday());
         classMetaVO.setComment(tablePO.getComment());
         classMetaVO.setPackageName(packageName);
+        classMetaVO.setTableName(tableName);
 
         // 处理表名
-        handlePOName(classMetaVO, tableName);
+        handlePOName(classMetaVO);
 
         // 处理字段信息
         handleColumns(classMetaVO, columnPOList);
@@ -55,12 +56,11 @@ public class ClassMetaUtil {
 
     /** 处理po 名称
      * @param classMetaVO
-     * @param tableName  表名
      * @author zongf
      * @date 2019-11-30
      */
-    private static void handlePOName(ClassMetaVO classMetaVO, String tableName) {
-        String humpName = toHumpName(tableName);
+    private static void handlePOName(ClassMetaVO classMetaVO) {
+        String humpName = toHumpName(classMetaVO.getTableName());
         classMetaVO.setName(humpName.substring(0, 1).toUpperCase() + humpName.substring(1));
     }
 
@@ -77,6 +77,7 @@ public class ClassMetaUtil {
             athmColumn.setType(columnPO.getJavaType().toString());
             athmColumn.setComment(columnPO.getComment());
             athmColumn.setName(toHumpName(columnPO.getColumnName()));
+            athmColumn.setColumnName(columnPO.getColumnName());
             classMetaVO.getColumns().add(athmColumn);
         }
     }

@@ -33,6 +33,9 @@ public class AutoCodeTest {
         generatorConfig.setFieldEnumPackage("org.zongf.test.helper.mybatis.persistence.enums");
         generatorConfig.setMapperApiPackage("org.zongf.test.helper.mybatis.persistence.mapper");
         generatorConfig.setMapperXmlPath("src/main/resources/mappers");
+        generatorConfig.setServiceApiPackage("org.zongf.test.helper.mybatis.service.api");
+        generatorConfig.setServiceImplPackage("org.zongf.test.helper.mybatis.service.impl");
+        generatorConfig.setControllerPackage("org.zongf.test.helper.mybatis.controller");
 
         // 创建代码生成器
         codeCreator = new CodeCreator(generatorConfig);
@@ -56,6 +59,21 @@ public class AutoCodeTest {
     @Test
     public void createXml(){
         codeCreator.createMapperXml("codes-generator", "user");
+    }
+
+    @Test
+    public void createServiceApi(){
+        codeCreator.createServiceApi("codes-generator", "user");
+    }
+
+    @Test
+    public void createServiceImpl(){
+        codeCreator.createServiceImpl("codes-generator", "user");
+    }
+
+    @Test
+    public void createController(){
+        codeCreator.createController("codes-generator", "user");
     }
 
 
