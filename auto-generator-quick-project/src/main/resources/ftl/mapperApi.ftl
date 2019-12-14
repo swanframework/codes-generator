@@ -20,7 +20,7 @@ import java.util.Map;
  * @date ${meta.createDate}
  */
 @Mapper
-public interface ${meta.name}EntityMapper {
+public interface ${meta.name}Mapper {
 
     /** 保存实体
      * @param entity 数据库实体

@@ -13,6 +13,9 @@ public class FtlPathConstants {
     public static final String FTL_FIELD_ENUM = "fieldEnum.ftl";
 
     /** mapper 接口模板文件  */
-    public static final String FTL_MAPPER_JAVA = "mapperJava.ftl";
+    public static final String FTL_MAPPER_API = "mapperApi.ftl";
+
+    /** mapper 接口模板文件  */
+    public static final String FTL_MAPPER_XML = "mapperXml.ftl";
 
 }

@@ -8,7 +8,6 @@ import org.zongf.db.meta.mysql.utils.DbUtil;
 import org.zongf.db.meta.mysql.utils.TemplateUtil;
 import org.zongf.tools.common.utils.TxtFileUtil;
 
-import javax.sound.midi.Soundbank;
 import java.sql.Connection;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -104,7 +103,7 @@ public class CodeCreator {
         Connection connection = DbUtil.openConnection();
 
         // 查询表元数据信息
-        ClassMetaVO classMetaVO = ClassMetaUtil.getClassMetaVO(connection, schemaName, tableName, generatorConfig.getMapperInterfacePackage());
+        ClassMetaVO classMetaVO = ClassMetaUtil.getClassMetaVO(connection, schemaName, tableName, generatorConfig.getMapperApiPackage());
 
         // 设置包
         List<String> imports = classMetaVO.getImports();
@@ -117,19 +116,50 @@ public class CodeCreator {
         dataMap.put("meta", classMetaVO);
 
         // 生成代码
-        String codes = TemplateUtil.getTemplatContent(FtlPathConstants.FTL_MAPPER_JAVA, dataMap);
+        String codes = TemplateUtil.getTemplatContent(FtlPathConstants.FTL_MAPPER_API, dataMap);
 
         StringBuffer filePathSb = new StringBuffer();
         filePathSb.append(generatorConfig.getProjectPath())
                 .append("/src/main/java")
-                .append("/").append(generatorConfig.getMapperInterfacePackage().replace(".", "/"))
+                .append("/").append(generatorConfig.getMapperApiPackage().replace(".", "/"))
                 .append("/").append(classMetaVO.getName())
-                .append("EntityMapper.java");
-
-        System.out.println(filePathSb.toString());
+                .append("Mapper.java");
 
         // 写入文件
         TxtFileUtil.writeFile(Arrays.asList(codes), filePathSb.toString());
     }
+
+    /** 创建表字段映射类
+     * @param schemaName 数据库名
+     * @param tableName 表名
+     * @author zongf
+     * @date 2019-12-13
+     */
+    public void createMapperXml(String schemaName, String tableName){
+
+        // 获取数据库连接
+        Connection connection = DbUtil.openConnection();
+
+        // 查询表元数据信息
+        ClassMetaVO classMetaVO = ClassMetaUtil.getClassMetaVO(connection, schemaName, tableName, generatorConfig.getMapperApiPackage());
+
+        // 根据模板生成代码
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("meta", classMetaVO);
+        dataMap.put("config", generatorConfig);
+
+        // 生成代码
+        String codes = TemplateUtil.getTemplatContent(FtlPathConstants.FTL_MAPPER_XML, dataMap);
+
+        StringBuffer filePathSb = new StringBuffer();
+        filePathSb.append(generatorConfig.getProjectPath())
+                .append("/").append(generatorConfig.getMapperXmlPath().replace(".", "/"))
+                .append("/").append(classMetaVO.getName())
+                .append("Mapper.xml");
+
+        // 写入文件
+        TxtFileUtil.writeFile(Arrays.asList(codes), filePathSb.toString());
+    }
+
 
 }

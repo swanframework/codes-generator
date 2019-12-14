@@ -25,7 +25,7 @@ public class GeneratorConfig {
     private String serviceImplPackage;
 
     // mapper 接口包名
-    private String mapperInterfacePackage;
+    private String mapperApiPackage;
 
     // mapper xml 路径
     private String mapperXmlPath;
@@ -37,7 +37,7 @@ public class GeneratorConfig {
         super();
     }
 
-	public GeneratorConfig(String projectPath, String entityPackage, String fieldEnumPackage, String voPackage, String serviceApiPackage, String serviceImplPackage, String mapperInterfacePackage, String mapperXmlPath, String controllerPackage) {
+	public GeneratorConfig(String projectPath, String entityPackage, String fieldEnumPackage, String voPackage, String serviceApiPackage, String serviceImplPackage, String mapperApiPackage, String mapperXmlPath, String controllerPackage) {
         super();
 		this.projectPath = projectPath;
 		this.entityPackage = entityPackage;
@@ -45,7 +45,7 @@ public class GeneratorConfig {
 		this.voPackage = voPackage;
 		this.serviceApiPackage = serviceApiPackage;
 		this.serviceImplPackage = serviceImplPackage;
-		this.mapperInterfacePackage = mapperInterfacePackage;
+		this.mapperApiPackage = mapperApiPackage;
 		this.mapperXmlPath = mapperXmlPath;
 		this.controllerPackage = controllerPackage;
     }
@@ -98,12 +98,12 @@ public class GeneratorConfig {
 		return this.serviceImplPackage;
 	}
 
-    public void setMapperInterfacePackage(String mapperInterfacePackage){
-		this.mapperInterfacePackage=mapperInterfacePackage;
+    public void setMapperApiPackage(String mapperApiPackage){
+		this.mapperApiPackage=mapperApiPackage;
 	}
 
-	public String getMapperInterfacePackage(){
-		return this.mapperInterfacePackage;
+	public String getMapperApiPackage(){
+		return this.mapperApiPackage;
 	}
 
     public void setMapperXmlPath(String mapperXmlPath){
@@ -123,7 +123,7 @@ public class GeneratorConfig {
 	}
 
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {projectPath:" + projectPath + ", entityPackage:" + entityPackage + ", fieldEnumPackage:" + fieldEnumPackage + ", voPackage:" + voPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", mapperInterfacePackage:" + mapperInterfacePackage + ", mapperXmlPath:" + mapperXmlPath + ", controllerPackage:" + controllerPackage  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {projectPath:" + projectPath + ", entityPackage:" + entityPackage + ", fieldEnumPackage:" + fieldEnumPackage + ", voPackage:" + voPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", mapperApiPackage:" + mapperApiPackage + ", mapperXmlPath:" + mapperXmlPath + ", controllerPackage:" + controllerPackage  + "}";
 	}
 
 }

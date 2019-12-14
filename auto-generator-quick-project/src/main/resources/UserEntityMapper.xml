@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 命名空间使用对应的Mapper类全限定名称 -->
-<mapper namespace="${config.mapperApiPackage}.${meta.name}Mapper">
+<mapper namespace="org.zongf.test.helper.mybatis.persistence.mapper.UserEntityMapper">
 
     <!-- 表名 -->
-    <sql id="tableName">${meta.tableName}</sql>
+    <sql id="tableName">user</sql>
 
     <!-- 表中所有的字段 -->
     <sql id="columns_all">
-        <#list meta.columns as column>${column.columnName}<#if column_index != meta.columns?size-1>, </#if></#list>
+        id, name, age, email, nick_name
     </sql>
-${r'
+
     <!-- 表中特定的字段列表 -->
     <sql id="columns_special">
         id <foreach collection="fieldList" item="field"> , ${field.columnName}</foreach>
@@ -43,68 +43,68 @@ ${r'
             </foreach>
         </if>
     </sql>
-'}
+
     <!-- where条件 -->
     <sql id="condition_where">
         <if test="conditions != null">
             <foreach collection="conditions" item="condition">
-                ${r'${condition.relationType}'}
+                ${condition.relationType}
                 <if test="condition.caseSensitive">binary</if>
                 <if test="condition.operatorType.toString() == 'equals'">
-                    ${r'${condition.field.columnName} = #{condition.value}'}
+                    ${condition.field.columnName} = #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'notEquals'">
-                    ${r'${condition.field.columnName} != #{condition.value}'}
+                    ${condition.field.columnName} != #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'greaterhan'">
-                    ${r'${condition.field.columnName} &gt; #{condition.value}'}
+                    ${condition.field.columnName} &gt; #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'lessThan'">
-                    ${r'${condition.field.columnName} &lt; #{condition.value}'}
+                    ${condition.field.columnName} &lt; #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'greaterOrEquals'">
-                    ${r'${condition.field.columnName} <![CDATA[>=]]> #{condition.value}'}
+                    ${condition.field.columnName} <![CDATA[>=]]> #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'lessOrEqualsThan'">
-                    ${r'${condition.field.columnName} <![CDATA[<=]]> #{condition.value}'}
+                    ${condition.field.columnName} <![CDATA[<=]]> #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'isNull'">
-                    ${r'${condition.field.columnName} is null'}
+                    ${condition.field.columnName} is null
                 </if>
                 <if test="condition.operatorType.toString() == 'isNotNull'">
-                    ${r'${condition.field.columnName} is not null'}
+                    ${condition.field.columnName} is not null
                 </if>
                 <if test="condition.operatorType.toString() == 'in'">
                     <if test="condition.value instanceof java.util.List or condition.value instanceof java.util.Set">
-                        ${r'${condition.field.columnName} in'}
+                        ${condition.field.columnName} in
                         <foreach collection="condition.value" open="(" separator="," close=")" item="item">
-                            ${r'#{item}'}
+                            #{item}
                         </foreach>
                     </if>
                     <if test="!(condition.value instanceof java.util.List or condition.value instanceof java.util.Set)">
-                        ${r'${condition.field.columnName} = #{condition.value}'}
+                        ${condition.field.columnName} = #{condition.value}
                     </if>
                 </if>
                 <if test="condition.operatorType.toString() == 'like'">
                     <bind name="pattern" value="'%' + condition.value + '%'"/>
 
-                    ${r'${condition.field.columnName} like #{pattern}'}
+                    ${condition.field.columnName} like #{pattern}
                 </if>
                 <if test="condition.operatorType.toString() == 'startWith'">
                     <bind name="pattern" value="condition.value + '%'"/>
-                    ${r'${condition.field.columnName} like #{pattern}'}
+                    ${condition.field.columnName} like #{pattern}
                 </if>
                 <if test="condition.operatorType.toString() == 'endWith'">
                     <bind name="pattern" value="'%' + condition.value"/>
-                    ${r'${condition.field.columnName} like #{pattern}'}
+                    ${condition.field.columnName} like #{pattern}
                 </if>
                 <if test="condition.operatorType.toString() == 'contains'">
-                    instr( ${r'${condition.field.columnName}, #{condition.value} )>0'}
+                    instr( ${condition.field.columnName}, #{condition.value} )>0
                 </if>
             </foreach>
         </if>
     </sql>
-${r'
+
     <!-- 更新字段 -->
     <sql id="condition_set">
         id = id
@@ -140,68 +140,68 @@ ${r'
             </foreach>
         </if>
     </sql>
-'}
+
     <!-- where条件 -->
     <sql id="query_condition_where">
         <if test="queryCondition.conditions != null">
             <foreach collection="queryCondition.conditions" item="condition">
-                ${r'${condition.relationType}'}
+                ${condition.relationType}
                 <if test="condition.caseSensitive">binary</if>
                 <if test="condition.operatorType.toString() == 'equals'">
-                    ${r'${condition.field.columnName} = #{condition.value}'}
+                    ${condition.field.columnName} = #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'notEquals'">
-                    ${r'${condition.field.columnName} != #{condition.value}'}
+                    ${condition.field.columnName} != #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'greaterhan'">
-                    ${r'${condition.field.columnName} &gt; #{condition.value}'}
+                    ${condition.field.columnName} &gt; #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'lessThan'">
-                    ${r'${condition.field.columnName} &lt; #{condition.value}'}
+                    ${condition.field.columnName} &lt; #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'greaterOrEquals'">
-                    ${r'${condition.field.columnName} <![CDATA[>=]]> #{condition.value}'}
+                    ${condition.field.columnName} <![CDATA[>=]]> #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'lessOrEqualsThan'">
-                    ${r'${condition.field.columnName} <![CDATA[<=]]> #{condition.value}'}
+                    ${condition.field.columnName} <![CDATA[<=]]> #{condition.value}
                 </if>
                 <if test="condition.operatorType.toString() == 'isNull'">
-                    ${r'${condition.field.columnName} is null'}
+                    ${condition.field.columnName} is null
                 </if>
                 <if test="condition.operatorType.toString() == 'isNotNull'">
-                    ${r'${condition.field.columnName} is not null'}
+                    ${condition.field.columnName} is not null
                 </if>
                 <if test="condition.operatorType.toString() == 'in'">
                     <if test="condition.value instanceof java.util.List or condition.value instanceof java.util.Set">
-                        ${r'${condition.field.columnName} in'}
+                        ${condition.field.columnName} in
                         <foreach collection="condition.value" open="(" separator="," close=")" item="item">
-                            ${r'#{item}'}
+                            #{item}
                         </foreach>
                     </if>
                     <if test="!(condition.value instanceof java.util.List or condition.value instanceof java.util.Set)">
-                        ${r'${condition.field.columnName} = #{condition.value}'}
+                        ${condition.field.columnName} = #{condition.value}
                     </if>
                 </if>
                 <if test="condition.operatorType.toString() == 'like'">
                     <bind name="pattern" value="'%' + condition.value + '%'"/>
 
-                    ${r'${condition.field.columnName} like #{pattern}'}
+                    ${condition.field.columnName} like #{pattern}
                 </if>
                 <if test="condition.operatorType.toString() == 'startWith'">
                     <bind name="pattern" value="condition.value + '%'"/>
-                    ${r'${condition.field.columnName} like #{pattern}'}
+                    ${condition.field.columnName} like #{pattern}
                 </if>
                 <if test="condition.operatorType.toString() == 'endWith'">
                     <bind name="pattern" value="'%' + condition.value"/>
-                    ${r'${condition.field.columnName} like #{pattern}'}
+                    ${condition.field.columnName} like #{pattern}
                 </if>
                 <if test="condition.operatorType.toString() == 'contains'">
-                    instr( ${r'${condition.field.columnName}, #{condition.value} )>0'}
+                    instr( ${condition.field.columnName}, #{condition.value} )>0
                 </if>
             </foreach>
         </if>
     </sql>
-${r'
+
     <!-- 排序 -->
     <sql id="query_condition_order">
         <if test="queryCondition.orderRules != null">
@@ -211,13 +211,13 @@ ${r'
             </foreach>
         </if>
     </sql>
-'}
+
     <!--**************************************** save ****************************************-->
 
     <!-- 保存单个实体 -->
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         insert <include refid="tableName"/>(<include refid="columns_all"/>)
-        values (<#list meta.columns as column>${r'#{'}${column.name}}<#if column_index != meta.columns?size-1>, </#if></#list>);
+        values (#{id}, #{name}, #{age}, #{email}, #{nickName});
     </insert>
 
     <!-- 保存多个实体 -->
@@ -225,10 +225,10 @@ ${r'
         insert <include refid="tableName"/>(<include refid="columns_all"/>)
         values
         <foreach collection="list" separator="," item="entity">
-            (<#list meta.columns as column>${r'#{entity.'}${column.name}}<#if column_index != meta.columns?size-1>, </#if></#list>)
+            (#{entity.id}, #{entity.name}, #{entity.age}, #{entity.email}, #{entity.nickName})
         </foreach>
     </insert>
-${r'
+
     <!--**************************************** delete ****************************************-->
 
     <!-- 根据id删除 -->
@@ -258,40 +258,42 @@ ${r'
             <include refid="condition_where"/>
         </where>
     </delete>
-'}
+
     <!--**************************************** update ****************************************-->
 
     <!-- 更新实体 -->
     <update id="update">
         update <include refid="tableName"/>
         set
-            <#list meta.columns as column>
-            ${column.columnName} = ${r'#{'}${column.name}}<#if column_index != meta.columns?size-1>, </#if>
-            </#list>
+            name = #{name},
+            age = #{age},
+            email = #{email},
+            nick_name = #{nickName}
         where
-            ${r'id = #{id}'}
+            id = #{id}
     </update>
 
     <!-- 更新非空属性 -->
     <update id="updateNotNull">
         update <include refid="tableName"/>
-        <set>
-            <#list meta.columns as column>
-            <if test="${column.name} != null">${column.columnName} = ${r'#{'}${column.name}}<#if column_index != meta.columns?size-1>, </#if></if>
-            </#list>
-        </set>
+        set
+            id = #{id}
+            <if test="name != null">, name = #{name}</if>
+            <if test="age != null">, age = #{age}</if>
+            <if test="email != null">, email = #{email}</if>
+            <if test="nickName != null">, nick_name = #{nickName}</if>
         where
-            ${r'id = #{id}'}
+            id = #{id}
     </update>
-${r'
+
     <!-- 更新指定属性 -->
     <update id="updateFields">
         update <include refid="tableName"/>
         set
             id = #{entity.id}
-        <foreach collection="fieldList" item="field">
+            <foreach collection="fieldList" item="field">
             , ${field.columnName} = #{entity.${field}}
-        </foreach>
+            </foreach>
         where
             id = #{entity.id}
     </update>
@@ -305,8 +307,7 @@ ${r'
             <include refid="condition_where"/>
         </where>
     </update>
- '}
-${r'
+
     <!--**************************************** queryById ****************************************-->
     <!-- 通过主键id 查询实体 -->
     <select id="queryById" resultType="org.zongf.test.helper.mybatis.persistence.entity.UserEntity">
@@ -403,4 +404,3 @@ ${r'
         truncate <include refid="tableName"/>
     </delete>
 </mapper>
-'}
