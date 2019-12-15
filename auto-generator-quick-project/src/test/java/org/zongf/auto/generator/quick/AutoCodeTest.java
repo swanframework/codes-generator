@@ -41,6 +41,21 @@ public class AutoCodeTest {
         codeCreator = new CodeGenerator(generatorConfig);
     }
 
+
+    @Test
+    public void createAll(){
+        String schemaName = "";
+        String tableName = "";
+
+        this.codeCreator.generateEntityClass(schemaName, tableName);
+        this.codeCreator.generateFieldEnumClass(schemaName, tableName);
+        this.codeCreator.generateMapperApiClass(schemaName, tableName);
+        this.codeCreator.generateMapperXml(schemaName, tableName);
+        this.codeCreator.generateServiceApiClass(schemaName, tableName);
+        this.codeCreator.generateServiceImplClass(schemaName, tableName);
+        this.codeCreator.generateControllerClass(schemaName, tableName);
+    }
+
     @Test
     public void createEntity(){
         codeCreator.generateEntityClass("codes-generator", "user");
