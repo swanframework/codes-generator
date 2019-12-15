@@ -4,7 +4,7 @@ import org.zongf.auto.generator.athm.constants.FtlPathConstants;
 import org.zongf.auto.generator.utils.EntityMetaUtil;
 import org.zongf.auto.generator.vo.EntityMetaInfo;
 import org.zongf.db.meta.mysql.utils.DbUtil;
-import org.zongf.db.meta.mysql.utils.TemplateUtil;
+import org.zongf.auto.generator.utils.TemplateUtil;
 
 import java.sql.Connection;
 import java.util.Collections;
