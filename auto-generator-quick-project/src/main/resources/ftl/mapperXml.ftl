@@ -312,14 +312,14 @@ ${r'
 ${r'
     <!--**************************************** queryById ****************************************-->
     <!-- 通过主键id 查询实体 -->
-    <select id="queryById" resultType="org.zongf.test.helper.mybatis.persistence.entity.UserEntity">
+    <select id="queryById" resultType="${config.entityPackage}.${meta.name}Entity">
         select <include refid="columns_all"/>
         from <include refid="tableName"/>
         where id = #{id}
     </select>
 
     <!-- 通过主键id 查询实体 -->
-    <select id="queryByIdIncludeFields" resultType="org.zongf.test.helper.mybatis.persistence.entity.UserEntity">
+    <select id="queryByIdIncludeFields" resultType="${config.entityPackage}.${meta.name}Entity">
         select <include refid="columns_special"/>
         from <include refid="tableName"/>
         where id = #{id}
@@ -327,27 +327,27 @@ ${r'
 
     <!--**************************************** queryListInIds ****************************************-->
     <!-- 通过主键id 查询实体 -->
-    <select id="queryListInIds" resultType="org.zongf.test.helper.mybatis.persistence.entity.UserEntity">
+    <select id="queryListInIds" resultType="${config.entityPackage}.${meta.name}Entity">
         select <include refid="columns_all"/>
         from <include refid="tableName"/>
         where id in <include refid="idList"/>
     </select>
 
     <!-- 通过主键id 查询实体 -->
-    <select id="queryListInIdsIncludeFields" resultType="org.zongf.test.helper.mybatis.persistence.entity.UserEntity">
+    <select id="queryListInIdsIncludeFields" resultType="${config.entityPackage}.${meta.name}Entity">
         select <include refid="columns_special"/>
         from <include refid="tableName"/>
         where id in <include refid="condition2_idList"/>
     </select>
 
     <!--**************************************** queryMapInIds ****************************************-->
-    <select id="queryMapInIds" resultType="org.zongf.test.helper.mybatis.persistence.entity.UserEntity">
+    <select id="queryMapInIds" resultType="${config.entityPackage}.${meta.name}Entity">
         select <include refid="columns_all"/>
         from <include refid="tableName"/>
         where id in <include refid="idList"/>
     </select>
 
-    <select id="queryMapInIdsIncludeFields" resultType="org.zongf.test.helper.mybatis.persistence.entity.UserEntity">
+    <select id="queryMapInIdsIncludeFields" resultType="${config.entityPackage}.${meta.name}Entity">
         select <include refid="columns_special"/>
         from <include refid="tableName"/>
         where id in <include refid="condition2_idList"/>
@@ -383,7 +383,7 @@ ${r'
     </select>
 
     <!--**************************************** queryOnCondition ****************************************-->
-    <select id="queryListOnStrategy" resultType="org.zongf.test.helper.mybatis.persistence.entity.UserEntity">
+    <select id="queryListOnStrategy" resultType="${config.entityPackage}.${meta.name}Entity">
         select <include refid="condition_select"/>
         from <include refid="tableName"/>
         <where>
@@ -392,7 +392,7 @@ ${r'
         <include refid="condition_order"/>
     </select>
 
-    <select id="queryPagerOnStrategy" resultType="org.zongf.test.helper.mybatis.persistence.entity.UserEntity">
+    <select id="queryPagerOnStrategy" resultType="${config.entityPackage}.${meta.name}Entity">
         select <include refid="query_condition_select"/>
         from <include refid="tableName"/>
         <where>
