@@ -5,7 +5,9 @@ import org.zongf.auto.generator.athm.utils.AthmDDLUtil;
 import org.zongf.auto.generator.athm.vo.ddl.ColumnDefineInfo;
 import org.zongf.auto.generator.athm.vo.ddl.TableDefineVO;
 import org.zongf.auto.generator.utils.TemplateUtil;
+import org.zongf.tools.common.utils.TxtFileUtil;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +19,7 @@ import java.util.Map;
 public class AutoDDLTest {
 
     // excel 表路径
-    private String ddlExcelPath = "/workspace/zongf/codes-generator/auto-generator-athm/src/test/resources/ddl_demo.xlsx";
+    private String ddlExcelPath = "/home/zongf/Desktop/订单设计/订单表设计.xlsx";
 
     /** 解析excel 文件 */
     @Test
@@ -44,8 +46,7 @@ public class AutoDDLTest {
 
         String ddl = TemplateUtil.getTemplatContent("table-ddl.ftl", map);
 
-        System.out.println(ddl);
-
+        TxtFileUtil.writeFile(Arrays.asList(ddl), "order.sql");
 
     }
 }

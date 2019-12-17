@@ -27,5 +27,6 @@
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
     <orderEntry type="module" module-name="auto-generator" />
     <orderEntry type="module" module-name="db-meta-mysql" />
+    <orderEntry type="library" name="Maven: org.zongf:common-tools:1.0-SNAPSHOT" level="project" />
   </component>
 </module>
