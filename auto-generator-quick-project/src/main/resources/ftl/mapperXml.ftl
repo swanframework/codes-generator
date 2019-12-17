@@ -11,6 +11,9 @@
     <sql id="columns_all">
         <#list meta.fields as field>${field.columnName}<#if field_index != meta.fields?size-1>, </#if></#list>
     </sql>
+
+
+
 ${r'
     <!-- 表中特定的字段列表 -->
     <sql id="columns_special">

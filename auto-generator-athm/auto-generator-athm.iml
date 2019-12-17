@@ -28,5 +28,7 @@
     <orderEntry type="module" module-name="auto-generator" />
     <orderEntry type="module" module-name="db-meta-mysql" />
     <orderEntry type="library" name="Maven: org.zongf:common-tools:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.10" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.5.3" level="project" />
   </component>
 </module>

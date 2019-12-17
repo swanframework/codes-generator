@@ -7,8 +7,14 @@ package org.zongf.auto.generator.athm.constants;
 public class FtlPathConstants {
 
     /** po 模板文件  */
-    public static final String FTL_PO = "po.ftl";
+    public static final String FTL_PO = "entity.ftl";
 
     /** po 模板文件包含swagger 注释信息  */
     public static final String FTL_PO_SWAGGER = "po-swagger.ftl";
+
+    /** po 模板文件包含swagger 注释信息  */
+    public static final String FTL_MAPPER_API = "mapperApi.ftl";
+
+    /** po 模板文件包含swagger 注释信息  */
+    public static final String FTL_MAPPER_IMPL = "mapperXml.ftl";
 }
