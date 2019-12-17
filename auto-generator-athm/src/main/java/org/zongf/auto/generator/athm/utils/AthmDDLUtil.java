@@ -62,12 +62,12 @@ public class AthmDDLUtil {
                 if (tableInfo != null) {
                     ColumnDefineInfo columnInfo = new ColumnDefineInfo();
                     columnInfo.setName(getStringVal(row, startColIdx + DDLExcelTitleEnum.columnName.ordinal()));
-                    columnInfo.setType(getStringVal(row, startColIdx + DDLExcelTitleEnum.columnType.ordinal()));
+                    columnInfo.setType(handleSign(getStringVal(row, startColIdx + DDLExcelTitleEnum.columnType.ordinal())));
                     columnInfo.setComment(getStringVal(row, startColIdx + DDLExcelTitleEnum.columnDesc.ordinal()));
                     columnInfo.setDefaultValue(getStringVal(row, startColIdx + DDLExcelTitleEnum.defaultVal.ordinal()));
                     columnInfo.setNotNull(getBooleanVal(row, startColIdx + DDLExcelTitleEnum.isNotNull.ordinal()));
-                    columnInfo.setUnique(getBooleanVal(row, startColIdx + DDLExcelTitleEnum.isPK.ordinal()));
-                    columnInfo.setPk(getBooleanVal(row, startColIdx + DDLExcelTitleEnum.isUnique.ordinal()));
+                    columnInfo.setUnique(getBooleanVal(row, startColIdx + DDLExcelTitleEnum.isUnique.ordinal()));
+                    columnInfo.setPk(getBooleanVal(row, startColIdx + DDLExcelTitleEnum.isPK.ordinal()));
                     columnInfo.setAutoCreate(getBooleanVal(row, startColIdx + DDLExcelTitleEnum.isAutoCreate.ordinal()));
                     tableInfo.getColumnInfoList().add(columnInfo);
                 }
@@ -81,6 +81,9 @@ public class AthmDDLUtil {
         return tableInfoList;
     }
 
+    private static String handleSign(String str){
+        return str.replace("（", "(").replace("）", ")");
+    }
 
     /** 获取工作簿
      * @param excelPath excel 路径
