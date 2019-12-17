@@ -46,7 +46,7 @@ public class AutoDDLTest {
 
         String ddl = TemplateUtil.getTemplatContent("table-ddl.ftl", map);
 
-        TxtFileUtil.writeFile(Arrays.asList(ddl), "order.sql");
+        TxtFileUtil.writeFile(Arrays.asList(ddl), "target/order.sql");
 
     }
 }
