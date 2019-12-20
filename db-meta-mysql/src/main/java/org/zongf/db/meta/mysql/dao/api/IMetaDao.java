@@ -5,6 +5,7 @@ import org.zongf.db.meta.mysql.po.po.SchemaPO;
 import org.zongf.db.meta.mysql.po.po.TablePO;
 
 import java.sql.Connection;
+import java.util.Collection;
 import java.util.List;
 
 /** 数据库元数据查询
@@ -52,5 +53,16 @@ public interface IMetaDao {
      * @company autohome
      */
     public List<ColumnPO> queryColumns(Connection connection, String schemaName, String tableName);
+
+
+    /** 查询表的主键列表
+     * @param collection 数据库连接
+     * @param schemaName  数据库名
+     * @param tableName 表名
+     * @return List<String>  主键列名
+     * @author zongf
+     * @date 2019-12-20
+     */
+    public List<String> queryPrimaryKeys(Connection collection, String schemaName, String tableName);
 
 }

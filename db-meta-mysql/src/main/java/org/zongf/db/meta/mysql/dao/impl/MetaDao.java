@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -112,11 +113,33 @@ public class MetaDao implements IMetaDao {
                 columnPO.setDefaultValue(rs.getString("COLUMN_DEFAULT"));
                 columnPO.setIsAutoIncrement("auto_increment".equals(rs.getString("EXTRA")));
                 columnPO.setIsNullAble("YES".equals(rs.getString("IS_NULLABLE")));
+                columnPO.setIsPK("PRI".equals(rs.getString("COLUMN_KEY")));
 
                 this.setJavaType(columnPO);
                 columnPOList.add(columnPO);
             }
             return columnPOList.size() > 0 ? columnPOList : null;
+        } catch (SQLException ex) {
+            throw new DbException("结果集解析异常", ex);
+        }
+    }
+
+    @Override
+    public List<String> queryPrimaryKeys(Connection connection, String schemaName, String tableName) {
+
+        String sql = "SELECT * FROM information_schema.key_column_usage WHERE constraint_name='PRIMARY' and table_schema = ? and table_name=?";
+
+        ResultSet rs = DbUtil.excuteQuery(connection, sql, schemaName, tableName);
+
+        try {
+            List<String> pkList = new ArrayList<>();
+
+            while (rs.next()) {
+                String pkName = rs.getString("column_name");
+                pkList.add(pkName);
+            }
+
+            return pkList.size() > 0 ? pkList : null;
         } catch (SQLException ex) {
             throw new DbException("结果集解析异常", ex);
         }
