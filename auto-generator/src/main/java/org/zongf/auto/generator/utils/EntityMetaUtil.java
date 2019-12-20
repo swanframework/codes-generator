@@ -74,6 +74,7 @@ public class EntityMetaUtil {
             athmColumn.setComment(columnPO.getComment());
             athmColumn.setName(toHumpName(columnPO.getColumnName()));
             athmColumn.setColumnName(columnPO.getColumnName());
+            athmColumn.setJdbcType(columnPO.getDataType().toString());
             metaVO.getFields().add(athmColumn);
         }
     }

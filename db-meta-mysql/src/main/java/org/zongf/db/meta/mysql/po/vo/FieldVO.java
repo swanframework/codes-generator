@@ -12,6 +12,8 @@ public class FieldVO {
     // 类型
     private String type;
 
+    private String jdbcType;
+
     // 注释
     private String comment;
 
@@ -25,10 +27,11 @@ public class FieldVO {
         super();
     }
 
-	public FieldVO(String name, String type, String comment, String importType, String columnName) {
+	public FieldVO(String name, String type, String jdbcType, String comment, String importType, String columnName) {
         super();
 		this.name = name;
 		this.type = type;
+		this.jdbcType = jdbcType;
 		this.comment = comment;
 		this.importType = importType;
 		this.columnName = columnName;
@@ -48,6 +51,14 @@ public class FieldVO {
 
 	public String getType(){
 		return this.type;
+	}
+
+    public void setJdbcType(String jdbcType){
+		this.jdbcType=jdbcType;
+	}
+
+	public String getJdbcType(){
+		return this.jdbcType;
 	}
 
     public void setComment(String comment){
@@ -75,7 +86,7 @@ public class FieldVO {
 	}
 
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {name:" + name + ", type:" + type + ", comment:" + comment + ", importType:" + importType + ", columnName:" + columnName  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {name:" + name + ", type:" + type + ", jdbcType:" + jdbcType + ", comment:" + comment + ", importType:" + importType + ", columnName:" + columnName  + "}";
 	}
 
 }
