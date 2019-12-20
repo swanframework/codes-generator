@@ -18,6 +18,15 @@
         </foreach>
     </sql>
 
+    <resultMap id="_${meta.name}" type="${config.entityPackage}.${meta.name}">
+        <id column="id" jdbcType="INTEGER" property="poiId" />
+
+        <#list meta.fields as field>
+        <result column="${field.columnName}" jdbcType="${field.jdbcType?upper_case}" property="${field.name}" />
+        </#list>
+    </resultMap>
+
+
     <!-- 保存单个实体 -->
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         insert <include refid="tableName"/>(<include refid="columns_all"/>)
@@ -34,16 +43,18 @@
     </insert>
 ${r'
     <!-- 根据id删除 -->
-    <delete id="deleteById">
-        delete from <include refid="tableName"/>
+    <update id="deleteById">
+        update <include refid="tableName"/>
+        set is_del = 1
         where id = #{id}
-    </delete>
+    </update>
 
     <!-- 批量删除: 根据主键id列表  -->
-    <delete id="batchDeleteByIds">
-        delete from <include refid="tableName"/>
+    <update id="batchDeleteByIds">
+        update <include refid="tableName"/>
+        set is_del = 1
         where id in <include refid="idList"/>
-    </delete>
+    </update>
 '}
     <!-- 更新实体 -->
     <update id="update">
@@ -69,28 +80,30 @@ ${r'
     </update>
 
     <!-- 通过主键id 查询实体 -->
-    <select id="queryById" resultType="${config.entityPackage}.${meta.name}">
+    <select id="queryById" resultMap="_${meta.name}">
         select <include refid="columns_all"/>
         from <include refid="tableName"/>
-        where id = ${r'#{id}'}
+        where id = ${r'#{id}'} and is_del=0
     </select>
 
     <!-- 通过主键id 查询实体 -->
-    <select id="queryListInIds" resultType="${config.entityPackage}.${meta.name}">
+    <select id="queryListInIds" resultMap="_${meta.name}">
         select <include refid="columns_all"/>
         from <include refid="tableName"/>
         where id in <include refid="idList"/>
     </select>
 
     <!-- 通过主键id 查询实体 -->
-    <select id="queryList" resultType="${config.entityPackage}.${meta.name}">
+    <select id="queryList" resultMap="_${meta.name}">
         select <include refid="columns_all"/>
         from <include refid="tableName"/>
+        where is_del=0
     </select>
 
-    <select id="queryTotalCount" resultType="java.lang.Integer">
+    <select id="queryTotalCount" resultMap="_${meta.name}">
         select count(id)
         from <include refid="tableName"/>
+        where is_del=0
     </select>
 
 </mapper>

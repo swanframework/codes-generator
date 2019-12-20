@@ -1,11 +1,9 @@
 package ${config.mapperApiPackage};
 
-import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import ${config.entityPackage}.${meta.name};
 
 import java.util.List;
-import java.util.Map;
 
 /** 数据库表[${meta.tableName}]通用操作API
  * @author zongf
