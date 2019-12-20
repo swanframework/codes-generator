@@ -12,20 +12,21 @@
         <#list meta.fields as field>${field.columnName}<#if field_index != meta.fields?size-1>, </#if></#list>
     </sql>
 
+    <!-- 主键in查询 -->
     <sql id="idList">
-        <foreach collection="list" open="(" separator="," close=")" item="id">
-            ${r'#{id}'}
-        </foreach>
+        <foreach collection="list" open="(" separator="," close=")" item="id">${r'#{id}'}</foreach>
     </sql>
 
+    <!-- 结果集映射 -->
     <resultMap id="_${meta.name}" type="${config.entityPackage}.${meta.name}">
-        <id column="id" jdbcType="INTEGER" property="poiId" />
-
         <#list meta.fields as field>
+            <#if (field.pkColumn?string('true','false'))=="true">
+        <id column="${field.columnName}" jdbcType="${field.jdbcType?upper_case}" property="${field.name}" />
+            <#else>
         <result column="${field.columnName}" jdbcType="${field.jdbcType?upper_case}" property="${field.name}" />
+            </#if>
         </#list>
     </resultMap>
-
 
     <!-- 保存单个实体 -->
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
