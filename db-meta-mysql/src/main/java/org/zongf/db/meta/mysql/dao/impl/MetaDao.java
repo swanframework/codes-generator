@@ -1,6 +1,5 @@
 package org.zongf.db.meta.mysql.dao.impl;
 
-import org.zongf.auto.generator.converter.DefaultTypeConverter;
 import org.zongf.db.meta.mysql.dao.api.IMetaDao;
 import org.zongf.db.meta.mysql.enums.MysqlDataType;
 import org.zongf.db.meta.mysql.exception.DbException;
