@@ -24,6 +24,36 @@ public class IMetaDaoTest {
 
     private Connection connection;
 
+    private static final String SCHEMA_NAME = "codes-generator";
+
+    /** 查询数据库列表 */
+    @Test
+    public void querySchemas(){
+        List<SchemaPO> schemaPOList = this.metaDao.querySchemas(connection);
+        schemaPOList.forEach(System.out::println);
+    }
+
+    /** 查询数据库下所有表 */
+    @Test
+    public void queryTables(){
+        List<TablePO> tablePOS = this.metaDao.queryTables(connection, SCHEMA_NAME);
+        tablePOS.forEach(System.out::println);
+    }
+
+    /** 查询表中所有字段 */
+    @Test
+    public void queryColumns(){
+        List<ColumnPO> columnPOList = this.metaDao.queryColumns(connection, SCHEMA_NAME, "user");
+        columnPOList.forEach(System.out::println);
+    }
+
+    /** 查询表的主键列名 */
+    @Test
+    public void queryPrimaryKeys(){
+        List<String> pkList = this.metaDao.queryPrimaryKeys(connection, SCHEMA_NAME, "user");
+        pkList.forEach(System.out::println);
+    }
+
     @Before
     public void setUp(){
         String host = "127.0.0.1";
@@ -38,31 +68,6 @@ public class IMetaDaoTest {
         }catch(Exception ex){
             ex.printStackTrace();
         }
-    }
-
-    @Test
-    public void testMetaList(){
-        List<SchemaPO> schemaPOList = this.metaDao.querySchemas(connection);
-        schemaPOList.forEach(System.out::println);
-    }
-
-    @Test
-    public void testTables(){
-        List<TablePO> tablePOS = this.metaDao.queryTables(connection, "codes-generator");
-        tablePOS.forEach(System.out::println);
-    }
-
-    @Test
-    public void testColumns(){
-        List<ColumnPO> columnPOList = this.metaDao.queryColumns(connection, "codes-generator", "t_type");
-        for (ColumnPO column : columnPOList) {
-            System.out.println(column.getColumnName() + ":" + column.getJavaType() + ":" + column.getColunmType());
-        }
-        columnPOList.forEach(System.out::println);
-    }
-
-    @Test
-    public void test(){
     }
 
 }
