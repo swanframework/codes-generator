@@ -1,12 +1,12 @@
 package org.zongf.auto.generator.utils;
 
 import org.zongf.auto.generator.vo.EntityMetaInfo;
-import org.zongf.db.meta.mysql.po.vo.FieldVO;
+import org.zongf.auto.generator.vo.FieldVO;
 import org.zongf.db.meta.mysql.dao.api.IMetaDao;
 import org.zongf.db.meta.mysql.dao.impl.MetaDao;
 import org.zongf.db.meta.mysql.enums.JavaMappingType;
-import org.zongf.db.meta.mysql.po.po.ColumnPO;
-import org.zongf.db.meta.mysql.po.po.TablePO;
+import org.zongf.db.meta.mysql.po.ColumnPO;
+import org.zongf.db.meta.mysql.po.TablePO;
 
 import java.sql.Connection;
 import java.util.*;

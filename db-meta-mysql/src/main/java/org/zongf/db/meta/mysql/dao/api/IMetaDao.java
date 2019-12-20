@@ -1,11 +1,10 @@
 package org.zongf.db.meta.mysql.dao.api;
 
-import org.zongf.db.meta.mysql.po.po.ColumnPO;
-import org.zongf.db.meta.mysql.po.po.SchemaPO;
-import org.zongf.db.meta.mysql.po.po.TablePO;
+import org.zongf.db.meta.mysql.po.ColumnPO;
+import org.zongf.db.meta.mysql.po.SchemaPO;
+import org.zongf.db.meta.mysql.po.TablePO;
 
 import java.sql.Connection;
-import java.util.Collection;
 import java.util.List;
 
 /** 数据库元数据查询

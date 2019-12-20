@@ -1,4 +1,4 @@
-package org.zongf.db.meta.mysql.po.vo;
+package org.zongf.auto.generator.vo;
 
 /** java 属性
  * @author zongf

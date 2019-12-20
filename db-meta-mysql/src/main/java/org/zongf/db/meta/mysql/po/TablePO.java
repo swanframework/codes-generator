@@ -1,4 +1,4 @@
-package org.zongf.db.meta.mysql.po.po;
+package org.zongf.db.meta.mysql.po;
 
 import java.util.Date;
 

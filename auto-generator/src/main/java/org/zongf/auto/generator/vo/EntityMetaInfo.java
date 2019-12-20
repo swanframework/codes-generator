@@ -1,5 +1,4 @@
 package org.zongf.auto.generator.vo;
-import org.zongf.db.meta.mysql.po.vo.FieldVO;
 
 import java.util.ArrayList;
 import java.util.List;
