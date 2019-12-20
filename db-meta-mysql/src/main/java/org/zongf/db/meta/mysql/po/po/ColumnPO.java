@@ -35,6 +35,9 @@ public class ColumnPO {
 
     // 是否可为空
     private boolean isNullAble;
+
+    // 是否是主键列, 不代表是唯一主键, 可能是联合主键
+    private boolean isPKColumn;
     
     // 是否自增
     private boolean isAutoIncrement;
@@ -49,7 +52,7 @@ public class ColumnPO {
         super();
     }
 
-	public ColumnPO(String columnName, String colunmType, MysqlDataType dataType, JavaMappingType javaType, int position, long maxCharLength, int maxIntDigits, int maxDecimalDigits, boolean isNullAble, boolean isAutoIncrement, String comment, String defaultValue) {
+	public ColumnPO(String columnName, String colunmType, MysqlDataType dataType, JavaMappingType javaType, int position, long maxCharLength, int maxIntDigits, int maxDecimalDigits, boolean isNullAble, boolean isPKColumn, boolean isAutoIncrement, String comment, String defaultValue) {
         super();
 		this.columnName = columnName;
 		this.colunmType = colunmType;
@@ -60,6 +63,7 @@ public class ColumnPO {
 		this.maxIntDigits = maxIntDigits;
 		this.maxDecimalDigits = maxDecimalDigits;
 		this.isNullAble = isNullAble;
+		this.isPKColumn = isPKColumn;
 		this.isAutoIncrement = isAutoIncrement;
 		this.comment = comment;
 		this.defaultValue = defaultValue;
@@ -137,6 +141,14 @@ public class ColumnPO {
 		return this.isNullAble;
 	}
 
+    public void setIsPKColumn(boolean isPKColumn){
+		this.isPKColumn=isPKColumn;
+	}
+
+	public boolean isIsPKColumn(){
+		return this.isPKColumn;
+	}
+
     public void setIsAutoIncrement(boolean isAutoIncrement){
 		this.isAutoIncrement=isAutoIncrement;
 	}
@@ -162,7 +174,7 @@ public class ColumnPO {
 	}
 
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {columnName:" + columnName + ", colunmType:" + colunmType + ", dataType:" + dataType + ", javaType:" + javaType + ", position:" + position + ", maxCharLength:" + maxCharLength + ", maxIntDigits:" + maxIntDigits + ", maxDecimalDigits:" + maxDecimalDigits + ", isNullAble:" + isNullAble + ", isAutoIncrement:" + isAutoIncrement + ", comment:" + comment + ", defaultValue:" + defaultValue  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {columnName:" + columnName + ", colunmType:" + colunmType + ", dataType:" + dataType + ", javaType:" + javaType + ", position:" + position + ", maxCharLength:" + maxCharLength + ", maxIntDigits:" + maxIntDigits + ", maxDecimalDigits:" + maxDecimalDigits + ", isNullAble:" + isNullAble + ", isPKColumn:" + isPKColumn + ", isAutoIncrement:" + isAutoIncrement + ", comment:" + comment + ", defaultValue:" + defaultValue  + "}";
 	}
 
 }
