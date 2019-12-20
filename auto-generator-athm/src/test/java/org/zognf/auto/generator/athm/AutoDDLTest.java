@@ -19,7 +19,7 @@ import java.util.Map;
 public class AutoDDLTest {
 
     // excel 表路径
-    private String ddlExcelPath = "/home/zongf/Desktop/订单设计/订单表设计.xlsx";
+    private String ddlExcelPath = "/home/zongf/Desktop/表设计.xlsx";
 
     /** 解析excel 文件 */
     @Test
@@ -46,7 +46,7 @@ public class AutoDDLTest {
 
         String ddl = TemplateUtil.getTemplatContent("table-ddl.ftl", map);
 
-        TxtFileUtil.writeFile(Arrays.asList(ddl), "target/order.sql");
+        TxtFileUtil.writeFile(Arrays.asList(ddl), "target/tables.sql");
 
     }
 }
