@@ -125,7 +125,7 @@ public class EntityMetaUtil {
         return nameSb.toString();
     }
 
-    /**
+    /** 获取需要导入依赖
      * @param javaMappingType
      * @return String
      * @author zongf
@@ -133,8 +133,6 @@ public class EntityMetaUtil {
      */
     private static String getImportType(JavaMappingType javaMappingType) {
         switch (javaMappingType) {
-            case LONG:
-                return "java.math.BigInteger";
             case BIGDECIMAL:
                 return "java.math.BigDecimal";
             case BIGINTEGER:
