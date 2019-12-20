@@ -64,7 +64,6 @@ public interface I${meta.name}Service {
      * @return List<${meta.name}Entity>
      * @author zongf
      * @date${createDate}
-     * @company autohome
      */
     List<${meta.name}Entity> queryList(BaseQuery query);
 

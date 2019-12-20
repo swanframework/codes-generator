@@ -15,9 +15,8 @@ public class DefaultTypeConverter {
      * @param unsigned 是否是无符号整数
      * @param maxIntDigits  最大长度
      * @return JavaMappingType
-     * @since 1.0
      * @author zongf
-     * @created 2019-11-30
+     * @date 2019-11-30
      */
     public static JavaMappingType getType(MysqlDataType dataType, boolean unsigned, int maxIntDigits) {
 

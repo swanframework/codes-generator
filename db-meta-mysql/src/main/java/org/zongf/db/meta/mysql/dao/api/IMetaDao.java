@@ -49,7 +49,6 @@ public interface IMetaDao {
      * @return List<ColumnPO>
      * @author zongf
      * @date 2019-11-30
-     * @company autohome
      */
     public List<ColumnPO> queryColumns(Connection connection, String schemaName, String tableName);
 

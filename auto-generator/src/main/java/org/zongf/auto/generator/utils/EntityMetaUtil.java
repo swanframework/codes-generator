@@ -145,8 +145,7 @@ public class EntityMetaUtil {
      * @param columnPO
      * @author zongf
      * @date 2019-11-30
-     * @company autohome
-     * @return
+     * @return JavaMappingType
      */
     private static JavaMappingType getJavaType(ColumnPO columnPO) {
         boolean unsigned = columnPO.getColunmType().contains("unsigned");

@@ -16,7 +16,6 @@ import java.util.List;
 /**
  * @author zongf
  * @date 2019-11-30
- * @company autohome
  */
 public class IMetaDaoTest {
 

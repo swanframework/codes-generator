@@ -59,7 +59,6 @@ public class DbUtil {
 	 * @return ResultSet
 	 * @author zongf
 	 * @date 2019-11-30
-	 * @company autohome
 	 */
 	public static ResultSet excuteQuery(Connection conn, String sql , Object... params){
 		try{
