@@ -12,8 +12,6 @@ public class FieldVO {
     // 类型
     private String type;
 
-    private String jdbcType;
-
     // 注释
     private String comment;
 
@@ -23,11 +21,17 @@ public class FieldVO {
     // 列名
     private String columnName;
 
+	// jdbc类型
+	private String jdbcType;
+
+    // 是否是主键列
+    private boolean pkColumn;
+
 	public FieldVO() {
         super();
     }
 
-	public FieldVO(String name, String type, String jdbcType, String comment, String importType, String columnName) {
+	public FieldVO(String name, String type, String jdbcType, String comment, String importType, String columnName, boolean pkColumn) {
         super();
 		this.name = name;
 		this.type = type;
@@ -35,6 +39,7 @@ public class FieldVO {
 		this.comment = comment;
 		this.importType = importType;
 		this.columnName = columnName;
+		this.pkColumn = pkColumn;
     }
 
     public void setName(String name){
@@ -85,8 +90,16 @@ public class FieldVO {
 		return this.columnName;
 	}
 
+    public void setPkColumn(boolean pkColumn){
+		this.pkColumn=pkColumn;
+	}
+
+	public boolean isPkColumn(){
+		return this.pkColumn;
+	}
+
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {name:" + name + ", type:" + type + ", jdbcType:" + jdbcType + ", comment:" + comment + ", importType:" + importType + ", columnName:" + columnName  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {name:" + name + ", type:" + type + ", jdbcType:" + jdbcType + ", comment:" + comment + ", importType:" + importType + ", columnName:" + columnName + ", pkColumn:" + pkColumn  + "}";
 	}
 
 }
