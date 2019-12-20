@@ -113,7 +113,7 @@ public class MetaDao implements IMetaDao {
                 columnPO.setDefaultValue(rs.getString("COLUMN_DEFAULT"));
                 columnPO.setIsAutoIncrement("auto_increment".equals(rs.getString("EXTRA")));
                 columnPO.setIsNullAble("YES".equals(rs.getString("IS_NULLABLE")));
-                columnPO.setIsPK("PRI".equals(rs.getString("COLUMN_KEY")));
+                columnPO.setIsPKColumn("PRI".equals(rs.getString("COLUMN_KEY")));
 
                 this.setJavaType(columnPO);
                 columnPOList.add(columnPO);
