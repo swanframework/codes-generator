@@ -18,9 +18,6 @@ public class ColumnPO {
     // 数据类型
     private MysqlDataType dataType;
     
-    // java类型
-    private JavaMappingType javaType;
-
     // 列索引
     private int position;
 
@@ -52,12 +49,11 @@ public class ColumnPO {
         super();
     }
 
-	public ColumnPO(String columnName, String colunmType, MysqlDataType dataType, JavaMappingType javaType, int position, long maxCharLength, int maxIntDigits, int maxDecimalDigits, boolean isNullAble, boolean isPKColumn, boolean isAutoIncrement, String comment, String defaultValue) {
+	public ColumnPO(String columnName, String colunmType, MysqlDataType dataType, int position, long maxCharLength, int maxIntDigits, int maxDecimalDigits, boolean isNullAble, boolean isPKColumn, boolean isAutoIncrement, String comment, String defaultValue) {
         super();
 		this.columnName = columnName;
 		this.colunmType = colunmType;
 		this.dataType = dataType;
-		this.javaType = javaType;
 		this.position = position;
 		this.maxCharLength = maxCharLength;
 		this.maxIntDigits = maxIntDigits;
@@ -91,14 +87,6 @@ public class ColumnPO {
 
 	public MysqlDataType getDataType(){
 		return this.dataType;
-	}
-
-    public void setJavaType(JavaMappingType javaType){
-		this.javaType=javaType;
-	}
-
-	public JavaMappingType getJavaType(){
-		return this.javaType;
 	}
 
     public void setPosition(int position){
@@ -174,7 +162,7 @@ public class ColumnPO {
 	}
 
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {columnName:" + columnName + ", colunmType:" + colunmType + ", dataType:" + dataType + ", javaType:" + javaType + ", position:" + position + ", maxCharLength:" + maxCharLength + ", maxIntDigits:" + maxIntDigits + ", maxDecimalDigits:" + maxDecimalDigits + ", isNullAble:" + isNullAble + ", isPKColumn:" + isPKColumn + ", isAutoIncrement:" + isAutoIncrement + ", comment:" + comment + ", defaultValue:" + defaultValue  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {columnName:" + columnName + ", colunmType:" + colunmType + ", dataType:" + dataType + ", position:" + position + ", maxCharLength:" + maxCharLength + ", maxIntDigits:" + maxIntDigits + ", maxDecimalDigits:" + maxDecimalDigits + ", isNullAble:" + isNullAble + ", isPKColumn:" + isPKColumn + ", isAutoIncrement:" + isAutoIncrement + ", comment:" + comment + ", defaultValue:" + defaultValue  + "}";
 	}
 
 }

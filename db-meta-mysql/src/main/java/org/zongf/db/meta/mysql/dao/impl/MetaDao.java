@@ -1,8 +1,7 @@
 package org.zongf.db.meta.mysql.dao.impl;
 
-import org.zongf.db.meta.mysql.converter.DefaultTypeConverter;
+import org.zongf.auto.generator.converter.DefaultTypeConverter;
 import org.zongf.db.meta.mysql.dao.api.IMetaDao;
-import org.zongf.db.meta.mysql.enums.JavaMappingType;
 import org.zongf.db.meta.mysql.enums.MysqlDataType;
 import org.zongf.db.meta.mysql.exception.DbException;
 import org.zongf.db.meta.mysql.po.ColumnPO;
@@ -113,8 +112,6 @@ public class MetaDao implements IMetaDao {
                 columnPO.setIsAutoIncrement("auto_increment".equals(rs.getString("EXTRA")));
                 columnPO.setIsNullAble("YES".equals(rs.getString("IS_NULLABLE")));
                 columnPO.setIsPKColumn("PRI".equals(rs.getString("COLUMN_KEY")));
-
-                this.setJavaType(columnPO);
                 columnPOList.add(columnPO);
             }
             return columnPOList.size() > 0 ? columnPOList : null;
@@ -142,18 +139,6 @@ public class MetaDao implements IMetaDao {
         } catch (SQLException ex) {
             throw new DbException("结果集解析异常", ex);
         }
-    }
-
-    /** 设置java 类型
-     * @param columnPO
-     * @author zongf
-     * @date 2019-11-30
-     * @company autohome
-     */
-    private void setJavaType(ColumnPO columnPO) {
-        boolean unsigned = columnPO.getColunmType().contains("unsigned");
-        JavaMappingType javaType = DefaultTypeConverter.getType(columnPO.getDataType(), unsigned, columnPO.getMaxIntDigits());
-        columnPO.setJavaType(javaType);
     }
 
 }

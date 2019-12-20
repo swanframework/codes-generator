@@ -2,6 +2,7 @@ package org.zongf.auto.generator.utils;
 
 import org.zongf.auto.generator.vo.EntityMetaInfo;
 import org.zongf.auto.generator.vo.FieldVO;
+import org.zongf.auto.generator.converter.DefaultTypeConverter;
 import org.zongf.db.meta.mysql.dao.api.IMetaDao;
 import org.zongf.db.meta.mysql.dao.impl.MetaDao;
 import org.zongf.db.meta.mysql.enums.JavaMappingType;
@@ -45,7 +46,7 @@ public class EntityMetaUtil {
         handleColumns(metaVO, columnPOList);
 
         // 处理依赖包
-        handleImports(metaVO, columnPOList);
+        handleImports(metaVO);
 
         return metaVO;
     }
@@ -69,38 +70,35 @@ public class EntityMetaUtil {
     private static void handleColumns(EntityMetaInfo metaVO, List<ColumnPO> columnPOList) {
         // 解析字段
         for (ColumnPO columnPO : columnPOList) {
-            FieldVO athmColumn = new FieldVO();
-            athmColumn.setType(columnPO.getJavaType().toString());
-            athmColumn.setComment(columnPO.getComment());
-            athmColumn.setName(toHumpName(columnPO.getColumnName()));
-            athmColumn.setColumnName(columnPO.getColumnName());
-            athmColumn.setJdbcType(columnPO.getDataType().toString());
-            athmColumn.setPkColumn(columnPO.isIsPKColumn());
-            metaVO.getFields().add(athmColumn);
+            FieldVO fieldVO = new FieldVO();
+            fieldVO.setType(getJavaType(columnPO).toString());
+            fieldVO.setComment(columnPO.getComment());
+            fieldVO.setName(toHumpName(columnPO.getColumnName()));
+            fieldVO.setColumnName(columnPO.getColumnName());
+            fieldVO.setJdbcType(columnPO.getDataType().toString());
+            fieldVO.setPkColumn(columnPO.isIsPKColumn());
+            metaVO.getFields().add(fieldVO);
         }
     }
 
     /** 处理表依赖信息
      * @param metaVO po 模型
-     * @param columnPOList 字段列表
      * @author zongf
      * @date 2019-11-30
      */
-    private static void handleImports(EntityMetaInfo metaVO, List<ColumnPO> columnPOList) {
+    private static void handleImports(EntityMetaInfo metaVO) {
 
+        // 获取需要导入的类型
         Set<String> importSet = new HashSet<>();
-
-        // 解析字段
-        for (ColumnPO columnPO : columnPOList) {
-            // 处理导入字段依赖
-            String importType = getImportType(columnPO.getJavaType());
+        for (FieldVO fieldVO : metaVO.getFields()) {
+            String importType = getImportType(fieldVO.getType());
             if(importType != null) importSet.add(importType);
-
-            // 对imports 进行排序
-            List<String> imports = new ArrayList<>(importSet);
-            Collections.sort(imports);
-            metaVO.setImports(imports);
         }
+
+        // 对imports 进行排序
+        List<String> imports = new ArrayList<>(importSet);
+        Collections.sort(imports);
+        metaVO.setImports(imports);
     }
 
     /** 将匈牙利命名改为驼峰命名
@@ -131,16 +129,28 @@ public class EntityMetaUtil {
      * @author zongf
      * @date 2019-11-30
      */
-    private static String getImportType(JavaMappingType javaMappingType) {
+    private static String getImportType(String javaMappingType) {
         switch (javaMappingType) {
-            case BIGDECIMAL:
+            case "BigDecimal":
                 return "java.math.BigDecimal";
-            case BIGINTEGER:
+            case "BigInteger":
                 return "java.math.BigInteger";
-            case DATE:
+            case "Date":
                 return "java.util.Date";
         }
         return null;
+    }
+
+    /** 设置java 类型
+     * @param columnPO
+     * @author zongf
+     * @date 2019-11-30
+     * @company autohome
+     * @return
+     */
+    private static JavaMappingType getJavaType(ColumnPO columnPO) {
+        boolean unsigned = columnPO.getColunmType().contains("unsigned");
+        return DefaultTypeConverter.getType(columnPO.getDataType(), unsigned, columnPO.getMaxIntDigits());
     }
 
 }

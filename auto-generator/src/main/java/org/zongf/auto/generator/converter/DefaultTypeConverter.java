@@ -1,4 +1,4 @@
-package org.zongf.db.meta.mysql.converter;
+package org.zongf.auto.generator.converter;
 
 import org.zongf.db.meta.mysql.enums.JavaMappingType;
 import org.zongf.db.meta.mysql.enums.MysqlDataType;
