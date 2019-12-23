@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 命名空间使用对应的Mapper类全限定名称 -->
 <mapper namespace="${config.mapperApiPackage}.${meta.name}Mapper">
 
     <!-- 表名 -->
@@ -46,14 +45,14 @@ ${r'
     <!-- 根据id删除 -->
     <update id="deleteById">
         update <include refid="tableName"/>
-        set is_del = 1
+        set is_del = 1, modified_stime = current_timestamp
         where id = #{id}
     </update>
 
     <!-- 批量删除: 根据主键id列表  -->
     <update id="batchDeleteByIds">
         update <include refid="tableName"/>
-        set is_del = 1
+        set is_del = 1, modified_stime = current_timestamp
         where id in <include refid="idList"/>
     </update>
 '}
@@ -97,12 +96,6 @@ ${r'
     <!-- 通过主键id 查询实体 -->
     <select id="queryList" resultMap="_${meta.name}">
         select <include refid="columns_all"/>
-        from <include refid="tableName"/>
-        where is_del=0
-    </select>
-
-    <select id="queryTotalCount" resultMap="_${meta.name}">
-        select count(id)
         from <include refid="tableName"/>
         where is_del=0
     </select>

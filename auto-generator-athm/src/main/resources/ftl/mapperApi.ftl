@@ -60,12 +60,6 @@ public interface ${meta.name}Mapper {
      */
     boolean updateNotNull(${meta.name} entity);
 
-    /** 查询记录总数量
-     * @return int 总数量
-     * @author zongf
-     * @date${createDate}
-     */
-    int queryTotalCount();
 
     /** 通过主键ID查询记录, 查询所有字段
      * @param id 主键ID
