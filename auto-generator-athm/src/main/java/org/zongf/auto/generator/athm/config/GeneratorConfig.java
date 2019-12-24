@@ -16,7 +16,7 @@ public class GeneratorConfig {
     private String fieldEnumPackage;
 
     // vo 包名
-    private String voPackage;
+    private String dtoPackage;
 
     // service 接口包名
     private String serviceApiPackage;
@@ -32,22 +32,26 @@ public class GeneratorConfig {
 
     // controller 路径
     private String controllerPackage;
+    
+    // 查询条件类
+    private String queryPackage;
 
 	public GeneratorConfig() {
         super();
     }
 
-	public GeneratorConfig(String projectPath, String entityPackage, String fieldEnumPackage, String voPackage, String serviceApiPackage, String serviceImplPackage, String mapperApiPackage, String mapperXmlPath, String controllerPackage) {
+	public GeneratorConfig(String projectPath, String entityPackage, String fieldEnumPackage, String dtoPackage, String serviceApiPackage, String serviceImplPackage, String mapperApiPackage, String mapperXmlPath, String controllerPackage, String queryPackage) {
         super();
 		this.projectPath = projectPath;
 		this.entityPackage = entityPackage;
 		this.fieldEnumPackage = fieldEnumPackage;
-		this.voPackage = voPackage;
+		this.dtoPackage = dtoPackage;
 		this.serviceApiPackage = serviceApiPackage;
 		this.serviceImplPackage = serviceImplPackage;
 		this.mapperApiPackage = mapperApiPackage;
 		this.mapperXmlPath = mapperXmlPath;
 		this.controllerPackage = controllerPackage;
+		this.queryPackage = queryPackage;
     }
 
     public void setProjectPath(String projectPath){
@@ -74,12 +78,12 @@ public class GeneratorConfig {
 		return this.fieldEnumPackage;
 	}
 
-    public void setVoPackage(String voPackage){
-		this.voPackage=voPackage;
+    public void setDtoPackage(String dtoPackage){
+		this.dtoPackage=dtoPackage;
 	}
 
-	public String getVoPackage(){
-		return this.voPackage;
+	public String getDtoPackage(){
+		return this.dtoPackage;
 	}
 
     public void setServiceApiPackage(String serviceApiPackage){
@@ -122,8 +126,16 @@ public class GeneratorConfig {
 		return this.controllerPackage;
 	}
 
+    public void setQueryPackage(String queryPackage){
+		this.queryPackage=queryPackage;
+	}
+
+	public String getQueryPackage(){
+		return this.queryPackage;
+	}
+
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {projectPath:" + projectPath + ", entityPackage:" + entityPackage + ", fieldEnumPackage:" + fieldEnumPackage + ", voPackage:" + voPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", mapperApiPackage:" + mapperApiPackage + ", mapperXmlPath:" + mapperXmlPath + ", controllerPackage:" + controllerPackage  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {projectPath:" + projectPath + ", entityPackage:" + entityPackage + ", fieldEnumPackage:" + fieldEnumPackage + ", dtoPackage:" + dtoPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", mapperApiPackage:" + mapperApiPackage + ", mapperXmlPath:" + mapperXmlPath + ", controllerPackage:" + controllerPackage + ", queryPackage:" + queryPackage  + "}";
 	}
 
 }
