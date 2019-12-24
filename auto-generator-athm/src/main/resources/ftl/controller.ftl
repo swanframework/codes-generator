@@ -13,11 +13,11 @@ import ${config.dtoPackage}.${meta.name}Dto;
 import ${config.queryPackage}.${meta.name}Query;
 import ${config.serviceApiPackage}.I${meta.name}Service;
 
-import com.autohome.travelplat.base.shop.model.util.HibernateValidatorUtil;
-import com.autohome.travelplat.base.shop.utils.BaseResponsePageUtil;
-import com.autohome.travelplat.framework.bean.BaseResponsePage;
-import com.autohome.travelplat.framework.bean.ResponseResult;
-import com.autohome.travelplat.framework.util.BeanCopyUtils;
+import ${config.companyBasePackage}.base.shop.model.util.HibernateValidatorUtil;
+import ${config.companyBasePackage}.base.shop.utils.BaseResponsePageUtil;
+import ${config.companyBasePackage}.framework.bean.BaseResponsePage;
+import ${config.companyBasePackage}.framework.bean.ResponseResult;
+import ${config.companyBasePackage}.framework.util.BeanCopyUtils;
 
 import java.util.ArrayList;
 import java.util.List;
