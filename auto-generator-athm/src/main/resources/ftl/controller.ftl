@@ -132,7 +132,7 @@ public class ${meta.name}Controller {
 
         // 数据类型转换
         List<${meta.name}> ${meta.name?uncap_first}List = new ArrayList<>();
-        BeanCopyUtils.copyList(${meta.name?uncap_first}DtoList, ${meta.name?uncap_first}List, ${meta.name}Dto.class);
+        BeanCopyUtils.copyList(${meta.name?uncap_first}DtoList, ${meta.name?uncap_first}List, ${meta.name}.class);
 
         int saveNum = this.${meta.name?uncap_first}Service.batchSave(${meta.name?uncap_first}List);
 
