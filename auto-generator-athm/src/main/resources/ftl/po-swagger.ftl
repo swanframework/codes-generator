@@ -1,20 +1,23 @@
-package ${po.packageName};
+package ${config.voPackage};
 
-<#list po.imports as import>
+import lombok.Getter;
+import lombok.Setter;
+import io.swagger.annotations.ApiModelProperty;
+<#list meta.imports as import>
 import ${import};
 </#list>
 
-/** ${po.comment}
+/** ${meta.comment}
 * @author zongf
-* @date ${po.createDate}
+* @date ${createDate}
 */
 @Getter
 @Setter
-public class ${po.name} {
-<#list po.columns as column>
+public class ${meta.name}Request {
+<#list meta.fields as field>
 
-    @ApiModelProperty(value = "${column.comment}")
-    private ${column.type} ${column.name};
+    @ApiModelProperty(value = "${field.comment}")
+    private ${field.type} ${field.name};
 </#list>
 
 }

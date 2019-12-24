@@ -20,9 +20,9 @@
     <resultMap id="_${meta.name}" type="${config.entityPackage}.${meta.name}">
         <#list meta.fields as field>
             <#if (field.pkColumn?string('true','false'))=="true">
-        <id column="${field.columnName}" jdbcType="${field.jdbcType?upper_case}" property="${field.name}" />
+        <id column="${field.columnName}" property="${field.name}" />
             <#else>
-        <result column="${field.columnName}" jdbcType="${field.jdbcType?upper_case}" property="${field.name}" />
+        <result column="${field.columnName}" property="${field.name}" />
             </#if>
         </#list>
     </resultMap>

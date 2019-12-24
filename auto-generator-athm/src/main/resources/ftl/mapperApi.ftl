@@ -7,7 +7,7 @@ import java.util.List;
 
 /** 数据库表[${meta.tableName}]通用操作API
  * @author zongf
- * @date${createDate}
+ * @date ${createDate}
  */
 @Mapper
 public interface ${meta.name}Mapper {
