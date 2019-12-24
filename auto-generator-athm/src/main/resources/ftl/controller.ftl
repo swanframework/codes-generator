@@ -56,7 +56,7 @@ public class ${meta.name}Controller {
     @DeleteMapping("/{id}")
     public ResponseResult<Boolean> delete(@ApiParam("主键ID") @PathVariable("id") Integer id){
         boolean isSuccess = this.${meta.name?uncap_first}Service.deleteById(id);
-        return ResponseResult.success();
+        return ResponseResult.success(isSuccess);
     }
 
     @ApiOperationSort(3)
@@ -124,8 +124,8 @@ public class ${meta.name}Controller {
 
     @ApiOperationSort(7)
     @ApiOperation(value = "批量保存", notes = "Author:zongf")
-    @DeleteMapping("/batch")
-    public ResponseResult<Integer> save(@ApiParam("分销渠道商品") @RequestBody List<${meta.name}Dto> ${meta.name?uncap_first}DtoList){
+    @PutMapping("/batch")
+    public ResponseResult<Integer> batchSave(@ApiParam("分销渠道商品") @RequestBody List<${meta.name}Dto> ${meta.name?uncap_first}DtoList){
 
         // 校验字段基本信息
         ${meta.name?uncap_first}DtoList.forEach(HibernateValidatorUtil::validate);
@@ -141,9 +141,9 @@ public class ${meta.name}Controller {
 
     @ApiOperationSort(8)
     @ApiOperation(value = "批量删除", notes = "Author:zongf")
-    @DeleteMapping("/{id}")
-    public ResponseResult<Integer> delete(@ApiParam("主键ID") @PathVariable("id") List<Integer> idList){
+    @DeleteMapping("/batch")
+    public ResponseResult<Integer> batchDelete(@ApiParam("主键ID列表") List<Integer> idList){
         int delNum = this.${meta.name?uncap_first}Service.batchDeleteByIds(idList);
         return ResponseResult.success(delNum);
-        }
     }
+}
