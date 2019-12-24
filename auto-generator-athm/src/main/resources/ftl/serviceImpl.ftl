@@ -48,13 +48,13 @@ public class ${meta.name}ServiceImpl implements I${meta.name}Service {
 
     @Transactional
     @Override
-    public boolean deleteById(Long id) {
+    public boolean deleteById(Integer id) {
         return this.${meta.name?uncap_first}Mapper.deleteById(id);
     }
 
     @Transactional
     @Override
-    public int batchDeleteByIds(List<Long> idList) {
+    public int batchDeleteByIds(List<Integer> idList) {
         return this.${meta.name?uncap_first}Mapper.batchDeleteByIds(idList);
     }
 
@@ -71,12 +71,12 @@ public class ${meta.name}ServiceImpl implements I${meta.name}Service {
     }
 
     @Override
-    public ${meta.name} queryById(Long id) {
+    public ${meta.name} queryById(Integer id) {
         return this.${meta.name?uncap_first}Mapper.queryById(id);
     }
 
     @Override
-    public List<${meta.name}> queryListInIds(List<Long> idList) {
+    public List<${meta.name}> queryListInIds(List<Integer> idList) {
         return this.${meta.name?uncap_first}Mapper.queryListInIds(idList);
     }
 

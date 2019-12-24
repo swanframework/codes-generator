@@ -40,7 +40,7 @@ public class ${meta.name}Controller {
     public ResponseResult<Boolean> save(@ApiParam("${meta.comment}") @RequestBody ${meta.name}Dto ${meta.name?uncap_first}Dto){
 
         // 校验字段基本信息
-        HibernateValidatorUtil.validate(channelInfoDto);
+        HibernateValidatorUtil.validate(${meta.name?uncap_first}Dto);
 
         // 复制对象
         ${meta.name} ${meta.name?uncap_first} = new ${meta.name}();
@@ -54,7 +54,7 @@ public class ${meta.name}Controller {
     @ApiOperationSort(2)
     @ApiOperation(value = "删除接口", notes = "Author:zongf")
     @DeleteMapping("/{id}")
-    public ResponseResult<Boolean> delete(@ApiParam("主键ID") @PathVariable("id") Long id){
+    public ResponseResult<Boolean> delete(@ApiParam("主键ID") @PathVariable("id") Integer id){
         boolean isSuccess = this.${meta.name?uncap_first}Service.deleteById(id);
         return ResponseResult.success();
     }
@@ -62,15 +62,22 @@ public class ${meta.name}Controller {
     @ApiOperationSort(3)
     @ApiOperation(value = "更新接口", notes = "Author:zongf")
     @PostMapping("/{id}")
-    public ResponseResult update(@PathVariable("id")Long id, @RequestBody ${meta.name} ${meta.name?uncap_first}){
+    public ResponseResult<Boolean> update(@PathVariable("id")Integer id, @RequestBody ${meta.name}Dto ${meta.name?uncap_first}Dto){
 
-        return ResponseResult.success();
+        // 复制属性
+        ${meta.name} ${meta.name?uncap_first} = new ${meta.name}();
+        BeanCopyUtils.copy(${meta.name?uncap_first}Dto, ${meta.name?uncap_first});
+
+        ${meta.name?uncap_first}Dto.setId(id);
+        boolean isSuccess = this.${meta.name?uncap_first}Service.update(${meta.name?uncap_first});
+
+        return ResponseResult.success(isSuccess);
     }
 
     @ApiOperationSort(4)
     @ApiOperation(value = "查询详情接口", notes = "Author:zongf")
     @GetMapping("/{id}")
-    public ResponseResult<${meta.name}Dto> queryById(@ApiParam("主键ID") @PathVariable("id") Long id){
+    public ResponseResult<${meta.name}Dto> queryById(@ApiParam("主键ID") @PathVariable("id") Integer id){
         // 数据库查询实体
             ${meta.name} ${meta.name?uncap_first} = this.${meta.name?uncap_first}Service.queryById(id);
 
@@ -80,7 +87,7 @@ public class ${meta.name}Controller {
         ${meta.name}Dto ${meta.name?uncap_first}Dto = new ${meta.name}Dto();
         BeanCopyUtils.copy(${meta.name?uncap_first}, ${meta.name?uncap_first}Dto);
 
-        return ResponseResult.success(channelInfoDto);
+        return ResponseResult.success(${meta.name?uncap_first}Dto);
     }
 
     @ApiOperationSort(5)
@@ -115,4 +122,28 @@ public class ${meta.name}Controller {
         return ResponseResult.success(basePage);
     }
 
-}
+    @ApiOperationSort(7)
+    @ApiOperation(value = "批量保存", notes = "Author:zongf")
+    @DeleteMapping("/batch")
+    public ResponseResult<Integer> save(@ApiParam("分销渠道商品") @RequestBody List<${meta.name}Dto> ${meta.name?uncap_first}DtoList){
+
+        // 校验字段基本信息
+        ${meta.name?uncap_first}DtoList.forEach(HibernateValidatorUtil::validate);
+
+        // 数据类型转换
+        List<${meta.name}> ${meta.name?uncap_first}List = new ArrayList<>();
+        BeanCopyUtils.copyList(${meta.name?uncap_first}DtoList, ${meta.name?uncap_first}List, ${meta.name}Dto.class);
+
+        int saveNum = this.${meta.name?uncap_first}Service.batchSave(${meta.name?uncap_first}List);
+
+        return ResponseResult.success(saveNum);
+    }
+
+    @ApiOperationSort(8)
+    @ApiOperation(value = "批量删除", notes = "Author:zongf")
+    @DeleteMapping("/{id}")
+    public ResponseResult<Integer> delete(@ApiParam("主键ID") @PathVariable("id") List<Integer> idList){
+        int delNum = this.${meta.name?uncap_first}Service.batchDeleteByIds(idList);
+        return ResponseResult.success(delNum);
+        }
+    }

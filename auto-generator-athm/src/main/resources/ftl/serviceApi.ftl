@@ -34,7 +34,7 @@ public interface I${meta.name}Service {
     * @author zongf
     * @date ${createDate}
     */
-    boolean deleteById(Long id);
+    boolean deleteById(Integer id);
 
     /** 根据主键ID列表批量删除
     * @param idList 主键列表，不能为空
@@ -42,7 +42,7 @@ public interface I${meta.name}Service {
     * @author zongf
     * @date ${createDate}
     */
-    int batchDeleteByIds(List<Long> idList);
+    int batchDeleteByIds(List<Integer> idList);
 
     /** 更新实体, 更新所有字段信息
     * @param ${meta.name?uncap_first}  包含ID属性的实体
@@ -66,7 +66,7 @@ public interface I${meta.name}Service {
     * @author zongf
     * @date ${createDate}
     */
-    ${meta.name} queryById(Long id);
+    ${meta.name} queryById(Integer id);
 
     /** 通过主键ID列表查询记录，查询所有字段
     * @param idList 主键ID列表
@@ -74,7 +74,7 @@ public interface I${meta.name}Service {
     * @author zongf
     * @date2019-12-24
     */
-    List<${meta.name}> queryListInIds(List<Long> idList);
+    List<${meta.name}> queryListInIds(List<Integer> idList);
 
     /** 查询列表
     * @param query 查询条件
