@@ -2,6 +2,7 @@ package ${config.mapperApiPackage};
 
 import org.apache.ibatis.annotations.Mapper;
 import ${config.entityPackage}.${meta.name};
+import ${config.queryPackage}.${meta.name}Query;
 
 import java.util.List;
 
@@ -79,10 +80,11 @@ public interface ${meta.name}Mapper {
 
 
     /** 通过主键ID列表查询记录，查询指定的字段列表
+    * @param query 查询条件
     * @return List<${meta.name}>
     * @author zongf
     * @date${createDate}
     */
-    List<${meta.name}> queryList();
+    List<${meta.name}> queryList(${meta.name}Query query);
 
 }

@@ -1,7 +1,8 @@
 package ${config.serviceApiPackage};
 
 import ${config.entityPackage}.${meta.name};
-
+import ${config.queryPackage}.${meta.name}Query;
+import com.github.pagehelper.Page;
 import java.util.List;
 
 /** ${meta.comment} API
@@ -75,11 +76,22 @@ public interface I${meta.name}Service {
     */
     List<${meta.name}> queryListInIds(List<Long> idList);
 
-    /** 通过主键ID列表查询记录，查询指定的字段列表
+    /** 查询列表
+    * @param query 查询条件
     * @return List<${meta.name}>
     * @author zongf
     * @date2019-12-24
     */
-    List<${meta.name}> queryList();
+    List<${meta.name}> queryList(${meta.name}Query query);
+
+    /** 分页查询
+    * @param page 页码
+    * @param pageSize 分页大小
+    * @param query 查询条件
+    * @return Page<${meta.name}>
+    * @author zongf
+    * @date 2019-12-24
+    */
+    Page<${meta.name}> queryPage(int page, int pageSize, ${meta.name}Query query);
 
 }

@@ -61,8 +61,9 @@ ${r'
         update <include refid="tableName"/>
         set
             <#list meta.fields as field>
-            ${field.columnName} = ${r'#{'}${field.name}}<#if field_index != meta.fields?size-1>, </#if>
+            <#if field.columnName != 'created_stime' && field.columnName != 'modified_stime'>${field.columnName} = ${r'#{'}${field.name}},</#if>
             </#list>
+            modified_stime = current_timestamp
         where
             ${r'id = #{id}'}
     </update>
@@ -72,8 +73,9 @@ ${r'
         update <include refid="tableName"/>
         <set>
             <#list meta.fields as field>
-            <if test="${field.name} != null">${field.columnName} = ${r'#{'}${field.name}}<#if field_index != meta.fields?size-1>, </#if></if>
+            <#if field.columnName != 'created_stime' && field.columnName != 'modified_stime'><if test="${field.name} != null">${field.columnName} = ${r'#{'}${field.name}}</if>,</#if>
             </#list>
+            modified_stime = current_timestamp
         </set>
         where
             ${r'id = #{id}'}

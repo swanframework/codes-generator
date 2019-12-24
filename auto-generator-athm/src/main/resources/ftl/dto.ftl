@@ -1,4 +1,4 @@
-package ${config.voPackage};
+package ${config.dtoPackage};
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,7 @@ import ${import};
 */
 @Getter
 @Setter
-public class ${meta.name}Request {
+public class ${meta.name}Dto {
 <#list meta.fields as field>
 
     @ApiModelProperty(value = "${field.comment}")
