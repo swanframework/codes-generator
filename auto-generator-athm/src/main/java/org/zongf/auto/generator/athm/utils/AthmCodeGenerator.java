@@ -27,6 +27,28 @@ public class AthmCodeGenerator {
         this.generatorConfig = generatorConfig;
     }
 
+    /** 生成service 接口
+     * @param schemaName 数据库名
+     * @param tableName 表名
+     * @author zongf
+     * @date 2019-12-13
+     */
+    public void generateServiceApi(String schemaName, String tableName){
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_SERVICE_API, generatorConfig.getServiceApiPackage(), "I", "Service.java");
+    }
+
+    /** 生成service 接口
+     * @param schemaName 数据库名
+     * @param tableName 表名
+     * @author zongf
+     * @date 2019-12-13
+     */
+    public void generateServiceImpl(String schemaName, String tableName){
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_SERVICE_IMPL, generatorConfig.getServiceImplPackage(), "", "ServiceImpl.java");
+    }
+
+
+
     /** 生成Entity 类
      * @param schemaName 数据库名
      * @param tableName 表名
@@ -55,6 +77,16 @@ public class AthmCodeGenerator {
      */
     public void generateMapperXml(String schemaName, String tableName){
         this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_MAPPER_IMPL, generatorConfig.getMapperXmlPath(), "", "Mapper.xml");
+    }
+
+    /** 生成mapper 映射文件
+     * @param schemaName 数据库名
+     * @param tableName 表名
+     * @author zongf
+     * @date 2019-12-13
+     */
+    public void generatePOSwagger(String schemaName, String tableName){
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_PO_SWAGGER, generatorConfig.getVoPackage(), "", "Request.java");
     }
 
     /** 生成代码
@@ -92,6 +124,8 @@ public class AthmCodeGenerator {
         filePathSb.append("/").append(packageName.replace(".", "/"))
                 .append("/").append(fileNamePrefix)
                 .append(metaVO.getName()).append(fileNameSuffix);
+
+        System.out.println(filePathSb.toString());
 
         // 写入文件
         TxtFileUtil.writeFile(Arrays.asList(codes), filePathSb.toString());
