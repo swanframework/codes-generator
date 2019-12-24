@@ -27,6 +27,17 @@ public class AthmCodeGenerator {
         this.generatorConfig = generatorConfig;
     }
 
+    /** 生成controller 接口
+     * @param schemaName 数据库名
+     * @param tableName 表名
+     * @author zongf
+     * @date 2019-12-13
+     */
+    public void generateController(String schemaName, String tableName){
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_CONTROLLER, generatorConfig.getControllerPackage(), "", "Controller.java");
+    }
+
+
     /** 生成service 接口
      * @param schemaName 数据库名
      * @param tableName 表名
@@ -85,8 +96,18 @@ public class AthmCodeGenerator {
      * @author zongf
      * @date 2019-12-13
      */
-    public void generatePOSwagger(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_PO_SWAGGER, generatorConfig.getVoPackage(), "", "Request.java");
+    public void generateDto(String schemaName, String tableName){
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_DTO, generatorConfig.getDtoPackage(), "", "Dto.java");
+    }
+
+    /** 生成mapper 映射文件
+     * @param schemaName 数据库名
+     * @param tableName 表名
+     * @author zongf
+     * @date 2019-12-13
+     */
+    public void generateQuery(String schemaName, String tableName){
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_QUERY, generatorConfig.getQueryPackage(), "", "Query.java");
     }
 
     /** 生成代码
@@ -125,7 +146,7 @@ public class AthmCodeGenerator {
                 .append("/").append(fileNamePrefix)
                 .append(metaVO.getName()).append(fileNameSuffix);
 
-        System.out.println(filePathSb.toString());
+        System.out.println("文件已经生成:" + filePathSb.toString());
 
         // 写入文件
         TxtFileUtil.writeFile(Arrays.asList(codes), filePathSb.toString());
