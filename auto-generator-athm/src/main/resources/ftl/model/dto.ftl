@@ -1,4 +1,4 @@
-package ${config.dtoPackage};
+package ${config.modelConfig.dtoPackage};
 
 import lombok.Getter;
 import lombok.Setter;

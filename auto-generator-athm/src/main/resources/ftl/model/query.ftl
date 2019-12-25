@@ -1,4 +1,4 @@
-package ${config.queryPackage};
+package ${config.modelConfig.queryPackage};
 
 import lombok.Getter;
 import lombok.Setter;
