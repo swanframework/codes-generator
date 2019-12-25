@@ -7,26 +7,26 @@ package org.zongf.auto.generator.athm.constants;
 public class FtlPathConstants {
 
     /** po 模板文件  */
-    public static final String FTL_PO = "entity.ftl";
+    public static final String FTL_BASE_PO = "base-entity.ftl";
 
     /** mapper 接口  */
-    public static final String FTL_MAPPER_API = "mapperApi.ftl";
+    public static final String FTL_BASE_MAPPER_API = "base-mapperApi.ftl";
 
     /** mapper 文件  */
-    public static final String FTL_MAPPER_IMPL = "mapperXml.ftl";
+    public static final String FTL_BASE_MAPPER_IMPL = "base-mapperXml.ftl";
 
     /** service 接口模板  */
-    public static final String FTL_SERVICE_API = "serviceApi.ftl";
+    public static final String FTL_BASE_SERVICE_API = "base-serviceApi.ftl";
 
     /** service 实现类  */
-    public static final String FTL_SERVICE_IMPL = "serviceImpl.ftl";
+    public static final String FTL_BASE_SERVICE_IMPL = "base-serviceImpl.ftl";
 
     /** controller  */
-    public static final String FTL_CONTROLLER = "controller.ftl";
+    public static final String FTL_BASE_CONTROLLER = "base-controller.ftl";
 
     /** dto 模板  */
-    public static final String FTL_DTO = "dto.ftl";
+    public static final String FTL_MODEL_DTO = "model-dto.ftl";
 
     /** query 模板  */
-    public static final String FTL_QUERY = "query.ftl";
+    public static final String FTL_MODEL_QUERY = "model-query.ftl";
 }
