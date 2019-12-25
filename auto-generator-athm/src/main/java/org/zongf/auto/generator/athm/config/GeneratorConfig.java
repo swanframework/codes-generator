@@ -36,11 +36,14 @@ public class GeneratorConfig {
     // 查询条件类
     private String queryPackage;
 
+    // 公司基本包名称
+    private String companyBasePackage;
+
 	public GeneratorConfig() {
         super();
     }
 
-	public GeneratorConfig(String projectPath, String entityPackage, String fieldEnumPackage, String dtoPackage, String serviceApiPackage, String serviceImplPackage, String mapperApiPackage, String mapperXmlPath, String controllerPackage, String queryPackage) {
+	public GeneratorConfig(String projectPath, String entityPackage, String fieldEnumPackage, String dtoPackage, String serviceApiPackage, String serviceImplPackage, String mapperApiPackage, String mapperXmlPath, String controllerPackage, String queryPackage, String companyBasePackage) {
         super();
 		this.projectPath = projectPath;
 		this.entityPackage = entityPackage;
@@ -52,6 +55,7 @@ public class GeneratorConfig {
 		this.mapperXmlPath = mapperXmlPath;
 		this.controllerPackage = controllerPackage;
 		this.queryPackage = queryPackage;
+		this.companyBasePackage = companyBasePackage;
     }
 
     public void setProjectPath(String projectPath){
@@ -134,8 +138,16 @@ public class GeneratorConfig {
 		return this.queryPackage;
 	}
 
+    public void setCompanyBasePackage(String companyBasePackage){
+		this.companyBasePackage=companyBasePackage;
+	}
+
+	public String getCompanyBasePackage(){
+		return this.companyBasePackage;
+	}
+
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {projectPath:" + projectPath + ", entityPackage:" + entityPackage + ", fieldEnumPackage:" + fieldEnumPackage + ", dtoPackage:" + dtoPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", mapperApiPackage:" + mapperApiPackage + ", mapperXmlPath:" + mapperXmlPath + ", controllerPackage:" + controllerPackage + ", queryPackage:" + queryPackage  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {projectPath:" + projectPath + ", entityPackage:" + entityPackage + ", fieldEnumPackage:" + fieldEnumPackage + ", dtoPackage:" + dtoPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", mapperApiPackage:" + mapperApiPackage + ", mapperXmlPath:" + mapperXmlPath + ", controllerPackage:" + controllerPackage + ", queryPackage:" + queryPackage + ", companyBasePackage:" + companyBasePackage  + "}";
 	}
 
 }
