@@ -1,4 +1,4 @@
-package ${config.entityPackage};
+package ${config.baseConfig.entityPackage};
 
 import lombok.Getter;
 import lombok.Setter;

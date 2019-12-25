@@ -1,7 +1,7 @@
-package ${config.serviceApiPackage};
+package ${config.baseConfig.serviceApiPackage};
 
-import ${config.entityPackage}.${meta.name};
-import ${config.queryPackage}.${meta.name}Query;
+import ${config.baseConfig.entityPackage}.${meta.name};
+import ${config.modelConfig.queryPackage}.${meta.name}Query;
 import com.github.pagehelper.Page;
 import java.util.List;
 

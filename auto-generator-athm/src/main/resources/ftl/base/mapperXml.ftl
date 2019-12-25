@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="${config.mapperApiPackage}.${meta.name}Mapper">
+<mapper namespace="${config.baseConfig.mapperApiPackage}.${meta.name}Mapper">
 
     <!-- 表名 -->
     <sql id="tableName">${meta.tableName}</sql>
@@ -17,7 +17,7 @@
     </sql>
 
     <!-- 结果集映射 -->
-    <resultMap id="_${meta.name}" type="${config.entityPackage}.${meta.name}">
+    <resultMap id="_${meta.name}" type="${config.baseConfig.entityPackage}.${meta.name}">
         <#list meta.fields as field>
             <#if (field.pkColumn?string('true','false'))=="true">
         <id column="${field.columnName}" property="${field.name}" />

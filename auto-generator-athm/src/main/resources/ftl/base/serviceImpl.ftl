@@ -1,9 +1,9 @@
-package ${config.serviceImplPackage};
+package ${config.baseConfig.serviceImplPackage};
 
-import ${config.entityPackage}.${meta.name};
-import ${config.queryPackage}.${meta.name}Query;
-import ${config.mapperApiPackage}.${meta.name}Mapper;
-import ${config.serviceApiPackage}.I${meta.name}Service;
+import ${config.baseConfig.entityPackage}.${meta.name};
+import ${config.modelConfig.queryPackage}.${meta.name}Query;
+import ${config.baseConfig.mapperApiPackage}.${meta.name}Mapper;
+import ${config.baseConfig.serviceApiPackage}.I${meta.name}Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package ${config.controllerPackage};
+package ${config.baseConfig.controllerPackage};
 
 import com.github.pagehelper.Page;
 import io.swagger.annotations.Api;
@@ -8,10 +8,10 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import ${config.entityPackage}.${meta.name};
-import ${config.dtoPackage}.${meta.name}Dto;
-import ${config.queryPackage}.${meta.name}Query;
-import ${config.serviceApiPackage}.I${meta.name}Service;
+import ${config.baseConfig.entityPackage}.${meta.name};
+import ${config.modelConfig.dtoPackage}.${meta.name}Dto;
+import ${config.modelConfig.queryPackage}.${meta.name}Query;
+import ${config.baseConfig.serviceApiPackage}.I${meta.name}Service;
 
 import ${config.companyBasePackage}.base.shop.model.util.HibernateValidatorUtil;
 import ${config.companyBasePackage}.base.shop.utils.BaseResponsePageUtil;

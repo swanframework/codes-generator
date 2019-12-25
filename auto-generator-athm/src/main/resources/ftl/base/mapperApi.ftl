@@ -1,8 +1,8 @@
-package ${config.mapperApiPackage};
+package ${config.baseConfig.mapperApiPackage};
 
 import org.apache.ibatis.annotations.Mapper;
-import ${config.entityPackage}.${meta.name};
-import ${config.queryPackage}.${meta.name}Query;
+import ${config.baseConfig.entityPackage}.${meta.name};
+import ${config.modelConfig.queryPackage}.${meta.name}Query;
 
 import java.util.List;
 
