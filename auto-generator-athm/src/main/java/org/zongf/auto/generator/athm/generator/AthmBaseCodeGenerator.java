@@ -18,7 +18,7 @@ public class AthmBaseCodeGenerator extends AbsAthmCodeGenerator{
      * @author zongf
      * @date 2019-12-13
      */
-    public void generateBaseController(){
+    public void generateController(){
         this.generateCodeFile(FtlPathConstants.FTL_BASE_CONTROLLER, this.projectConfig.getBaseConfig().getControllerPackage(), "", "Controller.java");
     }
 
@@ -26,7 +26,7 @@ public class AthmBaseCodeGenerator extends AbsAthmCodeGenerator{
      * @author zongf
      * @date 2019-12-13
      */
-    public void generateBaseServiceApi(){
+    public void generateServiceApi(){
         this.generateCodeFile(FtlPathConstants.FTL_BASE_SERVICE_API, this.projectConfig.getBaseConfig().getServiceApiPackage(), "I", "Service.java");
     }
 
@@ -34,7 +34,7 @@ public class AthmBaseCodeGenerator extends AbsAthmCodeGenerator{
      * @author zongf
      * @date 2019-12-13
      */
-    public void generateBaseServiceImpl(){
+    public void generateServiceImpl(){
         this.generateCodeFile(FtlPathConstants.FTL_BASE_SERVICE_IMPL, this.projectConfig.getBaseConfig().getServiceImplPackage(), "", "ServiceImpl.java");
     }
 
@@ -42,7 +42,7 @@ public class AthmBaseCodeGenerator extends AbsAthmCodeGenerator{
      * @author zongf
      * @date 2019-12-13
      */
-    public void generateBaseEntityClass(){
+    public void generateEntityClass(){
         this.generateCodeFile(FtlPathConstants.FTL_BASE_PO, this.projectConfig.getBaseConfig().getEntityPackage(), "", ".java");
     }
 
@@ -50,7 +50,7 @@ public class AthmBaseCodeGenerator extends AbsAthmCodeGenerator{
      * @author zongf
      * @date 2019-12-13
      */
-    public void generateBaseMapperApiClass(){
+    public void generateMapperApiClass(){
         this.generateCodeFile(FtlPathConstants.FTL_BASE_MAPPER_API, this.projectConfig.getBaseConfig().getMapperApiPackage(), "", "Mapper.java");
     }
 
@@ -58,7 +58,7 @@ public class AthmBaseCodeGenerator extends AbsAthmCodeGenerator{
      * @author zongf
      * @date 2019-12-13
      */
-    public void generateBaseMapperXml(){
+    public void generateMapperXml(){
         this.generateCodeFile(FtlPathConstants.FTL_BASE_MAPPER_IMPL, this.projectConfig.getBaseConfig().getMapperXmlPath(), "", "Mapper.xml");
     }
 
