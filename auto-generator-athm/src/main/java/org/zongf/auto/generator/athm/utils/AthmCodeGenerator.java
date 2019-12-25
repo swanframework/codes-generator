@@ -34,7 +34,7 @@ public class AthmCodeGenerator {
      * @date 2019-12-13
      */
     public void generateController(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_CONTROLLER, generatorConfig.getControllerPackage(), "", "Controller.java");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_BASE_CONTROLLER, generatorConfig.getControllerPackage(), "", "Controller.java");
     }
 
 
@@ -45,7 +45,7 @@ public class AthmCodeGenerator {
      * @date 2019-12-13
      */
     public void generateServiceApi(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_SERVICE_API, generatorConfig.getServiceApiPackage(), "I", "Service.java");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_BASE_SERVICE_API, generatorConfig.getServiceApiPackage(), "I", "Service.java");
     }
 
     /** 生成service 接口
@@ -55,7 +55,7 @@ public class AthmCodeGenerator {
      * @date 2019-12-13
      */
     public void generateServiceImpl(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_SERVICE_IMPL, generatorConfig.getServiceImplPackage(), "", "ServiceImpl.java");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_BASE_SERVICE_IMPL, generatorConfig.getServiceImplPackage(), "", "ServiceImpl.java");
     }
 
 
@@ -67,7 +67,7 @@ public class AthmCodeGenerator {
      * @date 2019-12-13
      */
     public void generateEntityClass(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_PO, generatorConfig.getEntityPackage(), "", ".java");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_BASE_PO, generatorConfig.getEntityPackage(), "", ".java");
     }
 
     /** 生成mapper 接口
@@ -77,7 +77,7 @@ public class AthmCodeGenerator {
      * @date 2019-12-13
      */
     public void generateMapperApiClass(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_MAPPER_API, generatorConfig.getMapperApiPackage(), "", "Mapper.java");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_BASE_MAPPER_API, generatorConfig.getMapperApiPackage(), "", "Mapper.java");
     }
 
     /** 生成mapper 映射文件
@@ -87,7 +87,7 @@ public class AthmCodeGenerator {
      * @date 2019-12-13
      */
     public void generateMapperXml(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_MAPPER_IMPL, generatorConfig.getMapperXmlPath(), "", "Mapper.xml");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_BASE_MAPPER_IMPL, generatorConfig.getMapperXmlPath(), "", "Mapper.xml");
     }
 
     /** 生成mapper 映射文件
@@ -97,7 +97,7 @@ public class AthmCodeGenerator {
      * @date 2019-12-13
      */
     public void generateDto(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_DTO, generatorConfig.getDtoPackage(), "", "Dto.java");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_MODEL_DTO, generatorConfig.getDtoPackage(), "", "Dto.java");
     }
 
     /** 生成mapper 映射文件
@@ -107,7 +107,7 @@ public class AthmCodeGenerator {
      * @date 2019-12-13
      */
     public void generateQuery(String schemaName, String tableName){
-        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_QUERY, generatorConfig.getQueryPackage(), "", "Query.java");
+        this.generateCodeFile(schemaName, tableName, FtlPathConstants.FTL_MODEL_QUERY, generatorConfig.getQueryPackage(), "", "Query.java");
     }
 
     /** 生成代码
@@ -140,7 +140,7 @@ public class AthmCodeGenerator {
         StringBuffer filePathSb = new StringBuffer(generatorConfig.getProjectPath());
 
         // 如果不是mapper.xml文件, 则需追加路径
-        if(!FtlPathConstants.FTL_MAPPER_IMPL.equals(ftlName)) filePathSb.append("/src/main/java");
+        if(!FtlPathConstants.FTL_BASE_MAPPER_IMPL.equals(ftlName)) filePathSb.append("/src/main/java");
 
         filePathSb.append("/").append(packageName.replace(".", "/"))
                 .append("/").append(fileNamePrefix)
