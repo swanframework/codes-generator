@@ -1,15 +1,5 @@
 package ${config.managerConfig.remoteServiceImplPackage};
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
-import com.autohome.travelplat.framework.bean.BaseResponsePage;
-import com.autohome.travelplat.framework.bean.ResponseResult;
-import com.autohome.travelplat.framework.exception.BusinessException;
-import com.autohome.travelplat.framework.util.BeanCopyUtils;
-import com.autohome.travelplat.shop.manager.bean.BootstrapPagerResponseResult;
-import com.autohome.travelplat.shop.manager.constants.ShopExceptionConstant;
-import com.autohome.travelplat.shop.manager.property.ShopProperties;
-import com.autohome.travelplat.shop.manager.property.ShopServiceApiProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
