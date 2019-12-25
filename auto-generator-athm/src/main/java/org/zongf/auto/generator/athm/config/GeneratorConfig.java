@@ -7,7 +7,10 @@ package org.zongf.auto.generator.athm.config;
 public class GeneratorConfig {
 
     // 项目根路径
-    private String projectPath;
+    private String projectDir;
+
+    // 项目名称
+    private String projectName;
 
     // entity 包名
     private String entityPackage;
@@ -43,9 +46,10 @@ public class GeneratorConfig {
         super();
     }
 
-	public GeneratorConfig(String projectPath, String entityPackage, String fieldEnumPackage, String dtoPackage, String serviceApiPackage, String serviceImplPackage, String mapperApiPackage, String mapperXmlPath, String controllerPackage, String queryPackage, String companyBasePackage) {
+	public GeneratorConfig(String projectDir, String projectName, String entityPackage, String fieldEnumPackage, String dtoPackage, String serviceApiPackage, String serviceImplPackage, String mapperApiPackage, String mapperXmlPath, String controllerPackage, String queryPackage, String companyBasePackage) {
         super();
-		this.projectPath = projectPath;
+		this.projectDir = projectDir;
+		this.projectName = projectName;
 		this.entityPackage = entityPackage;
 		this.fieldEnumPackage = fieldEnumPackage;
 		this.dtoPackage = dtoPackage;
@@ -58,12 +62,20 @@ public class GeneratorConfig {
 		this.companyBasePackage = companyBasePackage;
     }
 
-    public void setProjectPath(String projectPath){
-		this.projectPath=projectPath;
+    public void setProjectDir(String projectDir){
+		this.projectDir=projectDir;
 	}
 
-	public String getProjectPath(){
-		return this.projectPath;
+	public String getProjectDir(){
+		return this.projectDir;
+	}
+
+    public void setProjectName(String projectName){
+		this.projectName=projectName;
+	}
+
+	public String getProjectName(){
+		return this.projectName;
 	}
 
     public void setEntityPackage(String entityPackage){
@@ -147,7 +159,7 @@ public class GeneratorConfig {
 	}
 
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {projectPath:" + projectPath + ", entityPackage:" + entityPackage + ", fieldEnumPackage:" + fieldEnumPackage + ", dtoPackage:" + dtoPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", mapperApiPackage:" + mapperApiPackage + ", mapperXmlPath:" + mapperXmlPath + ", controllerPackage:" + controllerPackage + ", queryPackage:" + queryPackage + ", companyBasePackage:" + companyBasePackage  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {projectDir:" + projectDir + ", projectName:" + projectName + ", entityPackage:" + entityPackage + ", fieldEnumPackage:" + fieldEnumPackage + ", dtoPackage:" + dtoPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", mapperApiPackage:" + mapperApiPackage + ", mapperXmlPath:" + mapperXmlPath + ", controllerPackage:" + controllerPackage + ", queryPackage:" + queryPackage + ", companyBasePackage:" + companyBasePackage  + "}";
 	}
 
 }
