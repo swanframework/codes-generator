@@ -1,15 +1,5 @@
 package ${config.managerConfig.serviceImplPackage};
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
-import com.autohome.travelplat.framework.bean.BaseResponsePage;
-import com.autohome.travelplat.framework.bean.ResponseResult;
-import com.autohome.travelplat.framework.exception.BusinessException;
-import com.autohome.travelplat.framework.util.BeanCopyUtils;
-import com.autohome.travelplat.shop.manager.bean.BootstrapPagerResponseResult;
-import com.autohome.travelplat.shop.manager.constants.ShopExceptionConstant;
-import com.autohome.travelplat.shop.manager.property.ShopProperties;
-import com.autohome.travelplat.shop.manager.property.ShopServiceApiProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +8,6 @@ import ${config.managerConfig.remoteServiceApiPackage}.I${meta.name}RemoteServic
 import ${config.managerConfig.serviceApiPackage}.I${meta.name}Service;
 import ${config.modelConfig.dtoPackage}.${meta.name}Dto;
 import ${config.modelConfig.queryPackage}.${meta.name}Query;
-import ${config.companyBasePackage}.framework.bean.ResponseResult;
 import ${config.companyBasePackage}.shop.manager.bean.BootstrapPagerResponseResult;
 
 import java.util.List;
@@ -33,6 +22,51 @@ public class ${meta.name}ServiceImpl implements I${meta.name}Service {
 
     @Autowired
     private I${meta.name}RemoteService ${meta.name?uncap_first}RemoteService;
+
+    @Override
+    public boolean save(${meta.name}Dto ${meta.name?uncap_first}Dto) {
+        return this.${meta.name?uncap_first}RemoteService.save(${meta.name?uncap_first}Dto);
+    }
+
+    @Override
+    public int batchSave(List<${meta.name}Dto> ${meta.name?uncap_first}DtoList) {
+        return this.${meta.name?uncap_first}RemoteService.batchSave(${meta.name?uncap_first}DtoList);
+    }
+
+    @Override
+    public boolean deleteById(Integer id) {
+        return this.${meta.name?uncap_first}RemoteService.deleteById(id);
+    }
+
+    @Override
+    public int batchDeleteByIds(List<Integer> idList) {
+        return this.${meta.name?uncap_first}RemoteService.batchDeleteByIds(idList);
+    }
+
+    @Override
+    public boolean update(${meta.name}Dto ${meta.name?uncap_first}Dto) {
+        return this.${meta.name?uncap_first}RemoteService.update(${meta.name?uncap_first}Dto);
+    }
+
+    @Override
+    public ${meta.name}Dto queryById(Integer id) {
+        return this.${meta.name?uncap_first}RemoteService.queryById(id);
+    }
+
+    @Override
+    public List<${meta.name}Dto> queryListInIds(List<Integer> idList) {
+        return this.${meta.name?uncap_first}RemoteService.queryListInIds(idList);
+    }
+
+    @Override
+    public List<${meta.name}Dto> queryList(${meta.name}Query query) {
+        return this.${meta.name?uncap_first}RemoteService.queryList(query);
+    }
+
+    @Override
+    public BootstrapPagerResponseResult<${meta.name}Dto> queryPage(int page, int pageSize, ${meta.name}Query query) {
+        return this.${meta.name?uncap_first}RemoteService.queryPage(page, pageSize, query);
+    }
 
 
 }

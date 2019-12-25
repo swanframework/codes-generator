@@ -1,6 +1,5 @@
 package ${config.managerConfig.controllerPackage};
 
-import com.github.pagehelper.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiOperationSort;
@@ -13,12 +12,9 @@ import ${config.modelConfig.queryPackage}.${meta.name}Query;
 import ${config.managerConfig.serviceApiPackage}.I${meta.name}Service;
 
 import ${config.companyBasePackage}.base.shop.model.util.HibernateValidatorUtil;
-import ${config.companyBasePackage}.base.shop.utils.BaseResponsePageUtil;
-import ${config.companyBasePackage}.framework.bean.BaseResponsePage;
+import ${config.companyBasePackage}.shop.manager.bean.BootstrapPagerResponseResult;
 import ${config.companyBasePackage}.framework.bean.ResponseResult;
-import ${config.companyBasePackage}.framework.util.BeanCopyUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,15 +84,15 @@ public class ${meta.name}Controller {
     @ApiOperationSort(6)
     @ApiOperation(value = "分页查询接口", notes = "Author:zongf")
     @PostMapping("/pager/{page}/{pageSize}")
-    public ResponseResult<BaseResponsePage<${meta.name}Dto>> queryPager(
+    public BootstrapPagerResponseResult<${meta.name}Dto> queryPager(
         @ApiParam("页码") @PathVariable("page") int page,
         @ApiParam("每页数量") @PathVariable("pageSize") int pageSize,
         @ApiParam("查询条件") @RequestBody ${meta.name}Query query){
 
         // 分页查询
-        BaseResponsePage<${meta.name}Dto> basePage = this.${meta.name?uncap_first}Service.queryPage(page, pageSize, query);
+        BootstrapPagerResponseResult<${meta.name}Dto> responseResult = this.${meta.name?uncap_first}Service.queryPage(page, pageSize, query);
 
-        return ResponseResult.success(basePage);
+        return responseResult;
     }
 
     @ApiOperationSort(7)
