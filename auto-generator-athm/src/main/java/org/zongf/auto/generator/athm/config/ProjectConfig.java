@@ -27,11 +27,14 @@ public class ProjectConfig {
     // manager-service 配置
     private ManagerConfig managerConfig = new ManagerConfig();
 
+    // 生成方法配置
+    private MethodCreateConfig methodCreateConfig = new MethodCreateConfig();
+
 	public ProjectConfig() {
         super();
     }
 
-	public ProjectConfig(String projectDir, String projectName, String companyBasePackage, ModelConfig modelConfig, BaseConfig baseConfig, OpenConfig openConfig, ManagerConfig managerConfig) {
+	public ProjectConfig(String projectDir, String projectName, String companyBasePackage, ModelConfig modelConfig, BaseConfig baseConfig, OpenConfig openConfig, ManagerConfig managerConfig, MethodCreateConfig methodCreateConfig) {
         super();
 		this.projectDir = projectDir;
 		this.projectName = projectName;
@@ -40,6 +43,7 @@ public class ProjectConfig {
 		this.baseConfig = baseConfig;
 		this.openConfig = openConfig;
 		this.managerConfig = managerConfig;
+		this.methodCreateConfig = methodCreateConfig;
     }
 
     public void setProjectDir(String projectDir){
@@ -98,8 +102,16 @@ public class ProjectConfig {
 		return this.managerConfig;
 	}
 
+    public void setMethodCreateConfig(MethodCreateConfig methodCreateConfig){
+		this.methodCreateConfig=methodCreateConfig;
+	}
+
+	public MethodCreateConfig getMethodCreateConfig(){
+		return this.methodCreateConfig;
+	}
+
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {projectDir:" + projectDir + ", projectName:" + projectName + ", companyBasePackage:" + companyBasePackage + ", modelConfig:" + modelConfig + ", baseConfig:" + baseConfig + ", openConfig:" + openConfig + ", managerConfig:" + managerConfig  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {projectDir:" + projectDir + ", projectName:" + projectName + ", companyBasePackage:" + companyBasePackage + ", modelConfig:" + modelConfig + ", baseConfig:" + baseConfig + ", openConfig:" + openConfig + ", managerConfig:" + managerConfig + ", methodCreateConfig:" + methodCreateConfig  + "}";
 	}
 
 }
