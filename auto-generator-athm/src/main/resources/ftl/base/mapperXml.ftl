@@ -27,11 +27,15 @@
         </#list>
     </resultMap>
 
+<#if (config.methodCreateConfig.save?string('true','false'))=="true">
+
     <!-- 保存单个实体 -->
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         insert <include refid="tableName"/>(<include refid="columns_all"/>)
         values (<#list meta.fields as field>${r'#{'}${field.name}}<#if field_index != meta.fields?size-1>, </#if></#list>);
     </insert>
+</#if>
+<#if (config.methodCreateConfig.batchSave?string('true','false'))=="true">
 
     <!-- 保存多个实体 -->
     <insert id="batchSave" useGeneratedKeys="true" keyProperty="id">
@@ -41,21 +45,28 @@
             (<#list meta.fields as field>${r'#{entity.'}${field.name}}<#if field_index != meta.fields?size-1>, </#if></#list>)
         </foreach>
     </insert>
-${r'
+</#if>
+<#if (config.methodCreateConfig.deleteById?string('true','false'))=="true">
+    ${r'
     <!-- 根据id删除 -->
     <update id="deleteById">
         update <include refid="tableName"/>
         set is_del = 1, modified_stime = current_timestamp
         where id = #{id}
     </update>
-
+    '}
+</#if>
+<#if (config.methodCreateConfig.batchDeleteByIds?string('true','false'))=="true">
+    ${r'
     <!-- 批量删除: 根据主键id列表  -->
     <update id="batchDeleteByIds">
         update <include refid="tableName"/>
         set is_del = 1, modified_stime = current_timestamp
         where id in <include refid="idList"/>
     </update>
-'}
+    '}
+</#if>
+<#if (config.methodCreateConfig.update?string('true','false'))=="true">
     <!-- 更新实体 -->
     <update id="update">
         update <include refid="tableName"/>
@@ -67,7 +78,8 @@ ${r'
         where
             ${r'id = #{id}'}
     </update>
-
+</#if>
+<#if (config.methodCreateConfig.updateNotNull?string('true','false'))=="true">
     <!-- 更新非空属性 -->
     <update id="updateNotNull">
         update <include refid="tableName"/>
@@ -80,6 +92,8 @@ ${r'
         where
             ${r'id = #{id}'}
     </update>
+</#if>
+<#if (config.methodCreateConfig.queryById?string('true','false'))=="true">
 
     <!-- 通过主键id 查询实体 -->
     <select id="queryById" resultMap="_${meta.name}">
@@ -87,6 +101,8 @@ ${r'
         from <include refid="tableName"/>
         where id = ${r'#{id}'} and is_del=0
     </select>
+</#if>
+<#if (config.methodCreateConfig.queryListInIds?string('true','false'))=="true">
 
     <!-- 通过主键id 查询实体 -->
     <select id="queryListInIds" resultMap="_${meta.name}">
@@ -94,6 +110,8 @@ ${r'
         from <include refid="tableName"/>
         where id in <include refid="idList"/>
     </select>
+</#if>
+<#if (config.methodCreateConfig.queryList?string('true','false'))=="true">
 
     <!-- 通过主键id 查询实体 -->
     <select id="queryList" resultMap="_${meta.name}">
@@ -101,5 +119,5 @@ ${r'
         from <include refid="tableName"/>
         where is_del=0
     </select>
-
+</#if>
 </mapper>

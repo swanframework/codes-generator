@@ -34,6 +34,8 @@ public class ${meta.name}Controller {
     @Autowired
     private I${meta.name}Service ${meta.name?uncap_first}Service;
 
+<#if (config.methodCreateConfig.save?string('true','false'))=="true">
+
     @ApiOperationSort(1)
     @ApiOperation(value = "保存接口", notes = "Author:zongf")
     @DeleteMapping("/")
@@ -50,14 +52,18 @@ public class ${meta.name}Controller {
 
         return ResponseResult.success(isSuccess);
     }
+</#if>
+<#if (config.methodCreateConfig.deleteById?string('true','false'))=="true">
 
     @ApiOperationSort(2)
     @ApiOperation(value = "删除接口", notes = "Author:zongf")
     @DeleteMapping("/{id}")
-    public ResponseResult<Boolean> delete(@ApiParam("主键ID") @PathVariable("id") Integer id){
+    public ResponseResult<Boolean> deleteById(@ApiParam("主键ID") @PathVariable("id") Integer id){
         boolean isSuccess = this.${meta.name?uncap_first}Service.deleteById(id);
         return ResponseResult.success(isSuccess);
     }
+</#if>
+<#if (config.methodCreateConfig.update?string('true','false'))=="true">
 
     @ApiOperationSort(3)
     @ApiOperation(value = "更新接口", notes = "Author:zongf")
@@ -73,6 +79,8 @@ public class ${meta.name}Controller {
 
         return ResponseResult.success(isSuccess);
     }
+</#if>
+<#if (config.methodCreateConfig.queryById?string('true','false'))=="true">
 
     @ApiOperationSort(4)
     @ApiOperation(value = "查询详情接口", notes = "Author:zongf")
@@ -89,11 +97,13 @@ public class ${meta.name}Controller {
 
         return ResponseResult.success(${meta.name?uncap_first}Dto);
     }
+</#if>
+<#if (config.methodCreateConfig.queryList?string('true','false'))=="true">
 
     @ApiOperationSort(5)
     @ApiOperation(value = "查询列表", notes = "Author:zongf")
     @GetMapping("/list")
-    public ResponseResult<List<${meta.name}Dto>> queryById(@ApiParam("主键ID") ${meta.name}Query query){
+    public ResponseResult<List<${meta.name}Dto>> queryList(@ApiParam("主键ID") ${meta.name}Query query){
         // 查询结果集
         List<${meta.name}> ${meta.name?uncap_first}s = this.${meta.name?uncap_first}Service.queryList(query);
 
@@ -104,6 +114,8 @@ public class ${meta.name}Controller {
 
         return ResponseResult.success(${meta.name?uncap_first}DtoList);
     }
+</#if>
+<#if (config.methodCreateConfig.queryPager?string('true','false'))=="true">
 
     @ApiOperationSort(6)
     @ApiOperation(value = "分页查询接口", notes = "Author:zongf")
@@ -114,13 +126,15 @@ public class ${meta.name}Controller {
         @ApiParam("查询条件") @RequestBody ${meta.name}Query query){
 
         // 分页查询
-        Page<${meta.name}> pageResult = this.${meta.name?uncap_first}Service.queryPage(page, pageSize, query);
+        Page<${meta.name}> pageResult = this.${meta.name?uncap_first}Service.queryPager(page, pageSize, query);
 
         // 转换结果集
         BaseResponsePage<${meta.name}Dto> basePage = BaseResponsePageUtil.of(pageResult, ${meta.name}Dto.class);
 
         return ResponseResult.success(basePage);
     }
+</#if>
+<#if (config.methodCreateConfig.batchSave?string('true','false'))=="true">
 
     @ApiOperationSort(7)
     @ApiOperation(value = "批量保存", notes = "Author:zongf")
@@ -138,12 +152,15 @@ public class ${meta.name}Controller {
 
         return ResponseResult.success(saveNum);
     }
+</#if>
+<#if (config.methodCreateConfig.batchDeleteByIds?string('true','false'))=="true">
 
     @ApiOperationSort(8)
     @ApiOperation(value = "批量删除", notes = "Author:zongf")
     @DeleteMapping("/batch")
-    public ResponseResult<Integer> batchDelete(@ApiParam("主键ID列表") List<Integer> idList){
+    public ResponseResult<Integer> batchDeleteByIds(@ApiParam("主键ID列表") List<Integer> idList){
         int delNum = this.${meta.name?uncap_first}Service.batchDeleteByIds(idList);
         return ResponseResult.success(delNum);
     }
+</#if>
 }
