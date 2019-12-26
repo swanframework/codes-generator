@@ -45,6 +45,8 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
         return null;
     }
 
+<#if (config.methodCreateConfig.save?string('true','false'))=="true">
+
     @Override
     public boolean save(${meta.name}Dto ${meta.name?uncap_first}Dto) {
         try {
@@ -66,28 +68,8 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-保存失败", true);
         }
     }
-
-    @Override
-    public int batchSave(List<${meta.name}Dto> ${meta.name?uncap_first}DtoList) {
-        try {
-
-            // 拼接url连接
-            String urlPath = String.format("%s/%s/batch", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}());
-
-            // 发送请求
-            ResponseResult<Integer> responseResult = httpPutObjectRequest(urlPath, null, null, JSON.toJSONString(${meta.name?uncap_first}DtoList),
-                    new TypeReference<ResponseResult<Integer>>() {});
-
-            // 校验接口返回值
-            if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量保存失败", true);
-            }
-
-            return responseResult.getData();
-        } catch (Exception e) {
-            throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量保存失败", true);
-        }
-    }
+</#if>
+<#if (config.methodCreateConfig.deleteById?string('true','false'))=="true">
 
     @Override
     public boolean deleteById(Integer id) {
@@ -110,28 +92,8 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-删除失败", true);
         }
     }
-
-    @Override
-    public int batchDeleteByIds(List<Integer> idList) {
-        try {
-
-            // 拼接url连接
-            String urlPath = String.format("%s/%s/batch", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}());
-
-            // 发送请求
-            ResponseResult<Integer> responseResult = httpDeleteObjectRequest(urlPath, null, null, JSON.toJSONString(idList),
-                    new TypeReference<ResponseResult<Integer>>() {});
-
-            // 校验接口返回值
-            if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量删除失败", true);
-            }
-
-            return responseResult.getData();
-        } catch (Exception e) {
-            throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量删除失败", true);
-        }
-    }
+</#if>
+<#if (config.methodCreateConfig.update?string('true','false'))=="true">
 
     @Override
     public boolean update(${meta.name}Dto ${meta.name?uncap_first}Dto) {
@@ -155,6 +117,8 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-更新失败", true);
         }
     }
+</#if>
+<#if (config.methodCreateConfig.queryById?string('true','false'))=="true">
 
     @Override
     public ${meta.name}Dto queryById(Integer id) {
@@ -177,6 +141,8 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-详情查询失败", true);
         }
     }
+</#if>
+<#if (config.methodCreateConfig.queryListInIds?string('true','false'))=="true">
 
     @Override
     public List<${meta.name}Dto> queryListInIds(List<Integer> idList) {
@@ -199,7 +165,9 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-列表查询失败", true);
         }
     }
+</#if>
 
+<#if (config.methodCreateConfig.queryList?string('true','false'))=="true">
 
     @Override
     public List<${meta.name}Dto> queryList(${meta.name}Query query) {
@@ -222,9 +190,11 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-列表查询失败", true);
         }
     }
+</#if>
+<#if (config.methodCreateConfig.queryPager?string('true','false'))=="true">
 
     @Override
-    public BootstrapPagerResponseResult<${meta.name}Dto> queryPage(int page, int pageSize, ${meta.name}Query query) {
+    public BootstrapPagerResponseResult<${meta.name}Dto> queryPager(int page, int pageSize, ${meta.name}Query query) {
         try {
 
             // 拼接url连接
@@ -254,5 +224,53 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-分页查询失败", true);
         }
     }
+</#if>
+<#if (config.methodCreateConfig.batchSave?string('true','false'))=="true">
 
+    @Override
+    public int batchSave(List<${meta.name}Dto> ${meta.name?uncap_first}DtoList) {
+        try {
+
+            // 拼接url连接
+            String urlPath = String.format("%s/%s/batch", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}());
+
+            // 发送请求
+            ResponseResult<Integer> responseResult = httpPutObjectRequest(urlPath, null, null, JSON.toJSONString(${meta.name?uncap_first}DtoList),
+                new TypeReference<ResponseResult<Integer>>() {});
+
+            // 校验接口返回值
+            if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
+                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量保存失败", true);
+            }
+
+            return responseResult.getData();
+        } catch (Exception e) {
+            throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量保存失败", true);
+        }
+    }
+</#if>
+<#if (config.methodCreateConfig.batchDeleteByIds?string('true','false'))=="true">
+
+    @Override
+    public int batchDeleteByIds(List<Integer> idList) {
+        try {
+
+        // 拼接url连接
+        String urlPath = String.format("%s/%s/batch", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}());
+
+        // 发送请求
+        ResponseResult<Integer> responseResult = httpDeleteObjectRequest(urlPath, null, null, JSON.toJSONString(idList),
+            new TypeReference<ResponseResult<Integer>>() {});
+
+        // 校验接口返回值
+        if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
+            throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量删除失败", true);
+        }
+
+        return responseResult.getData();
+        } catch (Exception e) {
+            throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量删除失败", true);
+        }
+    }
+</#if>
 }
