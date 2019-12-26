@@ -4,9 +4,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import ${config.companyBasePackage}.framework.bean.BaseResponsePage;
+import ${config.companyBasePackage}.framework.exception.BusinessException;
+import ${config.companyBasePackage}.framework.util.BeanCopyUtils;
+import ${config.companyBasePackage}.shop.manager.constants.ShopExceptionConstant;
+import ${config.companyBasePackage}.shop.manager.property.ShopProperties;
+import ${config.companyBasePackage}.shop.manager.property.ShopServiceApiProperties;
 import ${config.managerConfig.remoteServiceApiPackage}.I${meta.name}RemoteService;
 import ${config.modelConfig.dtoPackage}.${meta.name}Dto;
 import ${config.modelConfig.queryPackage}.${meta.name}Query;
+import ${config.companyBasePackage}.framework.bean.ResponseResult;
 import ${config.companyBasePackage}.framework.bean.ResponseResult;
 import ${config.companyBasePackage}.shop.manager.bean.BootstrapPagerResponseResult;
 
@@ -35,8 +44,6 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
     protected String authValue() {
         return null;
     }
-
-
 
     @Override
     public boolean save(${meta.name}Dto ${meta.name?uncap_first}Dto) {
@@ -239,7 +246,7 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
             // 设置结果
             BaseResponsePage<${meta.name}Dto> baseResponsePage = responseResult.getData();
             bootstrapPager.setData(baseResponsePage.getList());
-            bootstrapPager.setRecordsFiltered(baseResponsePage.getList().size());
+            bootstrapPager.setRecordsFiltered(baseResponsePage.getTotal());
             bootstrapPager.setRecordsTotal(baseResponsePage.getTotal());
 
             return bootstrapPager;

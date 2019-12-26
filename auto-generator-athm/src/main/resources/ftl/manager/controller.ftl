@@ -22,7 +22,7 @@ import java.util.List;
 * @date ${createDate}
 */
 @RestController
-@RequestMapping("/api/inner/${meta.name?uncap_first}")
+@RequestMapping("/api/${meta.name?uncap_first}")
 @Api(tags = "${meta.comment}接口")
 public class ${meta.name}Controller {
 
@@ -87,7 +87,7 @@ public class ${meta.name}Controller {
     public BootstrapPagerResponseResult<${meta.name}Dto> queryPager(
         @ApiParam("页码") @PathVariable("page") int page,
         @ApiParam("每页数量") @PathVariable("pageSize") int pageSize,
-        @ApiParam("查询条件") @RequestBody ${meta.name}Query query){
+        @ApiParam("查询条件") ${meta.name}Query query){
 
         // 分页查询
         BootstrapPagerResponseResult<${meta.name}Dto> responseResult = this.${meta.name?uncap_first}Service.queryPage(page, pageSize, query);
@@ -111,7 +111,7 @@ public class ${meta.name}Controller {
     @ApiOperationSort(8)
     @ApiOperation(value = "批量删除", notes = "Author:zongf")
     @DeleteMapping("/batch")
-    public ResponseResult<Integer> batchDelete(@ApiParam("主键ID列表") List<Integer> idList){
+    public ResponseResult<Integer> batchDelete(@ApiParam("主键ID列表") @RequestBody List<Integer> idList){
         int delNum = this.${meta.name?uncap_first}Service.batchDeleteByIds(idList);
         return ResponseResult.success(delNum);
     }
