@@ -101,7 +101,7 @@ public class ${meta.name}Controller {
         @ApiParam("查询条件") ${meta.name}Query query){
 
         // 分页查询
-        BootstrapPagerResponseResult<${meta.name}Dto> responseResult = this.${meta.name?uncap_first}Service.queryPage(page, pageSize, query);
+        BootstrapPagerResponseResult<${meta.name}Dto> responseResult = this.${meta.name?uncap_first}Service.queryPager(page, pageSize, query);
 
         return responseResult;
     }

@@ -158,7 +158,7 @@ public class ${meta.name}Controller {
     @ApiOperationSort(8)
     @ApiOperation(value = "批量删除", notes = "Author:zongf")
     @DeleteMapping("/batch")
-    public ResponseResult<Integer> batchDeleteByIds(@ApiParam("主键ID列表") List<Integer> idList){
+    public ResponseResult<Integer> batchDeleteByIds(@ApiParam("主键ID列表") @RequestBody List<Integer> idList){
         int delNum = this.${meta.name?uncap_first}Service.batchDeleteByIds(idList);
         return ResponseResult.success(delNum);
     }

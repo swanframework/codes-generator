@@ -111,7 +111,7 @@
         where id in <include refid="idList"/>
     </select>
 </#if>
-<#if (config.methodCreateConfig.queryList?string('true','false'))=="true">
+<#if (config.methodCreateConfig.queryList?string('true','false'))=="true" || (config.methodCreateConfig.queryPager?string('true','false'))=="true">
 
     <!-- 通过主键id 查询实体 -->
     <select id="queryList" resultMap="_${meta.name}">

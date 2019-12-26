@@ -74,7 +74,7 @@ public interface ${meta.name}Mapper {
      */
     List<${meta.name}> queryListInIds(List<Integer> idList);
 </#if>
-<#if (config.methodCreateConfig.queryList?string('true','false'))=="true">
+<#if (config.methodCreateConfig.queryList?string('true','false'))=="true" || (config.methodCreateConfig.queryPager?string('true','false'))=="true">
 
     /** 通过主键ID列表查询记录，查询指定的字段列表
     * @param query 查询条件
