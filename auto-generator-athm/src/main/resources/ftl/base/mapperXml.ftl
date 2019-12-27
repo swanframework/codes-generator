@@ -26,7 +26,6 @@
             </#if>
         </#list>
     </resultMap>
-
 <#if (config.methodCreateConfig.save?string('true','false'))=="true">
 
     <!-- 保存单个实体 -->
@@ -53,8 +52,7 @@
         update <include refid="tableName"/>
         set is_del = 1, modified_stime = current_timestamp
         where id = #{id}
-    </update>
-    '}
+    </update>'}
 </#if>
 <#if (config.methodCreateConfig.batchDeleteByIds?string('true','false'))=="true">
     ${r'
@@ -63,8 +61,7 @@
         update <include refid="tableName"/>
         set is_del = 1, modified_stime = current_timestamp
         where id in <include refid="idList"/>
-    </update>
-    '}
+    </update>'}
 </#if>
 <#if (config.methodCreateConfig.update?string('true','false'))=="true">
     <!-- 更新实体 -->
