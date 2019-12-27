@@ -6,7 +6,7 @@ import ${config.modelConfig.queryPackage}.${meta.name}Query;
 
 import java.util.List;
 
-/** 数据库表[${meta.tableName}]通用操作API
+/** 数据库表操作：${meta.tableName}
  * @author zongf
  * @date ${createDate}
  */
@@ -56,7 +56,7 @@ public interface ${meta.name}Mapper {
 </#if>
 <#if (config.methodCreateConfig.queryById?string('true','false'))=="true">
 
-    /** 通过主键ID查询记录, 查询所有字段
+    /** 通过主键ID查询
      * @param id 主键ID
      * @return ${meta.name} 实体
      * @author zongf
@@ -66,7 +66,7 @@ public interface ${meta.name}Mapper {
 </#if>
 <#if (config.methodCreateConfig.queryListInIds?string('true','false'))=="true">
 
-    /** 通过主键ID列表查询记录，查询所有字段
+    /** 通过主键ID列表查询
      * @param idList 主键ID列表
      * @return List<${meta.name}> 查询为空时, 返回list的size为0，而不会返回null
      * @author zongf
@@ -76,7 +76,7 @@ public interface ${meta.name}Mapper {
 </#if>
 <#if (config.methodCreateConfig.queryList?string('true','false'))=="true" || (config.methodCreateConfig.queryPager?string('true','false'))=="true">
 
-    /** 通过主键ID列表查询记录，查询指定的字段列表
+    /** 条件查询
     * @param query 查询条件
     * @return List<${meta.name}>
     * @author zongf
