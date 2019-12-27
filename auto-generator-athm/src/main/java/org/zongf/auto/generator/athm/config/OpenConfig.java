@@ -24,11 +24,14 @@ public class OpenConfig {
     // controller 路径
     private String controllerPackage;
 
+	// 接口url 前缀
+	private String controllerUrlPrefix;
+
 	public OpenConfig() {
         super();
     }
 
-	public OpenConfig(String moduleName, String remoteServiceApiPackage, String remoteServiceImplPackage, String serviceApiPackage, String serviceImplPackage, String controllerPackage) {
+	public OpenConfig(String moduleName, String remoteServiceApiPackage, String remoteServiceImplPackage, String serviceApiPackage, String serviceImplPackage, String controllerPackage, String controllerUrlPrefix) {
         super();
 		this.moduleName = moduleName;
 		this.remoteServiceApiPackage = remoteServiceApiPackage;
@@ -36,6 +39,7 @@ public class OpenConfig {
 		this.serviceApiPackage = serviceApiPackage;
 		this.serviceImplPackage = serviceImplPackage;
 		this.controllerPackage = controllerPackage;
+		this.controllerUrlPrefix = controllerUrlPrefix;
     }
 
     public void setModuleName(String moduleName){
@@ -86,8 +90,16 @@ public class OpenConfig {
 		return this.controllerPackage;
 	}
 
+    public void setControllerUrlPrefix(String controllerUrlPrefix){
+		this.controllerUrlPrefix=controllerUrlPrefix;
+	}
+
+	public String getControllerUrlPrefix(){
+		return this.controllerUrlPrefix;
+	}
+
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {moduleName:" + moduleName + ", remoteServiceApiPackage:" + remoteServiceApiPackage + ", remoteServiceImplPackage:" + remoteServiceImplPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", controllerPackage:" + controllerPackage  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {moduleName:" + moduleName + ", remoteServiceApiPackage:" + remoteServiceApiPackage + ", remoteServiceImplPackage:" + remoteServiceImplPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", controllerPackage:" + controllerPackage + ", controllerUrlPrefix:" + controllerUrlPrefix  + "}";
 	}
 
 }
