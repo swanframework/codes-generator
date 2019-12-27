@@ -17,7 +17,7 @@ import ${config.companyBasePackage}.framework.bean.ResponseResult;
 
 import java.util.List;
 
-/**${meta.name} 管理API
+/** ${meta.name} 管理API
 * @author zongf
 * @date ${createDate}
 */
