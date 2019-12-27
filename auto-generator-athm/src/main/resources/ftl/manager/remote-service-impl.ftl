@@ -10,12 +10,11 @@ import ${config.companyBasePackage}.framework.bean.BaseResponsePage;
 import ${config.companyBasePackage}.framework.exception.BusinessException;
 import ${config.companyBasePackage}.framework.util.BeanCopyUtils;
 import ${config.companyBasePackage}.shop.manager.constants.ShopExceptionConstant;
-import ${config.companyBasePackage}.shop.manager.property.ShopProperties;
-import ${config.companyBasePackage}.shop.manager.property.ShopServiceApiProperties;
+import ${config.managerConfig.remoteServiceConfig.appProClassRef};
+import ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassRef};
 import ${config.managerConfig.remoteServiceApiPackage}.I${meta.name}RemoteService;
 import ${config.modelConfig.dtoPackage}.${meta.name}Dto;
 import ${config.modelConfig.queryPackage}.${meta.name}Query;
-import ${config.companyBasePackage}.framework.bean.ResponseResult;
 import ${config.companyBasePackage}.framework.bean.ResponseResult;
 import ${config.companyBasePackage}.shop.manager.bean.BootstrapPagerResponseResult;
 
@@ -30,10 +29,10 @@ import java.util.List;
 public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements I${meta.name}RemoteService {
 
     @Autowired
-    private ShopProperties shopProperties;
+    private ${config.managerConfig.remoteServiceConfig.appProClassName} ${config.managerConfig.remoteServiceConfig.appProClassName?uncap_first};
 
     @Autowired
-    private ShopServiceApiProperties shopServiceApiProperties;
+    private ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName} ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName?uncap_first};
 
     @Override
     protected String authKey() {
@@ -44,7 +43,6 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
     protected String authValue() {
         return null;
     }
-
 <#if (config.methodCreateConfig.save?string('true','false'))=="true">
 
     @Override
@@ -52,7 +50,7 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
         try {
 
             // 拼接url连接
-            String urlPath = String.format("%s/%s/", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}());
+            String urlPath = String.format("%s/%s/", ${config.managerConfig.remoteServiceConfig.appProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.baseServiceHostFieldName?cap_first}(), ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.remoteUriFieldName?cap_first}());
 
             // 发送请求
             ResponseResult<Boolean> responseResult = httpPutObjectRequest(urlPath, null, null, JSON.toJSONString(${meta.name?uncap_first}Dto),
@@ -75,8 +73,8 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
     public boolean deleteById(Integer id) {
         try {
 
-            // 拼接url连接
-            String urlPath = String.format("%s/%s/%s", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}(), id);
+            // 拼接url连接 
+            String urlPath = String.format("%s/%s/%s", ${config.managerConfig.remoteServiceConfig.appProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.baseServiceHostFieldName?cap_first}(), ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.remoteUriFieldName?cap_first}(), id);
 
             // 发送请求
             ResponseResult<Boolean> responseResult = httpDeleteObjectRequest(urlPath, null, null, null,
@@ -101,7 +99,7 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
         try {
 
             // 拼接url连接
-            String urlPath = String.format("%s/%s/%s", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}(), ${meta.name?uncap_first}Dto.getId());
+            String urlPath = String.format("%s/%s/%s", ${config.managerConfig.remoteServiceConfig.appProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.baseServiceHostFieldName?cap_first}(), ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.remoteUriFieldName?cap_first}(), ${meta.name?uncap_first}Dto.getId());
 
             // 发送请求
             ResponseResult<Boolean> responseResult = httpPostObjectRequest(urlPath, null, null, JSON.toJSONString(${meta.name?uncap_first}Dto),
@@ -125,7 +123,7 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
         try {
 
             // 拼接url连接
-            String urlPath = String.format("%s/%s/%s", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}(), id);
+            String urlPath = String.format("%s/%s/%s", ${config.managerConfig.remoteServiceConfig.appProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.baseServiceHostFieldName?cap_first}(), ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.remoteUriFieldName?cap_first}(), id);
 
             // 发送请求
             ResponseResult<${meta.name}Dto> responseResult = httpGetObjectRequest(urlPath, null, null, null,
@@ -149,7 +147,7 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
         try {
 
             // 拼接url连接
-            String urlPath = String.format("%s/%s/list", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}());
+            String urlPath = String.format("%s/%s/list", ${config.managerConfig.remoteServiceConfig.appProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.baseServiceHostFieldName?cap_first}(), ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.remoteUriFieldName?cap_first}());
 
             // 发送请求
             ResponseResult<List<${meta.name}Dto>> responseResult = httpPostObjectRequest(urlPath, null, null, JSON.toJSONString(idList),
@@ -166,7 +164,6 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
         }
     }
 </#if>
-
 <#if (config.methodCreateConfig.queryList?string('true','false'))=="true">
 
     @Override
@@ -174,7 +171,7 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
         try {
 
             // 拼接url连接
-            String urlPath = String.format("%s/%s/list", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}());
+            String urlPath = String.format("%s/%s/list", ${config.managerConfig.remoteServiceConfig.appProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.baseServiceHostFieldName?cap_first}(), ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.remoteUriFieldName?cap_first}());
 
             // 发送请求
             ResponseResult<List<${meta.name}Dto>> responseResult = httpPostObjectRequest(urlPath, null, null, JSON.toJSONString(query),
@@ -198,7 +195,7 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
         try {
 
             // 拼接url连接
-            String urlPath = String.format("%s/%s/pager/%d/%d", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}(), page, pageSize);
+            String urlPath = String.format("%s/%s/pager/%d/%d", ${config.managerConfig.remoteServiceConfig.appProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.baseServiceHostFieldName?cap_first}(), ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.remoteUriFieldName?cap_first}(), page, pageSize);
 
             // 发送请求
             ResponseResult<BaseResponsePage<${meta.name}Dto>> responseResult = httpPostObjectRequest(urlPath, null, null, JSON.toJSONString(query),
@@ -232,7 +229,7 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
         try {
 
             // 拼接url连接
-            String urlPath = String.format("%s/%s/batch", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}());
+            String urlPath = String.format("%s/%s/batch", ${config.managerConfig.remoteServiceConfig.appProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.baseServiceHostFieldName?cap_first}(), ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.remoteUriFieldName?cap_first}());
 
             // 发送请求
             ResponseResult<Integer> responseResult = httpPutObjectRequest(urlPath, null, null, JSON.toJSONString(${meta.name?uncap_first}DtoList),
@@ -256,7 +253,7 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
         try {
 
         // 拼接url连接
-        String urlPath = String.format("%s/%s/batch", shopProperties.getShopBaseServiceHost(), shopServiceApiProperties.get${meta.name}());
+        String urlPath = String.format("%s/%s/batch", ${config.managerConfig.remoteServiceConfig.appProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.baseServiceHostFieldName?cap_first}(), ${config.managerConfig.remoteServiceConfig.baseServiceApiProClassName?uncap_first}.get${config.managerConfig.remoteServiceConfig.remoteUriFieldName?cap_first}());
 
         // 发送请求
         ResponseResult<Integer> responseResult = httpDeleteObjectRequest(urlPath, null, null, JSON.toJSONString(idList),

@@ -22,7 +22,7 @@ import java.util.List;
 * @date ${createDate}
 */
 @RestController
-@RequestMapping("/api/${meta.name?uncap_first}")
+@RequestMapping("${config.managerConfig.controllerUrlPrefix}/${meta.name?uncap_first}")
 @Api(tags = "${meta.comment}接口")
 public class ${meta.name}Controller {
 
