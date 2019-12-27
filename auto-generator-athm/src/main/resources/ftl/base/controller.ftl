@@ -22,18 +22,17 @@ import ${config.companyBasePackage}.framework.util.BeanCopyUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/**${meta.comment} API
 * @author zongf
 * @date ${createDate}
 */
 @RestController
-@RequestMapping("/api/inner/${meta.name?uncap_first}")
+@RequestMapping("${config.baseConfig.controllerUrlPrefix}/${meta.name?uncap_first}")
 @Api(tags = "${meta.comment}接口")
 public class ${meta.name}Controller {
 
     @Autowired
     private I${meta.name}Service ${meta.name?uncap_first}Service;
-
 <#if (config.methodCreateConfig.save?string('true','false'))=="true">
 
     @ApiOperationSort(1)

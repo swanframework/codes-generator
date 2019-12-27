@@ -26,12 +26,15 @@ public class BaseConfig {
 
     // controller 路径
     private String controllerPackage;
+    
+    // 接口url 前缀
+    private String controllerUrlPrefix;
 
 	public BaseConfig() {
         super();
     }
 
-	public BaseConfig(String moduleName, String entityPackage, String mapperApiPackage, String mapperXmlPath, String serviceApiPackage, String serviceImplPackage, String controllerPackage) {
+	public BaseConfig(String moduleName, String entityPackage, String mapperApiPackage, String mapperXmlPath, String serviceApiPackage, String serviceImplPackage, String controllerPackage, String controllerUrlPrefix) {
         super();
 		this.moduleName = moduleName;
 		this.entityPackage = entityPackage;
@@ -40,6 +43,7 @@ public class BaseConfig {
 		this.serviceApiPackage = serviceApiPackage;
 		this.serviceImplPackage = serviceImplPackage;
 		this.controllerPackage = controllerPackage;
+		this.controllerUrlPrefix = controllerUrlPrefix;
     }
 
     public void setModuleName(String moduleName){
@@ -98,8 +102,16 @@ public class BaseConfig {
 		return this.controllerPackage;
 	}
 
+    public void setControllerUrlPrefix(String controllerUrlPrefix){
+		this.controllerUrlPrefix=controllerUrlPrefix;
+	}
+
+	public String getControllerUrlPrefix(){
+		return this.controllerUrlPrefix;
+	}
+
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {moduleName:" + moduleName + ", entityPackage:" + entityPackage + ", mapperApiPackage:" + mapperApiPackage + ", mapperXmlPath:" + mapperXmlPath + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", controllerPackage:" + controllerPackage  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {moduleName:" + moduleName + ", entityPackage:" + entityPackage + ", mapperApiPackage:" + mapperApiPackage + ", mapperXmlPath:" + mapperXmlPath + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", controllerPackage:" + controllerPackage + ", controllerUrlPrefix:" + controllerUrlPrefix  + "}";
 	}
 
 }
