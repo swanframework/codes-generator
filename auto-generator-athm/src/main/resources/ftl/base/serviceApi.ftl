@@ -5,7 +5,7 @@ import ${config.modelConfig.queryPackage}.${meta.name}Query;
 import com.github.pagehelper.Page;
 import java.util.List;
 
-/** ${meta.comment} API
+/** ${meta.comment} 业务操作接口
 * @author zongf
 * @date ${createDate}
 */
