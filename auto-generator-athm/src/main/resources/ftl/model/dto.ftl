@@ -13,8 +13,7 @@ import ${import};
 * @author zongf
 * @date ${createDate}
 */
-@Getter
-@Setter
+@Setter @Getter
 public class ${meta.name}Dto {
 <#list meta.fields as field>
 
