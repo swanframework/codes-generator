@@ -12,7 +12,7 @@ import ${config.companyBasePackage}.shop.manager.bean.BootstrapPagerResponseResu
 
 import java.util.List;
 
-/**
+/**${meta.name} 业务操作实现类
  * @author zongf
  * @date ${createDate}
  */

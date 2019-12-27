@@ -8,7 +8,7 @@ import ${config.companyBasePackage}.shop.manager.bean.BootstrapPagerResponseResu
 
 import java.util.List;
 
-/**
+/**${meta.name} 基础服务调用接口
 * @author zongf
 * @date ${createDate}
 */
