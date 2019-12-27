@@ -24,11 +24,17 @@ public class ManagerConfig {
     // controller 路径
     private String controllerPackage;
 
+	// 接口url 前缀
+	private String controllerUrlPrefix;
+	
+	// remote service 配置
+	private RemoteServiceConfig remoteServiceConfig = new RemoteServiceConfig();
+
 	public ManagerConfig() {
         super();
     }
 
-	public ManagerConfig(String moduleName, String remoteServiceApiPackage, String remoteServiceImplPackage, String serviceApiPackage, String serviceImplPackage, String controllerPackage) {
+	public ManagerConfig(String moduleName, String remoteServiceApiPackage, String remoteServiceImplPackage, String serviceApiPackage, String serviceImplPackage, String controllerPackage, String controllerUrlPrefix, RemoteServiceConfig remoteServiceConfig) {
         super();
 		this.moduleName = moduleName;
 		this.remoteServiceApiPackage = remoteServiceApiPackage;
@@ -36,6 +42,8 @@ public class ManagerConfig {
 		this.serviceApiPackage = serviceApiPackage;
 		this.serviceImplPackage = serviceImplPackage;
 		this.controllerPackage = controllerPackage;
+		this.controllerUrlPrefix = controllerUrlPrefix;
+		this.remoteServiceConfig = remoteServiceConfig;
     }
 
     public void setModuleName(String moduleName){
@@ -86,8 +94,24 @@ public class ManagerConfig {
 		return this.controllerPackage;
 	}
 
+    public void setControllerUrlPrefix(String controllerUrlPrefix){
+		this.controllerUrlPrefix=controllerUrlPrefix;
+	}
+
+	public String getControllerUrlPrefix(){
+		return this.controllerUrlPrefix;
+	}
+
+    public void setRemoteServiceConfig(RemoteServiceConfig remoteServiceConfig){
+		this.remoteServiceConfig=remoteServiceConfig;
+	}
+
+	public RemoteServiceConfig getRemoteServiceConfig(){
+		return this.remoteServiceConfig;
+	}
+
     public String toString() {
-		return getClass().getSimpleName() + "@" + hashCode() + ": {moduleName:" + moduleName + ", remoteServiceApiPackage:" + remoteServiceApiPackage + ", remoteServiceImplPackage:" + remoteServiceImplPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", controllerPackage:" + controllerPackage  + "}";
+		return getClass().getSimpleName() + "@" + hashCode() + ": {moduleName:" + moduleName + ", remoteServiceApiPackage:" + remoteServiceApiPackage + ", remoteServiceImplPackage:" + remoteServiceImplPackage + ", serviceApiPackage:" + serviceApiPackage + ", serviceImplPackage:" + serviceImplPackage + ", controllerPackage:" + controllerPackage + ", controllerUrlPrefix:" + controllerUrlPrefix + ", remoteServiceConfig:" + remoteServiceConfig  + "}";
 	}
 
 }
