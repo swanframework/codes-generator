@@ -106,6 +106,7 @@
         select <include refid="columns_all"/>
         from <include refid="tableName"/>
         where id in <include refid="idList"/>
+        order by id desc
     </select>
 </#if>
 <#if (config.methodCreateConfig.queryList?string('true','false'))=="true" || (config.methodCreateConfig.queryPager?string('true','false'))=="true">
@@ -115,6 +116,7 @@
         select <include refid="columns_all"/>
         from <include refid="tableName"/>
         where is_del=0
+        order by id desc
     </select>
 </#if>
 </mapper>
