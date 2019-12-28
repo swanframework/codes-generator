@@ -94,11 +94,13 @@ public class ${meta.name}Controller {
 
     @ApiOperationSort(6)
     @ApiOperation(value = "分页查询接口", notes = "Author:zongf")
-    @PostMapping("/pager/{page}/{pageSize}")
+    @PostMapping("/pager")
     public BootstrapPagerResponseResult<${meta.name}Dto> queryPager(
-        @ApiParam("页码") @PathVariable("page") int page,
-        @ApiParam("每页数量") @PathVariable("pageSize") int pageSize,
+        @ApiParam("页码") Integer page,
+        @ApiParam("每页数量") Integer pageSize,
         @ApiParam("查询条件") ${meta.name}Query query){
+
+        if(pageSize == null) pageSize = 10;
 
         // 分页查询
         BootstrapPagerResponseResult<${meta.name}Dto> responseResult = this.${meta.name?uncap_first}Service.queryPager(page, pageSize, query);
