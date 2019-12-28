@@ -1,9 +1,5 @@
 package ${config.managerConfig.controllerPackage};
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiOperationSort;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,17 +19,15 @@ import java.util.List;
 */
 @RestController
 @RequestMapping("${config.managerConfig.controllerUrlPrefix}/${meta.name?uncap_first}")
-@Api(tags = "${meta.comment}接口")
 public class ${meta.name}Controller {
 
     @Autowired
     private I${meta.name}Service ${meta.name?uncap_first}Service;
 <#if (config.methodCreateConfig.save?string('true','false'))=="true">
 
-    @ApiOperationSort(1)
-    @ApiOperation(value = "保存接口", notes = "Author:zongf")
+    /** ${meta.comment}-保存接口 */
     @DeleteMapping("/")
-    public ResponseResult<Boolean> save(@ApiParam("${meta.comment}") @RequestBody ${meta.name}Dto ${meta.name?uncap_first}Dto){
+    public ResponseResult<Boolean> save(@RequestBody ${meta.name}Dto ${meta.name?uncap_first}Dto){
 
         // 校验字段基本信息
         HibernateValidatorUtil.validate(${meta.name?uncap_first}Dto);
@@ -45,18 +39,16 @@ public class ${meta.name}Controller {
 </#if>
 <#if (config.methodCreateConfig.deleteById?string('true','false'))=="true">
 
-    @ApiOperationSort(2)
-    @ApiOperation(value = "删除接口", notes = "Author:zongf")
+    /** ${meta.comment}-删除接口 */
     @DeleteMapping("/{id}")
-    public ResponseResult<Boolean> deleteById(@ApiParam("主键ID") @PathVariable("id") Integer id){
+    public ResponseResult<Boolean> deleteById(Integer id){
         boolean isSuccess = this.${meta.name?uncap_first}Service.deleteById(id);
         return ResponseResult.success(isSuccess);
     }
 </#if>
 <#if (config.methodCreateConfig.update?string('true','false'))=="true">
 
-    @ApiOperationSort(3)
-    @ApiOperation(value = "更新接口", notes = "Author:zongf")
+    /** ${meta.comment}-更新接口 */
     @PostMapping("/{id}")
     public ResponseResult<Boolean> update(@PathVariable("id")Integer id, @RequestBody ${meta.name}Dto ${meta.name?uncap_first}Dto){
 
@@ -68,10 +60,9 @@ public class ${meta.name}Controller {
 </#if>
 <#if (config.methodCreateConfig.queryById?string('true','false'))=="true">
 
-    @ApiOperationSort(4)
-    @ApiOperation(value = "查询详情接口", notes = "Author:zongf")
+    /** ${meta.comment}-查询详情接口 */
     @GetMapping("/{id}")
-    public ResponseResult<${meta.name}Dto> queryById(@ApiParam("主键ID") @PathVariable("id") Integer id){
+    public ResponseResult<${meta.name}Dto> queryById(@PathVariable("id") Integer id){
         // 数据库查询实体
         ${meta.name}Dto ${meta.name?uncap_first}Dto = this.${meta.name?uncap_first}Service.queryById(id);
 
@@ -80,10 +71,9 @@ public class ${meta.name}Controller {
 </#if>
 <#if (config.methodCreateConfig.queryList?string('true','false'))=="true">
 
-    @ApiOperationSort(5)
-    @ApiOperation(value = "查询列表", notes = "Author:zongf")
+    /** ${meta.comment}-查询列表接口 */
     @GetMapping("/list")
-    public ResponseResult<List<${meta.name}Dto>> queryList(@ApiParam("主键ID") ${meta.name}Query query){
+    public ResponseResult<List<${meta.name}Dto>> queryList(${meta.name}Query query){
         // 查询结果集
         List<${meta.name}Dto> ${meta.name?uncap_first}DtoList = this.${meta.name?uncap_first}Service.queryList(query);
 
@@ -92,13 +82,9 @@ public class ${meta.name}Controller {
 </#if>
 <#if (config.methodCreateConfig.queryPager?string('true','false'))=="true">
 
-    @ApiOperationSort(6)
-    @ApiOperation(value = "分页查询接口", notes = "Author:zongf")
+    /** ${meta.comment}-分页查询接口 */
     @PostMapping("/pager")
-    public BootstrapPagerResponseResult<${meta.name}Dto> queryPager(
-        @ApiParam("页码") Integer page,
-        @ApiParam("每页数量") Integer pageSize,
-        @ApiParam("查询条件") ${meta.name}Query query){
+    public BootstrapPagerResponseResult<${meta.name}Dto> queryPager(Integer page, Integer pageSize, ${meta.name}Query query){
 
         if(pageSize == null) pageSize = 10;
 
@@ -110,10 +96,8 @@ public class ${meta.name}Controller {
 </#if>
 <#if (config.methodCreateConfig.batchSave?string('true','false'))=="true">
 
-    @ApiOperationSort(7)
-    @ApiOperation(value = "批量保存", notes = "Author:zongf")
-    @PutMapping("/batch")
-    public ResponseResult<Integer> batchSave(@ApiParam("分销渠道商品") @RequestBody List<${meta.name}Dto> ${meta.name?uncap_first}DtoList){
+    /** ${meta.comment}-批量保存接口 */
+    public ResponseResult<Integer> batchSave(@RequestBody List<${meta.name}Dto> ${meta.name?uncap_first}DtoList){
 
         // 校验字段基本信息
         ${meta.name?uncap_first}DtoList.forEach(HibernateValidatorUtil::validate);
@@ -125,10 +109,9 @@ public class ${meta.name}Controller {
 </#if>
 <#if (config.methodCreateConfig.batchDeleteByIds?string('true','false'))=="true">
 
-    @ApiOperationSort(8)
-    @ApiOperation(value = "批量删除", notes = "Author:zongf")
+    /** ${meta.comment}-批量删除接口 */
     @DeleteMapping("/batch")
-    public ResponseResult<Integer> batchDeleteByIds(@ApiParam("主键ID列表") @RequestBody List<Integer> idList){
+    public ResponseResult<Integer> batchDeleteByIds(@RequestBody List<Integer> idList){
         int delNum = this.${meta.name?uncap_first}Service.batchDeleteByIds(idList);
         return ResponseResult.success(delNum);
     }
