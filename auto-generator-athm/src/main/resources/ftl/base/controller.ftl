@@ -37,7 +37,7 @@ public class ${meta.name}Controller {
 
     @ApiOperationSort(1)
     @ApiOperation(value = "保存接口", notes = "Author:zongf")
-    @DeleteMapping("/")
+    @PutMapping("/")
     public ResponseResult<Boolean> save(@ApiParam("${meta.comment}") @RequestBody ${meta.name}Dto ${meta.name?uncap_first}Dto){
 
         // 校验字段基本信息
