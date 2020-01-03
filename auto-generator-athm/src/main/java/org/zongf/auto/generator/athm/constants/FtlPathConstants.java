@@ -42,8 +42,8 @@ public class FtlPathConstants {
     /** open 模块儿: service 实现 */
     public static final String FTL_OPEN_SERVICE_IMPL = "open/service-impl.ftl";
 
-    /** open 模块儿: service 实现 */
-    public static final String FTL_OPEN_IMPL = "open/controller.ftl";
+    /** open 模块儿: controller  */
+    public static final String FTL_OPEN_CONTROLLER = "open/controller.ftl";
 
     /** manager 模块儿: remote service API */
     public static final String FTL_MANAGER_REMOTE_SERVICE_API = "manager/remote-service-api.ftl";
@@ -57,8 +57,8 @@ public class FtlPathConstants {
     /** manager 模块儿: service 实现 */
     public static final String FTL_MANAGER_SERVICE_IMPL = "manager/service-impl.ftl";
 
-    /** manager 模块儿: service 实现 */
-    public static final String FTL_CONTROLLER_IMPL = "manager/controller.ftl";
+    /** manager 模块儿: controller */
+    public static final String FTL_MANAGER_CONTROLLER = "manager/controller.ftl";
 
 
 }
