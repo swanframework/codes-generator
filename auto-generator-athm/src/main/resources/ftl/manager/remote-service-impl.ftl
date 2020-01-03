@@ -58,10 +58,12 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
 
             // 校验接口返回值
             if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-保存失败", true);
+                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, responseResult.getMessage(), true);
             }
 
             return responseResult.getData();
+        } catch (BusinessException ex){
+            throw ex;
         } catch (Exception e) {
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-保存失败", true);
         }
@@ -82,10 +84,12 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
 
             // 校验接口返回值
             if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-删除失败", true);
+                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, responseResult.getMessage(), true);
             }
 
             return responseResult.getData();
+        } catch (BusinessException ex){
+            throw ex;
         } catch (Exception e) {
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-删除失败", true);
         }
@@ -107,10 +111,12 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
 
             // 校验接口返回值
             if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-更新失败", true);
+                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, responseResult.getMessage(), true);
             }
 
             return responseResult.getData();
+        } catch (BusinessException ex){
+            throw ex;
         } catch (Exception e) {
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-更新失败", true);
         }
@@ -131,10 +137,12 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
 
             // 校验接口返回值
             if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-详情查询失败", true);
+                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, responseResult.getMessage(), true);
             }
 
             return responseResult.getData();
+        } catch (BusinessException ex){
+            throw ex;
         } catch (Exception e) {
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-详情查询失败", true);
         }
@@ -155,10 +163,12 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
 
             // 校验接口返回值
             if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-列表查询失败", true);
+                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, responseResult.getMessage(), true);
             }
 
             return responseResult.getData();
+        } catch (BusinessException ex){
+            throw ex;
         } catch (Exception e) {
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-列表查询失败", true);
         }
@@ -179,10 +189,12 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
 
             // 校验接口返回值
             if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-列表查询失败", true);
+                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, responseResult.getMessage(), true);
             }
 
             return responseResult.getData();
+        } catch (BusinessException ex){
+            throw ex;
         } catch (Exception e) {
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-列表查询失败", true);
         }
@@ -203,7 +215,7 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
 
             // 校验接口返回值
             if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-分页查询失败", true);
+                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, responseResult.getMessage(), true);
             }
 
             // 转换响应对象
@@ -217,6 +229,8 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
             bootstrapPager.setRecordsTotal(baseResponsePage.getTotal());
 
             return bootstrapPager;
+        } catch (BusinessException ex){
+            throw ex;
         } catch (Exception e) {
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-分页查询失败", true);
         }
@@ -237,10 +251,12 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
 
             // 校验接口返回值
             if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量保存失败", true);
+                throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, responseResult.getMessage(), true);
             }
 
             return responseResult.getData();
+        } catch (BusinessException ex){
+            throw ex;
         } catch (Exception e) {
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量保存失败", true);
         }
@@ -261,10 +277,12 @@ public class ${meta.name}RemoteServiceImpl extends BaseAdapterService implements
 
         // 校验接口返回值
         if (!ShopExceptionConstant.REQUEST_SUCCESS_CODE.equals(responseResult.getReturncode())) {
-            throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量删除失败", true);
+            throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, responseResult.getMessage(), true);
         }
 
         return responseResult.getData();
+        } catch (BusinessException ex){
+            throw ex;
         } catch (Exception e) {
             throw new BusinessException(ShopExceptionConstant.REQUEST_FAIL_CODE, "${meta.comment}-批量删除失败", true);
         }
