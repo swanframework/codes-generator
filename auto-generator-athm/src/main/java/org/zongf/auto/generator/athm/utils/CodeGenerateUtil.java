@@ -31,7 +31,7 @@ public class CodeGenerateUtil {
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("meta", entityMetaInfo);
         dataMap.put("config", config);
-        dataMap.put("createDate", getCurrentDate());
+        dataMap.put("createDate", DateUtil.getCurrentDate());
 
         // 生成代码
         String codes = TemplateUtil.getTemplatContent(ftlName, dataMap);
@@ -42,14 +42,6 @@ public class CodeGenerateUtil {
         System.out.println("文件已生成:" + filePath);
     }
 
-    /** 获取当前日期
-     * @return String
-     * @author zongf
-     * @date 2019-12-14
-     */
-    private static String getCurrentDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(new Date());
-    }
+
 
 }

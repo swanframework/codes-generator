@@ -23,7 +23,7 @@ public class AthmDDLUtil {
     public static List<TableDefineVO> parseTables(String excelPath){
 
         // 创建excel 工作簿对象
-        Workbook workbook = getWorkBook(excelPath);
+        Workbook workbook = PoiUtil.getWorkBook(excelPath);
 
         // 获取sheet页, 一个Excel 工作簿可以包含多个sheet页
         Sheet sheet1 = workbook.getSheetAt(0);
@@ -85,19 +85,7 @@ public class AthmDDLUtil {
         return str.replace("（", "(").replace("）", ")");
     }
 
-    /** 获取工作簿
-     * @param excelPath excel 路径
-     * @return Workbook 工作簿
-     * @author zongf
-     * @date 2019-12-16
-     */
-    private static Workbook getWorkBook(String excelPath) {
-        try {
-            return WorkbookFactory.create(new File(excelPath));
-        } catch (Exception ex) {
-            throw new RuntimeException("读取文件:" + excelPath + "失败!", ex);
-        }
-    }
+
 
     /**获取String 型返回值
      * @param row 行
