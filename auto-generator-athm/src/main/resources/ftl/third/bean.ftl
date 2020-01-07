@@ -10,7 +10,7 @@ import lombok.Setter;
 public class ${classInfo.className} {
 <#list classInfo.fieldList as field>
 
-    /** ${field.comment}<#if field.required =="true" >, 必传</#if> */
+    /**<#if field.required =="true" > 必传:</#if> ${field.comment} */
     private ${field.fieldType} ${field.fieldName?uncap_first};
 </#list>
 
