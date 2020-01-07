@@ -60,5 +60,7 @@ public class FtlPathConstants {
     /** manager 模块儿: controller */
     public static final String FTL_MANAGER_CONTROLLER = "manager/controller.ftl";
 
+    /** 第三方bean */
+    public static final String FTL_THIRD_BEAN = "third/bean.ftl";
 
 }
