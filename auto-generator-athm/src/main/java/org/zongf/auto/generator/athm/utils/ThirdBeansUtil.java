@@ -77,7 +77,7 @@ public class ThirdBeansUtil {
     private static ThirdFieldInfo parse(String[] array) {
         ThirdFieldInfo thirdFieldInfo = new ThirdFieldInfo();
         thirdFieldInfo.setFieldName(StringUtil.camelCase(array[0].trim()));
-        thirdFieldInfo.setFieldType(array[1].trim());
+        thirdFieldInfo.setFieldType(array[1].trim().replaceAll("_",""));
         thirdFieldInfo.setComment(array[2].trim());
         if (array.length > 3) {
             if ("YES".equalsIgnoreCase(array[3].trim()) || "是".equals(array[3].trim())) {
