@@ -30,8 +30,16 @@
 
     <!-- 保存单个实体 -->
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
-        insert <include refid="tableName"/>(<include refid="columns_all"/>)
-        values (<#list meta.fields as field>${r'#{'}${field.name}}<#if field_index != meta.fields?size-1>, </#if></#list>);
+        insert <include refid="tableName"/>(
+            <#list meta.fields as field>
+                <if test="${field.name} ！= null">${field.columnName}<#if field_index != meta.fields?size-1>, </#if></if>
+            </#list>
+        )
+        values (
+        <#list meta.fields as field>
+            <if test="${field.name} ！= null">${r'#{'}${field.name}}<#if field_index != meta.fields?size-1>, </#if></if>
+        </#list>
+        );
     </insert>
 </#if>
 <#if (config.methodCreateConfig.batchSave?string('true','false'))=="true">
